@@ -1,7 +1,6 @@
 import {
   GradientText,
   HeroAvatar,
-  HeroSocial,
   Section,
 } from 'astro-boilerplate-components';
 
@@ -10,20 +9,29 @@ const Hero = () => (
     <HeroAvatar
       title={
         <>
-          Hi there, I'm <GradientText>Ixartz</GradientText> 👋
+          <GradientText>Ben Hammond</GradientText>
+          <p>Denver Developer && Song Builder</p>
         </>
       }
       description={
         <>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus{' '}
-          <a className="text-cyan-400 hover:underline" href="/">
-            malesuada
-          </a>{' '}
-          nisi tellus, non imperdiet nisi tempor at. Lorem ipsum dolor sit amet,{' '}
-          <a className="text-cyan-400 hover:underline" href="/">
-            consectetur
-          </a>{' '}
-          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+          <p>
+            I'm an endlessly curious web developer with 15+ years performing and
+            operating a tech-forward music business. I am a graduate of McGill
+            University and General Assembly, living in Denver, Colorado with my
+            family.
+          </p>
+          <p>
+            I am currently employed by the Morehouse School of Medicine, proudly
+            working as a software engineer on the open-source Health Equity
+            Tracker, which was built by Google.org and is now further expanded
+            by the Satcher Health Leadership Institute.
+          </p>
+          <p>
+            I believe deeply in the power of music and technology to uplift our
+            communities, so please reach out if I can help or answer any
+            questions you may have. Let's build something together!
+          </p>
         </>
       }
       avatar={
@@ -36,7 +44,7 @@ const Hero = () => (
       }
       socialButtons={
         <>
-          <a href="/">
+          {/* <a href="/">
             <HeroSocial
               src="/assets/images/twitter-icon.png"
               alt="Twitter icon"
@@ -59,7 +67,7 @@ const Hero = () => (
               src="/assets/images/youtube-icon.png"
               alt="Youtube icon"
             />
-          </a>
+          </a> */}
         </>
       }
     />
