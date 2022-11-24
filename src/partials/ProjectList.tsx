@@ -10,7 +10,7 @@ const ProjectList = () => (
   <Section
     title={
       <>
-        Select <GradientText>Projects</GradientText>
+        Recent <GradientText>Coding Projects</GradientText>
       </>
     }
   >
