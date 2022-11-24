@@ -36,9 +36,9 @@ const Hero = () => (
       }
       avatar={
         <img
-          className="h-80 w-64"
-          src="/assets/images/avatar.svg"
-          alt="Avatar image"
+          className="h-64"
+          src="/assets/images/ben.jpg"
+          alt="Ben Hammond selfie holding guitar with a Denver sunset glowing behind"
           loading="lazy"
         />
       }
