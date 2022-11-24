@@ -1,2 +1,5 @@
 node_modules
 dist
+src/templates/BasePost.astro
+src/pages/index.astro
+src/pages/posts/*.astro

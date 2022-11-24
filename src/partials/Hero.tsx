@@ -2,7 +2,7 @@ import {
   GradientText,
   HeroAvatar,
   Section,
-} from 'astro-boilerplate-components';
+} from '../astro-boilerplate-components';
 
 const Hero = () => (
   <Section>
