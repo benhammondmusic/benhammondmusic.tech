@@ -6,7 +6,9 @@ type IProjectProps = {
     alt: string;
   };
   name: string;
-  description: string;
+  summary: string;
+  description?: string;
+  descriptionList?: ReactNode;
   link: string;
   category: ReactNode;
 };
@@ -32,8 +34,13 @@ const Project = (props: IProjectProps) => (
 
         <div className="ml-3 flex flex-wrap gap-2">{props.category}</div>
       </div>
-
-      <p className="mt-3 text-gray-400">{props.description}</p>
+      <details>
+        <summary className="cursor-pointer py-3 font-semibold hover:text-cyan-400">
+          {props.summary}
+        </summary>
+        {props?.description && <p>{props.description}</p>}
+        {props?.descriptionList}
+      </details>
     </div>
   </div>
 );
