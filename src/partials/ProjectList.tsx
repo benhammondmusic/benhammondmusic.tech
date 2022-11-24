@@ -55,8 +55,9 @@ const ProjectList = () => (
               </li>
               <li>
                 Representing our organization in communications with NPR, CDC,
-                Rutgers and RWJF; collaboration with outside agencies to allow
-                for problem-free insertion of newly designed components.
+                Rutgers and Robert Wood Johnson Foundation; collaboration with
+                outside agencies to allow for problem-free insertion of newly
+                designed components.
               </li>
               <li>
                 Improved codebase health by incorporating a systematic approach
@@ -140,7 +141,7 @@ const ProjectList = () => (
           name="GigBoard"
           summary="Fullstack app connecting gig-workers, built wth the MERN stack"
           description="Uses Model-View-Controller (MVC) design pattern, user stories, and an internal RESTful API. CRUD functionality restricted per user status; offers custom encrypted registration or Google OAuth login. Project-managed team of 6, utilizing GitHub's agile board to delegate and to minimize merge conflicts. Wrote 3 technical posts, assisting team members with deployments and environmental variables; provided hands-on assistance on multiple occasions and helped instructor solve another team's bug. Personally contributed across the stack: scaffolding functional React components; dynamic searching; hooks for state management and side-effects; assisted with JWT process."
-          link="https://github.com/benhammondmusic/gigboard"
+          link="https://blog.benhammond.tech/connecting-your-deployed-frontend-backend-and-mongodb-atlas-database"
           img={{ src: '/assets/images/gigboard.png', alt: 'GigBoard Project' }}
           category={
             <>
@@ -157,7 +158,7 @@ const ProjectList = () => (
           name="Tanks!"
           summary="Classic 2d animated artillery game, build in a single week."
           description="Incorporated programmatically generated terrain and collision detection / destruction, gravity, scalable multiplayer mode, and responsive design."
-          link="/"
+          link="https://blog.benhammond.tech/tanks"
           img={{ src: '/assets/images/tanks.png', alt: 'Tanks Game Project' }}
           category={
             <>
@@ -171,7 +172,7 @@ const ProjectList = () => (
           name="Family Friendly"
           summary="Crowd-sourced changing table locations for caregivers of all genders"
           description="Delegates and restricts users' CRUD permissions with OAuth2; plots user location and data with Google Maps API; integrates a deployed MongoDB Atlas NoSQL database; internally operates a RESTful API backend in Node/Express with EJS templating."
-          link="/"
+          link="https://blog.benhammond.tech/familyfriendly"
           img={{
             src: '/assets/images/family-friendly.png',
             alt: 'Family Friendly Project',
@@ -189,7 +190,7 @@ const ProjectList = () => (
           name="Gig Uploader"
           summary="Boost music promotion with web-scraping"
           description="Automate gig promotion by programmatically submitting to multiple online event services. User inputs details into a local .xls spreadsheet, and the data is uploaded publicly to Songkick, BandsInTown, Strumsy, and privately to Dubsado. Further integration propagates this information to Spotify, Google, a user's Google Calendar, and many more locations."
-          link="/"
+          link="https://blog.benhammond.tech/giguploader"
           img={{
             src: '/assets/images/gig-uploader.png',
             alt: 'Gig Uploader Project',
