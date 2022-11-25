@@ -15,21 +15,21 @@ const CTA = () => (
       description={
         <>
           <a
-            className="hover:text-cyan-400"
+            className="text-benhammondyellow hover:underline"
             href="mailto:hello@benhammond.tech"
           >
             Email me
           </a>
           , or connect on{' '}
           <a
-            className="hover:text-cyan-400"
+            className="text-benhammondyellow hover:underline"
             href="https://github.com/benhammondmusic"
           >
             GitHub
           </a>{' '}
           and{' '}
           <a
-            className="hover:text-cyan-400"
+            className="text-benhammondyellow hover:underline"
             href="https://www.linkedin.com/in/benhammondmusic"
           >
             LinkedIn

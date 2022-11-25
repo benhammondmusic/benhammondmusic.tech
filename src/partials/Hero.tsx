@@ -21,7 +21,7 @@ const Hero = () => (
             I'm an endlessly curious web developer with 15+ years performing and
             operating a{' '}
             <a
-              className="text-cyan-400 hover:underline"
+              className="text-benhammondyellow hover:underline"
               href="https://benhammondmusic.com"
             >
               tech-forward music business
@@ -33,7 +33,7 @@ const Hero = () => (
             I am currently employed by the Morehouse School of Medicine, proudly
             working as a software engineer on the open-source{' '}
             <a
-              className="text-cyan-400 hover:underline"
+              className="text-benhammondyellow hover:underline"
               href="https://healthequitytracker.org"
             >
               Health Equity Tracker
@@ -49,19 +49,19 @@ const Hero = () => (
           <div className="mt-5">
             <a
               href="https://docs.google.com/document/d/1nYJf1ZjGetUo8lFbwoyf23prkTw-0H_HiqvMKlY5_nw"
-              className="m-5 text-lg font-semibold hover:text-cyan-400"
+              className="m-5 text-lg font-semibold hover:text-benhammondyellow"
             >
               Resume
             </a>
             <a
               href="https://blog.benhammond.tech"
-              className="m-5 text-lg font-semibold hover:text-cyan-400"
+              className="m-5 text-lg font-semibold hover:text-benhammondyellow"
             >
               Blog
             </a>
             <a
               href="mailto:hello@benhammond.tech"
-              className="m-5 text-lg font-semibold hover:text-cyan-400"
+              className="m-5 text-lg font-semibold hover:text-benhammondyellow"
             >
               Email
             </a>
