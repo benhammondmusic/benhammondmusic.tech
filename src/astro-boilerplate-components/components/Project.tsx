@@ -28,14 +28,14 @@ const Project = (props: IProjectProps) => (
 
     <div>
       <div className="flex flex-col items-center gap-y-2 md:flex-row">
-        <a className="hover:text-cyan-400" href={props.link}>
+        <a className="hover:text-benhammondyellow" href={props.link}>
           <div className="text-xl font-semibold">{props.name}</div>
         </a>
 
         <div className="ml-3 flex flex-wrap gap-2">{props.category}</div>
       </div>
       <details>
-        <summary className="cursor-pointer py-3 font-semibold hover:text-cyan-400">
+        <summary className="cursor-pointer py-3 font-semibold hover:text-benhammondyellow">
           {props.summary}
         </summary>
         {props?.description && <p>{props.description}</p>}

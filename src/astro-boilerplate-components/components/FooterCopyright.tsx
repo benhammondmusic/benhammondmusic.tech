@@ -8,7 +8,7 @@ const FooterCopyright = (props: IFooterCopyrightProps) => (
       © Copyright {new Date().getFullYear()} by {props.site_name}. Template
       forked from{' '}
       <a
-        className="hover:text-cyan-400 hover:underline"
+        className="hover:text-benhammondyellow hover:underline"
         href="https://creativedesignsguru.com"
         target="_blank"
         rel="noopener noreferrer"
