@@ -47,7 +47,7 @@ const colorToClassMap = {
   [ColorTags.EMERALD]: 'bg-emerald-400 text-emerald-900',
   [ColorTags.TEAL]: 'bg-teal-400 text-teal-900',
   [ColorTags.CYAN]: 'bg-cyan-400 text-cyan-900',
-  [ColorTags.SKY]: 'bg-sky-400 text-sky-900',
+  [ColorTags.SKY]: 'bg-sky-200 text-sky-900',
   [ColorTags.BLUE]: 'bg-blue-400 text-blue-900',
   [ColorTags.INDIGO]: 'bg-indigo-400 text-indigo-900',
   [ColorTags.VIOLET]: 'bg-violet-300 text-violet-900',
