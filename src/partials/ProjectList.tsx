@@ -109,6 +109,25 @@ const ProjectList = () => (
     >
       <div className="flex flex-col gap-6">
         <Project
+          name="benhammond.tech"
+          summary="Developer portfolio site"
+          description="Ongoing project allowing me to experiment with new web tech in a low-stakes environment; currently forked from a template using Astro for server side generated pages at build time; plans to dynamically pull in blog content directly with GraphQL. "
+          link="https://benhammond.tech"
+          img={{
+            src: '/assets/images/benhammond-tech.png',
+            alt: 'benhammond.tech Project',
+          }}
+          category={
+            <>
+              <Tags color={ColorTags.SKY}>Astro</Tags>
+              <Tags color={ColorTags.SKY}>React</Tags>
+              <Tags color={ColorTags.SKY}>TypeScript</Tags>
+              <Tags color={ColorTags.SKY}>Tailwind</Tags>
+              <Tags color={ColorTags.SKY}>Conventional Commits</Tags>
+            </>
+          }
+        />
+        <Project
           name="Little Cabin"
           summary="Securely share your family's get-away and memories"
           description="Fullstack Python App with Django. Created this web app to provide

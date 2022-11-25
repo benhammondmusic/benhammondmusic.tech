@@ -9,7 +9,7 @@ const FooterCopyright = (props: IFooterCopyrightProps) => (
       forked from{' '}
       <a
         className="hover:text-benhammondyellow hover:underline"
-        href="https://creativedesignsguru.com"
+        href="https://github.com/ixartz/Astro-boilerplate"
         target="_blank"
         rel="noopener noreferrer"
       >
