@@ -20,7 +20,7 @@ const ProjectList = () => (
           name="Health Equity Tracker"
           summary="Free-to-use data visualization platform enabling new insights into the impact of COVID-19 and other social and political determinants of health on historically underrepresented groups in the US; built collaboratively by Google.org and continuously expanded by the Satcher Health Leadership Institute"
           descriptionList={
-            <ul className="list-disc">
+            <ul className="list-inside list-disc">
               <li>
                 Ownership of Health Equity Tracker frontend, coordinating MVP
                 hand-off from Google.org to our small team and continuing
