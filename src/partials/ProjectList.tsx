@@ -162,9 +162,9 @@ const ProjectList = () => (
           img={{ src: '/assets/images/tanks.png', alt: 'Tanks Game Project' }}
           category={
             <>
-              <Tags color={ColorTags.ROSE}>HTML Canvas</Tags>
-              <Tags color={ColorTags.ROSE}>JQuery</Tags>
-              <Tags color={ColorTags.ROSE}>JavaScript</Tags>
+              <Tags color={ColorTags.ORANGE}>HTML Canvas</Tags>
+              <Tags color={ColorTags.ORANGE}>JQuery</Tags>
+              <Tags color={ColorTags.ORANGE}>JavaScript</Tags>
             </>
           }
         />
