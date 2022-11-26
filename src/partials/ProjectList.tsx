@@ -72,7 +72,8 @@ const ProjectList = () => (
               </li>
             </ul>
           }
-          link="https://healthequitytracker.org"
+          deployLink="https://healthequitytracker.org"
+          repoLink="https://github.com/SatcherInstitute/health-equity-tracker"
           img={{
             src: '/assets/images/het.svg',
             alt: 'Health Equity Tracker Project',
@@ -112,7 +113,8 @@ const ProjectList = () => (
           name="benhammond.tech"
           summary="Developer portfolio site"
           description="Ongoing project allowing me to experiment with new web tech in a low-stakes environment; currently forked from a template using Astro for server side generated pages. Dynamically pulls in my recent blog posts with GraphQL at build time. "
-          link="https://benhammond.tech"
+          deployLink="https://benhammond.tech"
+          repoLink="https://github.com/benhammondmusic/benhammond.tech"
           img={{
             src: '/assets/images/benhammond-tech.png',
             alt: 'benhammond.tech Project',
@@ -140,7 +142,8 @@ const ProjectList = () => (
               incoming action requests to demonstrate user-to-user interactions.
               Prioritizes responsive design with media queries and CSS
               variables; persistent dark mode toggle selection."
-          link="https://blog.benhammond.tech/connecting-google-cal-api-and-django"
+          blogLink="https://blog.benhammond.tech/connecting-google-cal-api-and-django"
+          repoLink="https://github.com/benhammondmusic/littlecabin"
           img={{
             src: '/assets/images/little-cabin.png',
             alt: 'Little Cabin Project',
@@ -160,7 +163,8 @@ const ProjectList = () => (
           name="GigBoard"
           summary="Fullstack app connecting gig-workers, built wth the MERN stack"
           description="Uses Model-View-Controller (MVC) design pattern, user stories, and an internal RESTful API. CRUD functionality restricted per user status; offers custom encrypted registration or Google OAuth login. Project-managed team of 6, utilizing GitHub's agile board to delegate and to minimize merge conflicts. Wrote 3 technical posts, assisting team members with deployments and environmental variables; provided hands-on assistance on multiple occasions and helped instructor solve another team's bug. Personally contributed across the stack: scaffolding functional React components; dynamic searching; hooks for state management and side-effects; assisted with JWT process."
-          link="https://blog.benhammond.tech/connecting-your-deployed-frontend-backend-and-mongodb-atlas-database"
+          blogLink="https://blog.benhammond.tech/connecting-your-deployed-frontend-backend-and-mongodb-atlas-database"
+          repoLink="https://github.com/benhammondmusic/gigboard"
           img={{ src: '/assets/images/gigboard.png', alt: 'GigBoard Project' }}
           category={
             <>
@@ -177,7 +181,9 @@ const ProjectList = () => (
           name="Tanks!"
           summary="Classic 2d animated artillery game, build in a single week."
           description="Incorporated programmatically generated terrain and collision detection / destruction, gravity, scalable multiplayer mode, and responsive design."
-          link="https://blog.benhammond.tech/tanks"
+          deployLink="https://tanks-js.netlify.app/"
+          blogLink="https://blog.benhammond.tech/tanks"
+          repoLink="https://github.com/benhammondmusic/tanks"
           img={{ src: '/assets/images/tanks.png', alt: 'Tanks Game Project' }}
           category={
             <>
@@ -191,7 +197,8 @@ const ProjectList = () => (
           name="Family Friendly"
           summary="Crowd-sourced changing table locations for caregivers of all genders"
           description="Delegates and restricts users' CRUD permissions with OAuth2; plots user location and data with Google Maps API; integrates a deployed MongoDB Atlas NoSQL database; internally operates a RESTful API backend in Node/Express with EJS templating."
-          link="https://blog.benhammond.tech/familyfriendly"
+          blogLink="https://blog.benhammond.tech/familyfriendly"
+          repoLink="https://github.com/benhammondmusic/familyfriendly"
           img={{
             src: '/assets/images/family-friendly.png',
             alt: 'Family Friendly Project',
@@ -209,7 +216,8 @@ const ProjectList = () => (
           name="Gig Uploader"
           summary="Boost music promotion with web-scraping"
           description="Automate gig promotion by programmatically submitting to multiple online event services. User inputs details into a local .xls spreadsheet, and the data is uploaded publicly to Songkick, BandsInTown, Strumsy, and privately to Dubsado. Further integration propagates this information to Spotify, Google, a user's Google Calendar, and many more locations."
-          link="https://blog.benhammond.tech/giguploader"
+          blogLink="https://blog.benhammond.tech/giguploader"
+          repoLink="https://github.com/benhammondmusic/giguploader"
           img={{
             src: '/assets/images/gig-uploader.png',
             alt: 'Gig Uploader Project',
