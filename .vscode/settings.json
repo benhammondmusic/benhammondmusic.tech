@@ -38,6 +38,8 @@
     "Frontmatter",
     "imagetools",
     "Ixartz",
+    "monokai",
+    "shiki",
     "tailwindcss"
   ]
 }
