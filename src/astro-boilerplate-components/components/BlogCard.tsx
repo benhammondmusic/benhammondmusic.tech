@@ -1,36 +1,34 @@
-import type { MarkdownInstance } from 'astro';
-import { format } from 'date-fns';
-
-import type { IFrontmatter } from '../types/IFrontMatter';
+// import { format } from 'date-fns';
 
 type IBlogCardProps = {
-  instance: MarkdownInstance<IFrontmatter>;
+  postItem: any;
 };
 
 const BlogCard = (props: IBlogCardProps) => (
-  <a className="hover:translate-y-1" href={props.instance.url}>
+  <a
+    className="hover:translate-y-1"
+    href={`https://blog.benhammond.tech/${props.postItem.slug}`}
+  >
     <div className="overflow-hidden rounded-md bg-slate-800">
-      <div className="aspect-w-3 aspect-h-2">
+      <div className="aspect-w-2 aspect-h-1">
         <img
           className="h-full w-full object-cover object-center"
-          src={props.instance.frontmatter.imgSrc}
-          alt={props.instance.frontmatter.imgAlt}
+          src={props.postItem.coverImage}
+          alt=""
           loading="lazy"
         />
       </div>
 
       <div className="px-3 pt-4 pb-6 text-center">
-        <h2 className="text-xl font-semibold">
-          {props.instance.frontmatter.title}
-        </h2>
+        <h2 className="text-lg font-semibold">“{props.postItem.title}”</h2>
 
-        <div className="mt-1 text-xs text-gray-400">
+        {/* <div className="mt-1 text-xs text-gray-400">
           {format(new Date(props.instance.frontmatter.pubDate), 'LLL d, yyyy')}
-        </div>
+        </div> */}
 
-        <div className="mt-2 text-sm">
+        {/* <div className="mt-2 text-sm">
           {props.instance.frontmatter.description}
-        </div>
+        </div> */}
       </div>
     </div>
   </a>

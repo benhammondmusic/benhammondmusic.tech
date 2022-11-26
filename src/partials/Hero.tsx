@@ -10,6 +10,10 @@ const Hero = () => (
       title={
         <div className="m-2 pb-2">
           <GradientText>Ben Hammond</GradientText>
+        </div>
+      }
+      subtitle={
+        <div className="m-2 pb-2">
           <p>
             Denver Developer <GradientText>&&</GradientText> Song Builder
           </p>
@@ -51,19 +55,19 @@ const Hero = () => (
               href="https://docs.google.com/document/d/1nYJf1ZjGetUo8lFbwoyf23prkTw-0H_HiqvMKlY5_nw"
               className="m-5 text-lg font-semibold hover:text-benhammondyellow"
             >
-              Resume
+              ☆ Resume
             </a>
             <a
               href="https://blog.benhammond.tech"
               className="m-5 text-lg font-semibold hover:text-benhammondyellow"
             >
-              Blog
+              ☆ Blog
             </a>
             <a
               href="mailto:hello@benhammond.tech"
               className="m-5 text-lg font-semibold hover:text-benhammondyellow"
             >
-              Email
+              ☆ Email
             </a>
           </div>
         </>

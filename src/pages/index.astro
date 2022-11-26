@@ -4,7 +4,7 @@
 import { CTA } from '@/partials/CTA';
 import { Hero } from '@/partials/Hero';
 import { ProjectList } from '@/partials/ProjectList';
-// import { RecentPosts } from '@/partials/RecentPosts';
+import { RecentPosts } from '@/partials/RecentPosts';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 // import { sortByDate } from '@/utils/Posts';
@@ -13,6 +13,30 @@ import { AppConfig } from '@/utils/AppConfig';
 // const sortedPosts = sortByDate(allPosts);
 // const lastThreePosts = sortedPosts.slice(0, 3);
 
+
+
+const response = await fetch("https://api.hashnode.com/",
+  {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({
+      query: `{
+								user(username: "benhammondmusic") {
+									publication {
+										posts(page: 0) {
+											title
+											coverImage
+        							dateUpdated
+											slug
+										}
+									}
+								}
+							}`
+    }),
+  });
+
+const json = await response.json();
+const postList = json?.data?.user?.publication?.posts
 const { title } = AppConfig;
 const { description } = AppConfig;
 ---
@@ -20,6 +44,6 @@ const { description } = AppConfig;
 <Base head={{ title, description }}>
   <Hero />
   <ProjectList />
-  <!-- <RecentPosts postList={lastThreePosts} /> -->
+  <RecentPosts postList={postList} />
   <CTA />
 </Base>
