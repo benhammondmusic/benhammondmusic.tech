@@ -1,6 +1,3 @@
-import type { MarkdownInstance } from 'astro';
-
-import type { IFrontmatter } from '../astro-boilerplate-components';
 import {
   BlogGallery,
   GradientText,
@@ -8,7 +5,7 @@ import {
 } from '../astro-boilerplate-components';
 
 type IRecentPostsProps = {
-  postList: MarkdownInstance<IFrontmatter>[];
+  postList: any[];
 };
 
 const RecentPosts = (props: IRecentPostsProps) => (
@@ -20,7 +17,12 @@ const RecentPosts = (props: IRecentPostsProps) => (
         </div>
 
         <div className="text-sm">
-          <a href="/posts">View all Posts →</a>
+          <a
+            className="hover:text-benhammondyellow"
+            href="https://blog.benhammond.tech"
+          >
+            View all posts →
+          </a>
         </div>
       </div>
     }
