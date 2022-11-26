@@ -74,10 +74,12 @@ const Hero = () => (
       }
       avatar={
         <img
+          width={341}
+          height={256}
           className="h-64 rounded-2xl"
           src="/assets/images/ben.jpg"
           alt="Ben Hammond selfie holding guitar with a Denver sunset glowing behind"
-          loading="lazy"
+          // loading="lazy"
         />
       }
       socialButtons={
