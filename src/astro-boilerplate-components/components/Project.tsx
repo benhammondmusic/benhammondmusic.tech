@@ -19,7 +19,7 @@ const Project = (props: IProjectProps) => {
   const link = props.deployLink ?? props.blogLink ?? props.repoLink;
 
   return (
-    <div className="flex flex-col items-center gap-x-8 rounded-md bg-slate-800 p-3 md:flex-row">
+    <div className="flex flex-col items-center gap-x-8 rounded-md bg-slate-800 p-5 md:flex-row">
       <div className="shrink-0">
         <a href={link}>
           <img
@@ -29,18 +29,20 @@ const Project = (props: IProjectProps) => {
             loading="lazy"
           />
         </a>
-        <div className="mt-3 text-center text-2xl font-semibold">
+        <div className="mt-3 text-center text-xl font-semibold md:text-2xl">
           {props.name}
         </div>
       </div>
 
-      <div>
+      <div className="w-11/12">
         <div className="flex w-full flex-col items-center justify-between  gap-y-2 md:flex-row">
-          <div className="my-3 text-xl font-semibold ">{props.summary}</div>
-          <div className="mb-5 flex w-96 text-right font-semibold md:flex-col lg:flex-none ">
+          <div className="my-3 text-center text-xl font-semibold md:text-left ">
+            {props.summary}
+          </div>
+          <div className="mb-5 flex w-96 justify-center text-right font-semibold md:flex-col lg:flex-none ">
             {props.blogLink && (
               <a
-                className="mx-5 text-sm  hover:text-benhammondyellow md:mr-10"
+                className="mx-5 text-sm  hover:text-benhammondyellow md:mr-10 md:ml-0"
                 href={props.blogLink}
               >
                 Blog Post&#x2197;
@@ -48,14 +50,14 @@ const Project = (props: IProjectProps) => {
             )}
             {props.deployLink && (
               <a
-                className="mx-5 text-sm  hover:text-benhammondyellow md:mr-10"
+                className="mx-5 text-sm  hover:text-benhammondyellow md:mr-10 md:ml-0"
                 href={props.deployLink}
               >
                 View Site&#x2197;
               </a>
             )}
             <a
-              className="mx-5 text-sm  hover:text-benhammondyellow md:mr-10"
+              className="mx-5 text-sm  hover:text-benhammondyellow md:mr-10 md:ml-0"
               href={props.repoLink}
             >
               GitHub Repo&#x2197;
