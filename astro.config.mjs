@@ -31,10 +31,6 @@ export default defineConfig({
     sitemap(),
     robotsTxt(),
     astroImageTools,
-    astro({
-      css: false,
-      html: false,
-      js: false,
-    }),
+    astro(),
   ],
 });
