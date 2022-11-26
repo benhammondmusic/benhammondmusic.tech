@@ -111,7 +111,7 @@ const ProjectList = () => (
         <Project
           name="benhammond.tech"
           summary="Developer portfolio site"
-          description="Ongoing project allowing me to experiment with new web tech in a low-stakes environment; currently forked from a template using Astro for server side generated pages at build time; plans to dynamically pull in blog content directly with GraphQL. "
+          description="Ongoing project allowing me to experiment with new web tech in a low-stakes environment; currently forked from a template using Astro for server side generated pages. Dynamically pulls in my recent blog posts with GraphQL at build time. "
           link="https://benhammond.tech"
           img={{
             src: '/assets/images/benhammond-tech.png',
@@ -124,6 +124,7 @@ const ProjectList = () => (
               <Tags color={ColorTags.SKY}>TypeScript</Tags>
               <Tags color={ColorTags.SKY}>Tailwind</Tags>
               <Tags color={ColorTags.SKY}>Conventional Commits</Tags>
+              <Tags color={ColorTags.SKY}>GraphQL</Tags>
             </>
           }
         />
