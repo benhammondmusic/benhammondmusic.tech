@@ -1,3 +1,4 @@
+import ben from '../assets/images/ben.jpg';
 import {
   GradientText,
   HeroAvatar,
@@ -75,7 +76,7 @@ const Hero = () => (
       avatar={
         <img
           className="h-64 rounded-2xl"
-          src="/assets/images/ben.jpg"
+          src={ben}
           alt="Ben Hammond selfie holding guitar with a Denver sunset glowing behind"
           // loading="lazy"
         />
