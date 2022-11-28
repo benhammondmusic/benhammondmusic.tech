@@ -2,6 +2,7 @@
 
 type IBlogCardProps = {
   postItem: any;
+  postImg: any;
 };
 
 const BlogCard = (props: IBlogCardProps) => (
@@ -13,7 +14,7 @@ const BlogCard = (props: IBlogCardProps) => (
       <div className="aspect-w-2 aspect-h-1">
         <img
           className="h-full w-full object-cover object-center"
-          src={props.postItem.coverImage}
+          src={props.postImg}
           alt=""
           loading="lazy"
         />
