@@ -6,6 +6,7 @@ import {
 
 type IRecentPostsProps = {
   postList: any[];
+  postImg: any;
 };
 
 const RecentPosts = (props: IRecentPostsProps) => (
@@ -27,7 +28,7 @@ const RecentPosts = (props: IRecentPostsProps) => (
       </div>
     }
   >
-    <BlogGallery postList={props.postList} />
+    <BlogGallery postList={props.postList} postImg={props.postImg} />
   </Section>
 );
 
