@@ -11,7 +11,7 @@ const ProjectList = () => (
     <Section
       title={
         <>
-          Current Role: <GradientText>Software Engineer</GradientText>
+          Current Role: <GradientText>Sr. Software Engineer (Team Lead)</GradientText>
         </>
       }
     >
