@@ -36,7 +36,7 @@ const Hero = () => (
           </p>
           <p className="m-2 pb-2">
             I am currently employed by the Morehouse School of Medicine, proudly
-            working as a software engineer on the open-source{' '}
+            working as Senior Software Engineer and Team Lead on the open-source{' '}
             <a
               className="text-benhammondyellow hover:underline"
               href="https://healthequitytracker.org"
@@ -78,35 +78,10 @@ const Hero = () => (
           className="h-64 rounded-2xl"
           src={ben}
           alt="Ben Hammond selfie holding guitar with a Denver sunset glowing behind"
-          // loading="lazy"
         />
       }
       socialButtons={
         <>
-          {/* <a href="/">
-            <HeroSocial
-              src="/assets/images/twitter-icon.png"
-              alt="Twitter icon"
-            />
-          </a>
-          <a href="/">
-            <HeroSocial
-              src="/assets/images/facebook-icon.png"
-              alt="Facebook icon"
-            />
-          </a>
-          <a href="/">
-            <HeroSocial
-              src="/assets/images/linkedin-icon.png"
-              alt="Linkedin icon"
-            />
-          </a>
-          <a href="/">
-            <HeroSocial
-              src="/assets/images/youtube-icon.png"
-              alt="Youtube icon"
-            />
-          </a> */}
         </>
       }
     />
