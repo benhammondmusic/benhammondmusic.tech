@@ -36,7 +36,7 @@ const Hero = () => (
           </p>
           <p className="m-2 pb-2">
             I am currently employed by the Morehouse School of Medicine, proudly
-            working as Senior Software Engineer and Team Lead on the open-source{' '}
+            working as a software engineer on the open-source{' '}
             <a
               className="text-benhammondyellow hover:underline"
               href="https://healthequitytracker.org"
@@ -80,10 +80,7 @@ const Hero = () => (
           alt="Ben Hammond selfie holding guitar with a Denver sunset glowing behind"
         />
       }
-      socialButtons={
-        <>
-        </>
-      }
+      socialButtons={<></>}
     />
   </Section>
 );
