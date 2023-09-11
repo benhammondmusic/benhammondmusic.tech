@@ -8,7 +8,6 @@ import { Logo } from './components/Logo';
 import { NavbarTwoColumns } from './components/NavbarTwoColumns';
 import { NavMenu } from './components/NavMenu';
 import { NavMenuItem } from './components/NavMenuItem';
-import { NewerOlderPagination } from './components/NewerOlderPagination';
 import { Newsletter } from './components/Newsletter';
 import { PaginationHeader } from './components/PaginationHeader';
 import { PostContent } from './components/PostContent';
@@ -17,16 +16,16 @@ import { Project } from './components/Project';
 import { Section } from './components/Section';
 import { ColorTags, Tags } from './components/Tags';
 import type {
-  FrontmatterPage,
+  // FrontmatterPage,
   IFrontmatter,
-  MarkdownInstance,
+  // MarkdownInstance,
   Page,
 } from './types/IFrontMatter';
 
 export {
-  type FrontmatterPage,
+  // type FrontmatterPage,
   type IFrontmatter,
-  type MarkdownInstance,
+  // type MarkdownInstance,
   type Page,
   BlogCard,
   BlogGallery,
@@ -39,7 +38,6 @@ export {
   NavbarTwoColumns,
   NavMenu,
   NavMenuItem,
-  NewerOlderPagination,
   Newsletter,
   PaginationHeader,
   PostContent,

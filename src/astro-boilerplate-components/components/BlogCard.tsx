@@ -1,5 +1,3 @@
-// import { format } from 'date-fns';
-
 type IBlogCardProps = {
   postItem: any;
   postImg: any;
@@ -22,14 +20,6 @@ const BlogCard = (props: IBlogCardProps) => (
 
       <div className="px-3 pt-4 pb-6 text-center">
         <h2 className="text-lg font-semibold">“{props.postItem.title}”</h2>
-
-        {/* <div className="mt-1 text-xs text-gray-400">
-          {format(new Date(props.instance.frontmatter.pubDate), 'LLL d, yyyy')}
-        </div> */}
-
-        {/* <div className="mt-2 text-sm">
-          {props.instance.frontmatter.description}
-        </div> */}
       </div>
     </div>
   </a>

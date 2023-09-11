@@ -21,10 +21,10 @@
     "@commitlint/config-conventional": "^17.0.2",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/typography": "^0.5.2",
-    "@types/react": "^18.0.12",
+    "@types/react": "^18.2.21",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
-    "@typescript-eslint/parser": "^5.28.0",
-    "astro": "^2.0.17",
+    "@typescript-eslint/parser": "^6.6.0",
+    "astro": "^3.0.12",
     "astro-eslint-parser": "^0.2.2",
     "astro-robots-txt": "^0.3.2",
     "eslint": "^8.17.0",
@@ -41,17 +41,18 @@
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.1",
     "lint-staged": "^12.5.0",
-    "prettier": "^2.6.2",
+    "prettier": "^2.8.8",
     "prettier-plugin-astro": "^0.1.0-next.5",
     "rimraf": "^3.0.2",
-    "tailwindcss": "^3.0.24"
+    "tailwindcss": "^3.0.24",
+    "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@types/react-dom": "^18.2.7",
+    "commitlint": "^17.7.1",
     "date-fns": "^2.28.0",
-    "react": "^18.2.0"
-  },
-  "volta": {
-    "node": "16.15.1"
-  },
-  "author": "Ixartz (https://github.com/ixartz)"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript-eslint": "^0.0.1-alpha.0"
+  }
 }

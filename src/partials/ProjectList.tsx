@@ -1,3 +1,12 @@
+import BenHammondTech from 'src/assets/images/benhammond-tech.png';
+import BenHammondMusic from 'src/assets/images/benhammondmusic.png';
+import FamilyFriendly from 'src/assets/images/family-friendly.png';
+import GigUploader from 'src/assets/images/gig-uploader.png';
+import GigBoard from 'src/assets/images/gigboard.png';
+import LittleCabin from 'src/assets/images/little-cabin.png';
+import Tanks from 'src/assets/images/tanks.png';
+
+import HET from '../assets/images/het.svg';
 import {
   ColorTags,
   GradientText,
@@ -77,7 +86,7 @@ const ProjectList = () => (
           deployLink="https://healthequitytracker.org"
           repoLink="https://github.com/SatcherInstitute/health-equity-tracker"
           img={{
-            src: '/assets/images/het.svg',
+            src: HET.src,
             alt: 'Health Equity Tracker Project',
           }}
           category={
@@ -118,7 +127,7 @@ const ProjectList = () => (
           deployLink="https://benhammond.tech"
           repoLink="https://github.com/benhammondmusic/benhammond.tech"
           img={{
-            src: '/assets/images/benhammond-tech.png',
+            src: BenHammondTech.src,
             alt: 'benhammond.tech Project',
           }}
           category={
@@ -128,6 +137,27 @@ const ProjectList = () => (
               <Tags color={ColorTags.SKY}>TypeScript</Tags>
               <Tags color={ColorTags.SKY}>Tailwind</Tags>
               <Tags color={ColorTags.SKY}>GraphQL</Tags>
+            </>
+          }
+        />
+        <Project
+          name="Music Site"
+          summary="benhammondmusic.com"
+          description="Refactored my professional music site to incorporate modern web best-practices and allow seamless CI/CD with Netlify and GitHub actions; filterable song search for improved user experience. Configured multiple components using secure server page routes to authenticate access to Spotify API and render data visualizations of repertoire meta-data.
+					"
+          deployLink="https://benhammondmusic.com"
+          repoLink="https://github.com/benhammondmusic/benhammondmusic.com"
+          img={{
+            src: BenHammondMusic.src,
+            alt: 'benhammondmusic.com Professional Musician Site Project',
+          }}
+          category={
+            <>
+              <Tags color={ColorTags.RED}>SvelteKit</Tags>
+              <Tags color={ColorTags.RED}>TypeScript</Tags>
+              <Tags color={ColorTags.RED}>Tailwind</Tags>
+              <Tags color={ColorTags.RED}>D3</Tags>
+              <Tags color={ColorTags.RED}>GitHub Actions</Tags>
             </>
           }
         />
@@ -147,7 +177,7 @@ const ProjectList = () => (
           blogLink="https://blog.benhammond.tech/connecting-google-cal-api-and-django"
           repoLink="https://github.com/benhammondmusic/littlecabin"
           img={{
-            src: '/assets/images/little-cabin.png',
+            src: LittleCabin.src,
             alt: 'Little Cabin Project',
           }}
           category={
@@ -167,7 +197,10 @@ const ProjectList = () => (
           description="Uses Model-View-Controller (MVC) design pattern, user stories, and an internal RESTful API. CRUD functionality restricted per user status; offers custom encrypted registration or Google OAuth login. Project-managed team of 6, utilizing GitHub's agile board to delegate and to minimize merge conflicts. Wrote 3 technical posts, assisting team members with deployments and environmental variables; provided hands-on assistance on multiple occasions and helped instructor solve another team's bug. Personally contributed across the stack: scaffolding functional React components; dynamic searching; hooks for state management and side-effects; assisted with JWT process."
           blogLink="https://blog.benhammond.tech/connecting-your-deployed-frontend-backend-and-mongodb-atlas-database"
           repoLink="https://github.com/benhammondmusic/gigboard"
-          img={{ src: '/assets/images/gigboard.png', alt: 'GigBoard Project' }}
+          img={{
+            src: GigBoard.src,
+            alt: 'GigBoard Project',
+          }}
           category={
             <>
               <Tags color={ColorTags.VIOLET}>Node</Tags>
@@ -186,7 +219,7 @@ const ProjectList = () => (
           deployLink="https://tanks-js.netlify.app/"
           blogLink="https://blog.benhammond.tech/tanks"
           repoLink="https://github.com/benhammondmusic/tanks"
-          img={{ src: '/assets/images/tanks.png', alt: 'Tanks Game Project' }}
+          img={{ src: Tanks.src, alt: 'Tanks Game Project' }}
           category={
             <>
               <Tags color={ColorTags.ORANGE}>HTML Canvas</Tags>
@@ -202,7 +235,7 @@ const ProjectList = () => (
           blogLink="https://blog.benhammond.tech/familyfriendly"
           repoLink="https://github.com/benhammondmusic/familyfriendly"
           img={{
-            src: '/assets/images/family-friendly.png',
+            src: FamilyFriendly.src,
             alt: 'Family Friendly Project',
           }}
           category={
@@ -221,7 +254,7 @@ const ProjectList = () => (
           blogLink="https://blog.benhammond.tech/giguploader"
           repoLink="https://github.com/benhammondmusic/giguploader"
           img={{
-            src: '/assets/images/gig-uploader.png',
+            src: GigUploader.src,
             alt: 'Gig Uploader Project',
           }}
           category={
