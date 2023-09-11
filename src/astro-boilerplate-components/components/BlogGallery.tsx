@@ -2,7 +2,7 @@ import { BlogCard } from './BlogCard';
 
 type IRecentPostsProps = {
   postList: any[];
-  postImg: any;
+  postImg?: any;
 };
 
 const BlogGallery = (props: IRecentPostsProps) => (
