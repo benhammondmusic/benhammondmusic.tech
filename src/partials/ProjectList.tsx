@@ -143,7 +143,7 @@ const ProjectList = () => (
         <Project
           name="Music Site"
           summary="benhammondmusic.com"
-          description="Refactored my professional music site to incorporate modern web best-practices and allow seamless CI/CD with Netlify and GitHub actions; filterable song search for improved user experience. Configured multiple components using secure server page routes to authenticate access to Spotify API and render data visualizations of repertoire meta-data.
+          description="Refactored my professional music site to incorporate modern web best-practices and allow seamless CI/CD with Netlify and GitHub; filterable song search for improved user experience. Configured multiple components using secure server page routes to authenticate access to Spotify API and render data visualizations of repertoire meta-data.
 					"
           deployLink="https://benhammondmusic.com"
           repoLink="https://github.com/benhammondmusic/benhammondmusic.com"
@@ -157,7 +157,6 @@ const ProjectList = () => (
               <Tags color={ColorTags.RED}>TypeScript</Tags>
               <Tags color={ColorTags.RED}>Tailwind</Tags>
               <Tags color={ColorTags.RED}>D3</Tags>
-              <Tags color={ColorTags.RED}>GitHub Actions</Tags>
             </>
           }
         />
