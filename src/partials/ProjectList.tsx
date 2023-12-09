@@ -101,10 +101,11 @@ const ProjectList = () => (
               <Tags color={ColorTags.EMERALD}>BigQuery</Tags>
               <Tags color={ColorTags.EMERALD}>React</Tags>
               <Tags color={ColorTags.EMERALD}>TypeScript</Tags>
-              <Tags color={ColorTags.EMERALD}>Jest</Tags>
+              <Tags color={ColorTags.EMERALD}>Vitest</Tags>
               <Tags color={ColorTags.EMERALD}>Playwright</Tags>
               <Tags color={ColorTags.EMERALD}>SASS</Tags>
               <Tags color={ColorTags.EMERALD}>MUI</Tags>
+              <Tags color={ColorTags.EMERALD}>Tailwind</Tags>
               <Tags color={ColorTags.EMERALD}>Vega</Tags>
               <Tags color={ColorTags.EMERALD}>D3</Tags>
             </>
