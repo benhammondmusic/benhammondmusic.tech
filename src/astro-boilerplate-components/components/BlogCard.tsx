@@ -14,13 +14,9 @@ const BlogCard = (props: IBlogCardProps) => (
         <img
           className='h-full w-full object-cover object-center'
           src={props.postImgUrl}
-          alt=''
+          alt={props.postTitle}
           loading='lazy'
         />
-      </div>
-
-      <div className='px-3 pt-4 pb-6 text-center'>
-        <h2 className='text-lg font-semibold'>“{props.postTitle}”</h2>
       </div>
     </div>
   </a>
