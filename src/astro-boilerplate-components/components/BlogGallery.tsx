@@ -1,22 +1,23 @@
-import { BlogCard } from './BlogCard';
+import { fetchRecentPosts } from '@/utils/graphQl'
+import { BlogCard } from './BlogCard'
 
-type IRecentPostsProps = {
-  postList: any[];
-  postImg?: any;
-};
+const posts = await fetchRecentPosts()
 
-const BlogGallery = (props: IRecentPostsProps) => (
-  <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-    {props.postList.map((postItem) => {
-      return (
-        <BlogCard
-          key={postItem.slug}
-          postItem={postItem}
-          postImg={props.postImg}
-        />
-      );
-    })}
+const BlogGallery = () => (
+  <div className='grid grid-cols-1 gap-6 md:grid-cols-3 p-5 bg-gradient-to-br from-benhammondyellow to-benhammondyellow-600 rounded-md'>
+    {posts.map(
+      (postItem: { title: string; coverImage: string; slug: string }) => {
+        return (
+          <BlogCard
+            key={postItem.slug}
+            postSlug={postItem.slug}
+            postTitle={postItem.title}
+            postImgUrl={postItem.coverImage}
+          />
+        )
+      }
+    )}
   </div>
-);
+)
 
-export { BlogGallery };
+export { BlogGallery }
