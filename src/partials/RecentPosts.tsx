@@ -17,7 +17,7 @@ const RecentPosts = () => (
             className='hover:text-benhammondyellow'
             href='https://blog.benhammond.tech'
           >
-            View all posts →
+            Read my tech blog →
           </a>
         </div>
       </div>
