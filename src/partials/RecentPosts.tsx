@@ -7,17 +7,18 @@ import {
 const RecentPosts = () => (
   <Section
     title={
-      <div className='flex items-baseline justify-between '>
+      <div className='flex  justify-between '>
         <div className='font-rubik'>
           Recent <GradientText>Posts</GradientText>
         </div>
 
         <div className='text-sm'>
           <a
-            className='hover:text-benhammondyellow'
+            className='hover:text-benhammondyellow flex flex-col sm:block'
             href='https://blog.benhammond.tech'
           >
-            Read my tech blog →
+            <span>Read my </span>
+            <span>tech blog ↗</span>
           </a>
         </div>
       </div>
