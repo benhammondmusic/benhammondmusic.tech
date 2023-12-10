@@ -16,9 +16,9 @@ const CompletedWebAppChallenges = () => (
   <>
     <Section
       title={
-        <>
-          Completed <GradientText>Web App Challenges</GradientText>
-        </>
+        <div className='font-rubik'>
+          Completed <GradientText>App Challenges</GradientText>
+        </div>
       }
     >
       <div className='flex flex-col gap-6'>

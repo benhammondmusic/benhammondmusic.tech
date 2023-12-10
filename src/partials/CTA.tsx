@@ -1,36 +1,32 @@
-import {
-  GradientText,
-  Newsletter,
-  Section,
-} from '../astro-boilerplate-components';
+import { Connect, GradientText, Section } from '../astro-boilerplate-components'
 
 const CTA = () => (
   <Section>
-    <Newsletter
+    <Connect
       title={
-        <>
-          Let's build something <GradientText>together!</GradientText>
-        </>
+        <div className='font-rubik'>
+          Let's build <GradientText>together!</GradientText>
+        </div>
       }
       description={
         <>
           <a
-            className="text-benhammondyellow hover:underline"
-            href="mailto:hello@benhammond.tech"
+            className='text-benhammondyellow hover:underline'
+            href='mailto:hello@benhammond.tech'
           >
             Email me
           </a>
           , or connect on{' '}
           <a
-            className="text-benhammondyellow hover:underline"
-            href="https://github.com/benhammondmusic"
+            className='text-benhammondyellow hover:underline'
+            href='https://github.com/benhammondmusic'
           >
             GitHub
           </a>{' '}
           and{' '}
           <a
-            className="text-benhammondyellow hover:underline"
-            href="https://www.linkedin.com/in/benhammondmusic"
+            className='text-benhammondyellow hover:underline'
+            href='https://www.linkedin.com/in/benhammondmusic'
           >
             LinkedIn
           </a>
@@ -39,6 +35,6 @@ const CTA = () => (
       }
     />
   </Section>
-);
+)
 
-export { CTA };
+export { CTA }

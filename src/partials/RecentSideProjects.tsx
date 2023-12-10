@@ -14,10 +14,11 @@ const RecentSideProjects = () => (
   <>
     <Section
       title={
-        <>
-          Current Role:{' '}
-          <GradientText>Senior Software Engineer (Team Lead)</GradientText>
-        </>
+        <p className='font-rubik'>
+          Currently:
+          <br />
+          <GradientText>Sr Software Engineer (Team Lead)</GradientText>
+        </p>
       }
     >
       <div className='flex flex-col gap-6'>
@@ -110,9 +111,9 @@ const RecentSideProjects = () => (
     </Section>
     <Section
       title={
-        <>
+        <div className='font-rubik'>
           Recent <GradientText>Side Projects</GradientText>
-        </>
+        </div>
       }
     >
       <div className='flex flex-col gap-6'>

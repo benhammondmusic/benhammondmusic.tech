@@ -8,7 +8,7 @@ import { Logo } from './components/Logo';
 import { NavbarTwoColumns } from './components/NavbarTwoColumns';
 import { NavMenu } from './components/NavMenu';
 import { NavMenuItem } from './components/NavMenuItem';
-import { Newsletter } from './components/Newsletter';
+import { Connect } from './components/Connect';
 import { PaginationHeader } from './components/PaginationHeader';
 import { PostContent } from './components/PostContent';
 import { PostHeader } from './components/PostHeader';
@@ -31,7 +31,7 @@ export {
   NavbarTwoColumns,
   NavMenu,
   NavMenuItem,
-  Newsletter,
+  Connect,
   PaginationHeader,
   PostContent,
   PostHeader,

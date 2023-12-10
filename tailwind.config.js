@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   content: [
     './src/**/*.{astro,html,js,jsx,svelte,ts,tsx,vue}',
@@ -5,6 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        rubik: ['Rubik Mono One', ...defaultTheme.fontFamily.sans],
+        sans: ['Cabin', ...defaultTheme.fontFamily.sans],
+
+      },
       colors: {
         benhammondblue: {
           DEFAULT: '#336699',

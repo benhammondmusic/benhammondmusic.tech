@@ -7,8 +7,8 @@ import {
 const RecentPosts = () => (
   <Section
     title={
-      <div className='flex items-baseline justify-between'>
-        <div>
+      <div className='flex items-baseline justify-between '>
+        <div className='font-rubik'>
           Recent <GradientText>Posts</GradientText>
         </div>
 
