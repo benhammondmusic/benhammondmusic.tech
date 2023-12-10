@@ -6,7 +6,7 @@ type IBlogCardProps = {
 
 const BlogCard = (props: IBlogCardProps) => (
   <a
-    className='hover:translate-y-1'
+    className='hover:translate-y-1 focus:translate-y-1'
     href={`https://blog.benhammond.tech/${props.postSlug}`}
   >
     <div className='overflow-hidden rounded-md bg-slate-800'>
