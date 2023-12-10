@@ -17,7 +17,8 @@ const Hero = () => (
       subtitle={
         <div className='m-2 pb-2'>
           <p className='font-rubik'>
-            Denver Dev <br />
+            Denver Developer
+            <br />
             <GradientText>&&</GradientText> Song Builder
           </p>
         </div>
@@ -25,7 +26,7 @@ const Hero = () => (
       description={
         <>
           <p className='m-2 pb-2'>
-            I'm an endlessly curious web developer with a parallel career
+            I'm an endlessly curious web developer, with a parallel career
             performing and operating a{' '}
             <a
               className='text-benhammondyellow hover:underline'
