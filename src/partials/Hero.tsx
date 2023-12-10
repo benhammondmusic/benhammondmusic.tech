@@ -11,21 +11,22 @@ const Hero = () => (
     <HeroAvatar
       title={
         <div className='m-2 pb-2'>
-          <GradientText>Ben Hammond</GradientText>
+          <GradientText className='font-rubik'>Ben Hammond</GradientText>
         </div>
       }
       subtitle={
         <div className='m-2 pb-2'>
-          <p>
-            Denver Developer <GradientText>&&</GradientText> Song Builder
+          <p className='font-rubik'>
+            Denver Dev <br />
+            <GradientText>&&</GradientText> Song Builder
           </p>
         </div>
       }
       description={
         <>
           <p className='m-2 pb-2'>
-            I'm an endlessly curious web developer with 15+ years performing and
-            operating a{' '}
+            I'm an endlessly curious web developer with a parallel career
+            performing and operating a{' '}
             <a
               className='text-benhammondyellow hover:underline'
               href='https://benhammondmusic.com'
@@ -37,15 +38,15 @@ const Hero = () => (
           </p>
           <p className='m-2 pb-2'>
             I am currently employed by the Morehouse School of Medicine, proudly
-            working as a software engineer on the open-source{' '}
+            working on the open-source{' '}
             <a
               className='text-benhammondyellow hover:underline'
               href='https://healthequitytracker.org'
             >
               Health Equity Tracker
             </a>
-            , which was built by Google.org and is now further expanded by the
-            Satcher Health Leadership Institute.
+            , which was built by Google.org and the Satcher Health Leadership
+            Institute.
           </p>
           <p className='m-2 pb-2'>
             I believe deeply in the power of music and technology to uplift our
