@@ -21,12 +21,12 @@ const CompletedWebAppChallenges = () => (
         </div>
       }
     >
-      <div className='flex flex-col gap-6'>
+      <div className='flex flex-col gap-6 ring-1 ring-benhammondblue-50 ring-inset bg-slate-800 rounded-md p-6'>
         <CompletedWebApp
           name='Little Cabin'
           description='Fullstack Python App with Django and Google Calendar API'
           descriptionList={
-            <ul className='list-inside list-disc'>
+            <ul className='list-square'>
               <li>
                 {' '}
                 Created this web app to provide my extended family integrated
@@ -73,7 +73,7 @@ const CompletedWebAppChallenges = () => (
           name='GigBoard'
           description='MERN stack web app connecting gig-workers'
           descriptionList={
-            <ul className='list-inside list-disc'>
+            <ul className='list-square'>
               <li>
                 Uses Model-View-Controller (MVC) design pattern, user stories,
                 and an internal RESTful API.
@@ -120,7 +120,7 @@ const CompletedWebAppChallenges = () => (
           name='Tanks!'
           description='Classic artillery game, built in 1 week with HTML Canvas'
           descriptionList={
-            <ul className='list-inside list-disc'>
+            <ul className='list-square'>
               <li>
                 Incorporated programmatically generated terrain and collision
                 detection / destruction, gravity, scalable multiplayer mode, and
@@ -145,7 +145,7 @@ const CompletedWebAppChallenges = () => (
           description='Crowd-sourced help for caregivers of all genders'
           blogLink='https://blog.benhammond.tech/familyfriendly'
           descriptionList={
-            <ul className='list-inside list-disc'>
+            <ul className='list-square'>
               <li>
                 Delegates and restricts users' CRUD permissions with OAuth2.
               </li>
@@ -175,7 +175,7 @@ const CompletedWebAppChallenges = () => (
           name='Gig Uploader'
           description='Boost music promotion with web-scraping'
           descriptionList={
-            <ul className='list-inside list-disc'>
+            <ul className='list-square'>
               <li>
                 Automate gig promotion by programmatically submitting to
                 multiple online event services.

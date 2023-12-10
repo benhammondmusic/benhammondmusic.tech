@@ -6,7 +6,7 @@ type IConnectProps = {
 }
 
 const Connect = (props: IConnectProps) => (
-  <div className='flex flex-col items-center justify-between gap-6 sm:flex-row'>
+  <div className='flex flex-col items-center justify-evenly gap-6 sm:flex-row text-center md:text-left'>
     <div className='sm:w-7/12'>
       <div className='text-2xl font-bold'>{props.title}</div>
 

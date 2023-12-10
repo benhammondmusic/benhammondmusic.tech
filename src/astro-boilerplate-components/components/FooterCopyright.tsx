@@ -3,7 +3,7 @@ type IFooterCopyrightProps = {
 }
 
 const FooterCopyright = (props: IFooterCopyrightProps) => (
-  <div className='border-t border-gray-600 pt-5'>
+  <div className='border-t border-benhammondblue-50 pt-5 text-center'>
     <div className='text-sm text-gray-200'>
       © Copyright {new Date().getFullYear()} by {props.site_name} &{' '}
       <a
