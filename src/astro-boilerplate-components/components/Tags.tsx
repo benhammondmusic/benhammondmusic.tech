@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from 'react'
 
-import type { Values } from '../types/TypeUnion';
+import type { Values } from '../types/TypeUnion'
 
 export const ColorTags = {
   SLATE: 'SLATE',
@@ -25,12 +25,12 @@ export const ColorTags = {
   FUCHSIA: 'FUCHSIA',
   PINK: 'PINK',
   ROSE: 'ROSE',
-} as const;
+} as const
 
 type ITagsProps = {
-  color: Values<typeof ColorTags>;
-  children: ReactNode;
-};
+  color: Values<typeof ColorTags>
+  children: ReactNode
+}
 
 const colorToClassMap = {
   [ColorTags.SLATE]: 'bg-slate-100 text-slate-900',
@@ -55,7 +55,7 @@ const colorToClassMap = {
   [ColorTags.FUCHSIA]: 'bg-fuchsia-100 text-fuchsia-900',
   [ColorTags.PINK]: 'bg-pink-100 text-pink-900',
   [ColorTags.ROSE]: 'bg-rose-100 text-rose-900',
-};
+}
 
 const Tags = (props: ITagsProps) => (
   <div
@@ -65,6 +65,6 @@ const Tags = (props: ITagsProps) => (
   >
     {props.children}
   </div>
-);
+)
 
-export { Tags };
+export { Tags }

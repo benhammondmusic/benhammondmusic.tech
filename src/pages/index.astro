@@ -1,7 +1,8 @@
 ---
 import { CTA } from '@/partials/CTA';
 import { Hero } from '@/partials/Hero';
-import { ProjectList } from '@/partials/ProjectList';
+import { RecentSideProjects } from '@/partials/RecentSideProjects';
+import { CompletedWebAppChallenges } from '@/partials/CompletedWebAppChallenges';
 import { RecentPosts } from '@/partials/RecentPosts';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
@@ -52,6 +53,8 @@ body::before {
 <Base head={{ title, description }}>
   <Hero />
 	<RecentPosts />
-  <ProjectList />
+  <RecentSideProjects />
+	<CompletedWebAppChallenges />
   <CTA />
 </Base>
+@/partials/CompletedWebAppChallenges
