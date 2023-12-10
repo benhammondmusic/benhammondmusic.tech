@@ -19,8 +19,8 @@ const Project = (props: IProjectProps) => {
   const link = props.deployLink ?? props.blogLink ?? props.repoLink
 
   return (
-    <div className='flex flex-col items-center gap-x-8 rounded-md bg-slate-800 p-5 md:flex-row'>
-      <div className='shrink-0'>
+    <div className='flex flex-col items-center gap-x-8 rounded-md bg-slate-800 p-5 md:flex-row md:justify-center ring-1 ring-benhammondblue-50 ring-inset'>
+      <div className='shrink-0 flex flex-col items-center'>
         <a href={link}>
           <img
             className='h-36 w-36 rounded hover:translate-y-1'
@@ -29,17 +29,18 @@ const Project = (props: IProjectProps) => {
             loading='lazy'
           />
         </a>
-        <div className='mt-3 text-center text-xl font-semibold md:text-2xl '>
+        <div className='mt-3 text-center  md:font-semibold md:text-2xl '>
           {props.name}
+          <span className='md:hidden leading-loose'> — {props.summary}</span>
         </div>
       </div>
 
       <div className='w-11/12'>
         <div className='flex w-full flex-col items-center justify-between  gap-y-2 md:flex-row'>
-          <div className='my-3 text-center text-xl font-semibold md:text-left '>
+          <div className='my-3 text-center text-xl font-semibold md:text-left hidden md:block'>
             {props.summary}
           </div>
-          <div className='mb-5 flex w-96 justify-center text-right font-semibold md:flex-col lg:flex-none '>
+          <div className='mb-5 flex w-96 justify-center text-right font-semibold md:flex-col lg:flex-none italic md:not-italic '>
             {props.blogLink && (
               <a
                 className='mx-5 text-sm  hover:text-benhammondyellow md:mr-10 md:ml-0'

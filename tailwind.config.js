@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+			listStyleType: {
+				square: 'square',
+			},
       fontFamily: {
         rubik: ['Rubik Mono One', ...defaultTheme.fontFamily.sans],
         sans: ['Cabin', ...defaultTheme.fontFamily.sans],
