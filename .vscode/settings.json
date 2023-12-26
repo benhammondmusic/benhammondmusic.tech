@@ -1,0 +1,9 @@
+{
+	"cSpell.words": [
+		"apigw",
+		"disemvowel"
+	],
+	"rust-analyzer.linkedProjects": [
+		"netlify/functions/disemvowel/Cargo.toml",
+	]
+}

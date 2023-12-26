@@ -1,0 +1,9 @@
+/Users/bhammond/code/benhammondmusic.tech/netlify/functions/disemvowel/target/debug/deps/query_map-a4483c1750bfbb6d.rmeta: /Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/lib.rs /Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/serde/mod.rs /Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/serde/aws_api_gateway_v2.rs /Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/serde/standard.rs /Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/url_query.rs
+
+/Users/bhammond/code/benhammondmusic.tech/netlify/functions/disemvowel/target/debug/deps/query_map-a4483c1750bfbb6d.d: /Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/lib.rs /Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/serde/mod.rs /Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/serde/aws_api_gateway_v2.rs /Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/serde/standard.rs /Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/url_query.rs
+
+/Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/lib.rs:
+/Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/serde/mod.rs:
+/Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/serde/aws_api_gateway_v2.rs:
+/Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/serde/standard.rs:
+/Users/bhammond/.cargo/registry/src/index.crates.io-6f17d22bba15001f/query_map-0.6.0/src/url_query.rs:
