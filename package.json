@@ -11,6 +11,10 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.3.4",
+    "@fontsource/indie-flower": "^5.0.18",
+    "@fontsource/monofett": "^5.0.18",
+    "@fontsource/rubik": "^5.0.18",
+    "@fontsource/twinkle-star": "^5.0.18",
     "astro": "^4.0.7",
     "typescript": "^5.3.3"
   }
