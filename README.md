@@ -2,6 +2,8 @@
 
 If you like [benhammond.tech](https://benhammond.tech) and [benhammondmusic.com](https://benhammondmusic.com), you're going to LOVE [benhammondmusic.tech](https://benhammondmusic.tech)!!
 
+[For Now](https://wondrous-sunshine-61a6b2.netlify.app/)
+
 ## TODO
 
 - [ ] deploy to netlify
