@@ -1,26 +1,31 @@
 export async function fetchRecentPosts() {
-  const query = JSON.stringify({
-    query: `{
-					user(username: "benhammondmusic") {
-						publication {
-							posts(page: 0) {
-								title
-								coverImage
-								slug
-							}
+  const query = `
+	query Publication {
+		publication(host: "blog.benhammond.tech") {
+			isTeam
+			title
+			posts(first: 6) {
+				edges {
+					node {
+						title
+						coverImage {
+							url
 						}
+						slug
 					}
-        }`,
-  });
-
-  const response = await fetch("https://api.hashnode.com/", {
+				}
+			}
+		}
+	}
+	`
+  const response = await fetch("https://gql.hashnode.com", {
     method: "post",
-    body: query,
+    body: JSON.stringify({ query }),
     headers: {
       "Content-Type": "application/json",
     },
   });
-
    const jsonResponse = await response.json();
-	 return jsonResponse.data.user.publication.posts
+	 const posts = jsonResponse.data.publication.posts.edges.map((post: any) => post.node);
+	 return posts
 };

@@ -67,15 +67,14 @@ const RecentSideProjects = () => (
                 designed components.
               </li>
               <li>
-                Improved codebase health by incorporating a systematic approach
-                to our design system and development, standardizing
-                implementation methods (inconsistent mix of Material UI and
-                inline styles) and enforcing a select set of SASS variables
-                throughout to minimize design drift. Included expanded tests to
-                all new functionality; identified the lack of “end to end”
-                testing and implemented coverage using Playwright, added missing
-                Typescript custom typing to expedite development and prevent
-                errors.
+                Created a design system and standardized styling system,
+                refactoring an inconsistent mix of Sass modules, Material UI,
+                and inline styles into a custom Tailwind theme using a design
+                token library. Included expanded tests with all new
+                functionality; identified the lack of “end to end” testing and
+                implemented coverage using Playwright running on CI and against
+                production, added missing Typescript custom typing to expedite
+                development and prevent errors.
               </li>
             </ul>
           }
@@ -99,7 +98,6 @@ const RecentSideProjects = () => (
               <Tags color={ColorTags.EMERALD}>TypeScript</Tags>
               <Tags color={ColorTags.EMERALD}>Vitest</Tags>
               <Tags color={ColorTags.EMERALD}>Playwright</Tags>
-              <Tags color={ColorTags.EMERALD}>SASS</Tags>
               <Tags color={ColorTags.EMERALD}>MUI</Tags>
               <Tags color={ColorTags.EMERALD}>Tailwind</Tags>
               <Tags color={ColorTags.EMERALD}>Vega</Tags>
