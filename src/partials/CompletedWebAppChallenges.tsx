@@ -17,7 +17,7 @@ const CompletedWebAppChallenges = () => (
     <Section
       title={
         <div className='font-rubik'>
-          Completed <GradientText>App Challenges</GradientText>
+          Past <GradientText>Project Challenges</GradientText>
         </div>
       }
     >
