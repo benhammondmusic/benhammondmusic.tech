@@ -26,12 +26,45 @@ import '@fontsource/monofett'
     <title>BenHammondMusic.Tech</title>
   </head>
   <body>
-    <h1>BenHammondMusic.Tech</h1>
+    <header>
+      <h1 class='hero'>Ben<wbr />Hammond<wbr />Music<wbr />.<wbr />Tech</h1>
+    </header>
+    <main></main>
   </body>
 </html>
 
 <style>
-  h1 {
+  body {
+    margin: 0; /* Remove default body margin */
+    padding: 0; /* Remove default body padding */
+    height: 100vh; /* Make the body take up the full height of the viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: repeating-conic-gradient(
+      from 0deg,
+      #336699,
+      #ffc600 90deg,
+      #336699 180deg
+    );
+  }
+
+  header {
+    width: 100dvw;
+    display: flex;
+    justify-content: center;
+  }
+  .hero {
     font-family: 'Monofett', sans-serif;
+    font-size: clamp(3rem, 8vw, 10rem);
+    max-width: 100%; /* Restrict the maximum width to the viewport width */
+    overflow: hidden; /* Hide any content that overflows the box */
+    word-wrap: break-word; /* Allow breaking within words when necessary */
+    margin: 1rem;
+    text-align: center;
+  }
+  main {
+    display: grid;
+    place-items: center;
   }
 </style>

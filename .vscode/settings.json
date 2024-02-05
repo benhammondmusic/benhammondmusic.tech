@@ -4,6 +4,15 @@
 		"apigw",
 		"disemvowel"
 	],
+	"cSpell.ignorePaths": [
+		"package-lock.json",
+		"package.json",
+		"node_modules",
+		"vscode-extension",
+		".git/objects",
+		".vscode",
+		".vscode-insiders"
+	],
 	"rust-analyzer.linkedProjects": [
 		"netlify/functions/disemvowel/Cargo.toml",
 	]
