@@ -77,8 +77,10 @@ function GitHubStats() {
 		}
 		>
 
-{Object.entries(eventsByDate).map(([eventDate, events]: any) => (
-<div className="flex flex-col px-5 ">
+{Object.entries(eventsByDate).map(([eventDate, events]: any) => {
+	if (!events.length) return null;
+	return(
+<div className="flex flex-col px-5 py-1 m-1 rounded border-white border bg-gradient-to-br from-benhammondblue-900 to-benhammondyellow-700">
 		<h2>{new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(new Date(eventDate))}</h2>
 		<ul className="flex flex-wrap ">
 			{events.map((event: any) => {
@@ -95,7 +97,7 @@ function GitHubStats() {
 			)})}
 		</ul>
 		</div>
-))}
+)})}
 
 		</Section>
 	)
