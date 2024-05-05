@@ -121,7 +121,7 @@ const RecentSideProjects = () => (
         <Project
           name='Dev Portfolio'
           summary='benhammond.tech'
-          description='My web dev and software engineering online presence. Using Astro as a meta-framework for server side generated pages, with React function components. Dynamically pulls in my recent blog posts with GraphQL at build time. '
+          description='My web dev and software engineering online presence. Using Astro as a meta-framework for server side generated pages, with React function components. Dynamically pulls in my recent blog posts with GraphQL at build time, along with GitHub events rendered as emoji 💪. '
           deployLink='https://benhammond.tech'
           repoLink='https://github.com/benhammondmusic/benhammond.tech'
           img={{
