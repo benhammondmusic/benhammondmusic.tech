@@ -1,5 +1,6 @@
 import BenHammondTech from 'src/assets/images/benhammond-tech.png'
 import BenHammondMusic from 'src/assets/images/benhammondmusic.png'
+import DataViz from 'src/assets/images/data-viz.png'
 
 import HET from '../assets/images/het.svg'
 import {
@@ -102,6 +103,8 @@ const RecentSideProjects = () => (
               <Tags color={ColorTags.EMERALD}>Tailwind</Tags>
               <Tags color={ColorTags.EMERALD}>Vega</Tags>
               <Tags color={ColorTags.EMERALD}>D3</Tags>
+              <Tags color={ColorTags.EMERALD}>Pre-Commit</Tags>
+              <Tags color={ColorTags.EMERALD}>Biome</Tags>
             </>
           }
         />
@@ -110,7 +113,7 @@ const RecentSideProjects = () => (
     <Section
       title={
         <div className='font-rubik'>
-          Recent <GradientText>Side Projects</GradientText>
+          Ongoing <GradientText>Side Projects</GradientText>
         </div>
       }
     >
@@ -118,7 +121,7 @@ const RecentSideProjects = () => (
         <Project
           name='Dev Portfolio'
           summary='benhammond.tech'
-          description='Ongoing project allowing me to experiment with new web tech in a low-stakes environment; currently forked from a template using Astro for server side generated pages. Dynamically pulls in my recent blog posts with GraphQL at build time. '
+          description='My web dev and software engineering online presence. Using Astro as a meta-framework for server side generated pages, with React function components. Dynamically pulls in my recent blog posts with GraphQL at build time. '
           deployLink='https://benhammond.tech'
           repoLink='https://github.com/benhammondmusic/benhammond.tech'
           img={{
@@ -138,7 +141,7 @@ const RecentSideProjects = () => (
         <Project
           name='Music Site'
           summary='benhammondmusic.com'
-          description='Refactored my professional music site to incorporate modern web best-practices and allow seamless CI/CD with Netlify and GitHub; filterable song search for improved user experience. Configured multiple components using secure server page routes to authenticate access to Spotify API and render data visualizations of repertoire meta-data.
+          description='Refactored my professional music site to incorporate modern web best-practices and allow seamless CI/CD with Netlify and GitHub; filterable song search for improved user experience.
 					'
           deployLink='https://benhammondmusic.com'
           repoLink='https://github.com/benhammondmusic/benhammondmusic.com'
@@ -151,7 +154,26 @@ const RecentSideProjects = () => (
               <Tags color={ColorTags.RED}>SvelteKit</Tags>
               <Tags color={ColorTags.RED}>TypeScript</Tags>
               <Tags color={ColorTags.RED}>Tailwind</Tags>
-              <Tags color={ColorTags.RED}>D3</Tags>
+            </>
+          }
+        />
+				<Project
+          name='Data Viz'
+          summary='Music Career Visualization Playground'
+          description='Low-stakes place to experiment with visualizing the meta-data behind my other career as a professional musician. Configured multiple components using secure server page routes to authenticate access to Spotify API and answer the question "So what kind of music do you play?".
+					'
+          deployLink='https://benhammondmusic.com/playground'
+          repoLink='https://github.com/benhammondmusic/benhammondmusic.com'
+          img={{
+            src: DataViz.src,
+            alt: 'benhammondmusic.com Data Visualization Playground',
+          }}
+          category={
+            <>
+              <Tags color={ColorTags.AMBER}>SvelteKit</Tags>
+              <Tags color={ColorTags.AMBER}>TypeScript</Tags>
+              <Tags color={ColorTags.AMBER}>MongoDB</Tags>
+              <Tags color={ColorTags.AMBER}>D3</Tags>
             </>
           }
         />
