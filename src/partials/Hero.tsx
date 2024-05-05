@@ -78,7 +78,7 @@ const Hero = () => (
           alt='Ben Hammond selfie holding guitar with a Denver sunset glowing behind'
         />
       }
-      socialButtons={<></>}
+      socialButtons={null}
     />
   </Section>
 )

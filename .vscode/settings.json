@@ -43,5 +43,8 @@
     "shiki",
     "tailwindcss",
     "webp"
-  ]
+  ],
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }

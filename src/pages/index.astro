@@ -6,6 +6,7 @@ import { CompletedWebAppChallenges } from '@/partials/CompletedWebAppChallenges'
 import { RecentPosts } from '@/partials/RecentPosts';
 import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
+import {GitHubStats} from '@/partials/GitHubStats';
 
 const { title } = AppConfig;
 const { description } = AppConfig;
@@ -54,6 +55,7 @@ body::before {
   <Hero />
 	<RecentPosts />
   <RecentSideProjects />
+	<GitHubStats />
 	<CompletedWebAppChallenges />
   <CTA />
 </Base>
