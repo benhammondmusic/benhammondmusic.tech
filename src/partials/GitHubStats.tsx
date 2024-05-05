@@ -78,17 +78,19 @@ function GitHubStats() {
 		>
 
 {Object.entries(eventsByDate).map(([eventDate, events]: any) => (
-<div>
+<div className="flex flex-col px-5 ">
 		<h2>{new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(new Date(eventDate))}</h2>
-		<ul className="flex">
+		<ul className="flex flex-wrap ">
 			{events.map((event: any) => {
 
 				const link = generateGitHubEventLink(event);
 
 				return (
 				<li key={event.id} title={event.type} className="px-0.5 hover:bg-white">
-
-					<a href={link}>{activityMap[event.type as ActivityType]}</a>
+{/* emoji link to GitHub event */}
+					<a href={link}>
+						{activityMap[event.type as ActivityType]}
+						</a>
 					</li>
 			)})}
 		</ul>
