@@ -6,6 +6,8 @@ function splitEventsByDate(events: any[]) {
 	const eventsByDate: any = {};
 
 	events.forEach(event => {
+
+			if (!['CreateEvent', 'DeleteEvent'].includes(event.type)) {
 			// Extract the date portion of the timestamp (YYYY-MM-DD)
 			const eventDate = event.created_at.split('T')[0];
 
@@ -17,6 +19,7 @@ function splitEventsByDate(events: any[]) {
 					// If yes, push the current event to the existing array for this date
 					eventsByDate[eventDate].push(event);
 			}
+		}
 	});
 	return eventsByDate;
 }
@@ -28,9 +31,7 @@ const activityMap = {
 	PushEvent: "💪", // Represents pushing commits
 	IssuesEvent: "🐛", // Represents opening or closing issues
 	IssueCommentEvent: "💬", // Represents commenting on issues
-	DeleteEvent: "🗑️", // Represents deleting branches or tags
 	PullRequestEvent: "⬆️", // Represents opening, merging, or closing pull requests
-	CreateEvent: "🌱", // Represents creating branches or tags
 	PullRequestReviewCommentEvent: "🔍", // Represents commenting on pull request reviews
 	PullRequestReviewEvent: "👀", // Represents approving or requesting changes on pull requests
 	ForkEvent: "🍴", // Represents creating a for
@@ -52,16 +53,22 @@ function generateGitHubEventLink(event: any): string {
 					const eventSha = event.payload.commits?.[0]?.sha ?? '';
 					return `https://github.com/${eventRepo}/commit/${eventSha}`;
 			case 'IssuesEvent':
+				return event.payload.issue.html_url
 			case 'IssueCommentEvent':
-					// For issues and issue comment events, link to the issue
-					const issueNumber = event.payload.issue.number;
-					return `https://github.com/${eventRepo}/issues/${issueNumber}`;
-			// Add cases for other event types as needed
+			case 'PullRequestReviewCommentEvent':
+					// For issue comments, link to the issue hash
+					return event.payload.comment.html_url
+			case 'PullRequestReviewEvent':
+				  return event.payload.review.html_url
+			case 'PullRequestEvent':
+					// For pull request events, link to the pull request
+					return event.payload.pull_request.html_url;
 			default:
 					// For other event types, provide a generic link
 					return `https://github.com/${eventRepo}`;
 	}
 }
+
 
 
 
@@ -84,6 +91,7 @@ function GitHubStats() {
 		<h2>{new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(new Date(eventDate))}</h2>
 		<ul className="flex flex-wrap ">
 			{events.map((event: any) => {
+
 
 				const link = generateGitHubEventLink(event);
 
