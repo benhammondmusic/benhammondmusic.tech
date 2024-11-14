@@ -97,7 +97,7 @@ function GitHubStats() {
 
 								return (
 									<li key={event.id} className="px-0.5 group hover:bg-white hover:text-benhammondblue-800">
-										<a href={link} className="flex items-center">
+										<a href={link} target="_blank" className="flex items-center">
 											{activityMap[event.type as ActivityType]}
 											<span
 												className="ml-2 opacity-0 group-hover:opacity-100 group-hover:max-w-[200px] group-hover:block group-hover:text-benhammondblue-800 group-hover:font-medium transition-all duration-[1500ms] ease-in-out max-w-0 overflow-hidden"
