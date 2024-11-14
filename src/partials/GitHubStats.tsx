@@ -31,7 +31,7 @@ const activityMap = {
 	PushEvent: "💪", // Represents pushing commits
 	IssuesEvent: "🐛", // Represents opening or closing issues
 	IssueCommentEvent: "💬", // Represents commenting on issues
-	PullRequestEvent: "⬆️", // Represents opening, merging, or closing pull requests
+	PullRequestEvent: "⇵", // Represents opening, merging, or closing pull requests
 	PullRequestReviewCommentEvent: "🔍", // Represents commenting on pull request reviews
 	PullRequestReviewEvent: "👀", // Represents approving or requesting changes on pull requests
 	ForkEvent: "🍴", // Represents creating a for
