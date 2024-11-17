@@ -79,7 +79,7 @@ function GitHubStats() {
 		<Section
 			title={
 				<div className='font-rubik'>
-					Last 100 <GradientText>GitHub Events</GradientText>
+					Recent <GradientText>GitHub Activity</GradientText>
 				</div>
 			}
 		>
