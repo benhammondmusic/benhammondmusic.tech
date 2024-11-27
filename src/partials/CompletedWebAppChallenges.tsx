@@ -52,7 +52,7 @@ const CompletedWebAppChallenges = () => (
               </li>
             </ul>
           }
-          blogLink='https://blog.benhammond.tech/connecting-google-cal-api-and-django'
+          blogLink='https://blog.benhammondmusic.tech/connecting-google-cal-api-and-django'
           repoLink='https://github.com/benhammondmusic/littlecabin'
           img={{
             src: LittleCabin.src,
@@ -99,7 +99,7 @@ const CompletedWebAppChallenges = () => (
               </li>
             </ul>
           }
-          blogLink='https://blog.benhammond.tech/connecting-your-deployed-frontend-backend-and-mongodb-atlas-database'
+          blogLink='https://blog.benhammondmusic.tech/connecting-your-deployed-frontend-backend-and-mongodb-atlas-database'
           repoLink='https://github.com/benhammondmusic/gigboard'
           img={{
             src: GigBoard.src,
@@ -129,7 +129,7 @@ const CompletedWebAppChallenges = () => (
             </ul>
           }
           deployLink='https://tanks-js.netlify.app/'
-          blogLink='https://blog.benhammond.tech/tanks'
+          blogLink='https://blog.benhammondmusic.tech/tanks'
           repoLink='https://github.com/benhammondmusic/tanks'
           img={{ src: Tanks.src, alt: 'Tanks Game Project' }}
           category={
@@ -143,7 +143,7 @@ const CompletedWebAppChallenges = () => (
         <CompletedWebApp
           name='Family Friendly'
           description='Crowd-sourced help for caregivers of all genders'
-          blogLink='https://blog.benhammond.tech/familyfriendly'
+          blogLink='https://blog.benhammondmusic.tech/familyfriendly'
           descriptionList={
             <ul className='list-square'>
               <li>
@@ -191,7 +191,7 @@ const CompletedWebAppChallenges = () => (
               </li>
             </ul>
           }
-          blogLink='https://blog.benhammond.tech/giguploader'
+          blogLink='https://blog.benhammondmusic.tech/giguploader'
           repoLink='https://github.com/benhammondmusic/giguploader'
           img={{
             src: GigUploader.src,

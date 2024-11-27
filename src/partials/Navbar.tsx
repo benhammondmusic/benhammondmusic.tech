@@ -10,7 +10,7 @@ const Navbar = () => (
   <Section>
     <NavbarTwoColumns>
       <a href='/'>
-        <Logo name='benhammond.tech' />
+        <Logo name='benhammondmusic.tech' />
       </a>
 
       <NavMenu>
@@ -20,7 +20,7 @@ const Navbar = () => (
         <NavMenuItem href='https://www.linkedin.com/in/benhammondmusic/'>
           LinkedIn
         </NavMenuItem>
-        <NavMenuItem href='https://blog.benhammond.tech'>Blog</NavMenuItem>
+        <NavMenuItem href='https://blog.benhammondmusic.tech'>Blog</NavMenuItem>
         <NavMenuItem href='https://benhammondmusic.com'>Music</NavMenuItem>
       </NavMenu>
     </NavbarTwoColumns>

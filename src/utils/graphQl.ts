@@ -1,7 +1,7 @@
 export async function fetchRecentPosts() {
   const query = `
 	query Publication {
-		publication(host: "blog.benhammond.tech") {
+		publication(host: "blog.benhammondmusic.tech") {
 			isTeam
 			title
 			posts(first: 6) {

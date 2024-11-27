@@ -15,7 +15,7 @@ const RecentPosts = () => (
         <div className='text-sm'>
           <a
             className='hover:text-benhammondyellow flex flex-col sm:block italic md:not-italic'
-            href='https://blog.benhammond.tech'
+            href='https://blog.benhammondmusic.tech'
           >
             <span>Read my </span>
             <span>tech blog ↗</span>

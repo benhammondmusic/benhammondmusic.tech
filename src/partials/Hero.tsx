@@ -63,7 +63,7 @@ const Hero = () => (
             </a>
 
             <a
-              href='mailto:hello@benhammond.tech'
+              href='mailto:hello@benhammondmusic.tech'
               className='m-5 text-lg font-semibold hover:text-benhammondyellow'
             >
               ☆ Email
