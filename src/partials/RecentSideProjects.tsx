@@ -120,13 +120,13 @@ const RecentSideProjects = () => (
       <div className='flex flex-col gap-6'>
         <Project
           name='Dev Portfolio'
-          summary='benhammond.tech'
+          summary='benhammondmusic.tech'
           description='My web dev and software engineering online presence. Using Astro as a meta-framework for server side generated pages, with React function components. Dynamically pulls in my recent blog posts with GraphQL at build time, along with GitHub events rendered as emoji 💪. '
-          deployLink='https://benhammond.tech'
+          deployLink='https://benhammondmusic.tech'
           repoLink='https://github.com/benhammondmusic/benhammond.tech'
           img={{
             src: BenHammondTech.src,
-            alt: 'benhammond.tech Project',
+            alt: 'benhammondmusic.tech Project',
           }}
           category={
             <>

@@ -12,7 +12,7 @@ const CTA = () => (
         <>
           <a
             className='text-benhammondyellow hover:underline'
-            href='mailto:hello@benhammond.tech'
+            href='mailto:hello@benhammondmusic.tech'
           >
             Email me
           </a>
