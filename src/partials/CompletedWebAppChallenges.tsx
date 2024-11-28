@@ -86,7 +86,7 @@ const CompletedWebAppChallenges = () => (
                 Project-managed team of 6, utilizing GitHub's agile board to
                 delegate and to minimize merge conflicts; provided hands-on
                 assistance on multiple occasions and helped instructor solve
-                another team's bug..
+                another team's bug.
               </li>
               <li>
                 Wrote 3 technical posts, assisting team members with deployments
@@ -118,7 +118,7 @@ const CompletedWebAppChallenges = () => (
         />
         <CompletedWebApp
           name='Tanks!'
-          description='Classic artillery game, built in 1 week with HTML Canvas'
+          description='Classic terrain physics strategy game recreation where players calculate precise projectile paths across dynamic landscapes, built in 1 week with HTML Canvas'
           descriptionList={
             <ul className='list-square'>
               <li>

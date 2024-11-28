@@ -26,6 +26,6 @@ export async function fetchRecentPosts() {
     },
   });
    const jsonResponse = await response.json();
-	 const posts = jsonResponse.data.publication.posts.edges.map((post: any) => post.node);
+	 const posts = jsonResponse.data.publication?.posts.edges.map((post: any) => post.node);
 	 return posts
 };
