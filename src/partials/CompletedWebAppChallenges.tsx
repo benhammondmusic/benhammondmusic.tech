@@ -118,7 +118,7 @@ const CompletedWebAppChallenges = () => (
         />
         <CompletedWebApp
           name='Tanks!'
-          description='Classic terrain physics strategy game recreation where players calculate precise projectile paths across dynamic landscapes, built in 1 week with HTML Canvas'
+          description='Classic terrain physics strategy game recreation; built in 1 week with Canvas'
           descriptionList={
             <ul className='list-square'>
               <li>
