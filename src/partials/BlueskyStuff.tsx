@@ -53,21 +53,21 @@ function BlueskyStuff() {
 							const textSnippet = text && text.length > 65 ? text.slice(0, 65) + '...' : text;
               return (
                 <div
-                  key={index}
-                  className="p-4 bg-gray-100 rounded-lg relative"
-                >
-                  <p className="text-sm text-black">{textSnippet ?? "🦋"}</p>
-                  <div className="absolute bottom-1 right-1 text-xs text-gray-500">
-                    <a
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:underline"
-                    >
-                      @benhammondmusic.tech 🦋
-                    </a>
-                  </div>
-                </div>
+  key={index}
+  className="p-4 bg-gray-100 rounded-lg flex flex-col justify-between h-full"
+>
+  <p className="text-sm text-black">{textSnippet ?? "🦋"}</p>
+  <div className="text-xs text-gray-500 mt-2">
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:underline"
+    >
+      @benhammondmusic.tech 🦋
+    </a>
+  </div>
+</div>
               );
             })
           )}
