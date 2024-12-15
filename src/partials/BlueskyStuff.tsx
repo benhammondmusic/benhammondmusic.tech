@@ -9,7 +9,6 @@ type textItem = {
 function BlueskyStuff() {
   const [blueskyFeedTexts, setBlueskyFeedTexts] = useState<textItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -23,26 +22,14 @@ function BlueskyStuff() {
           },
         });
 
-        if (!response.ok) {
-          const text = await response.text();
-          console.error("Response text:", text);
-          throw new Error(
-            `HTTP error! status: ${response.status}, text: ${text}`
-          );
-        }
-
         const textItems = await response.json();
-
-        // const truncatedTexts = textItems.map((textItem: {text:string, url: string}) => textItem.text && textItem.text.length > 65 ? textItem.text.slice(0, 65) + '...' : textItem.text);
 
         setBlueskyFeedTexts(textItems);
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
         console.error("Fetch error details:", err);
-        setError(
-          err instanceof Error ? err.message : "An unknown error occurred"
-        );
+
       }
     };
 
@@ -61,10 +48,8 @@ function BlueskyStuff() {
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {isLoading ? (
             <div>Loading Bluesky posts...</div>
-          ) : error ? (
-            <div>Error: {error}</div>
-          ) : (
-            blueskyFeedTexts.map(({ text, url }, index) => {
+          )  : (
+            blueskyFeedTexts?.length > 0 && blueskyFeedTexts.map(({ text, url }, index) => {
 							const textSnippet = text && text.length > 65 ? text.slice(0, 65) + '...' : text;
               return (
                 <div
