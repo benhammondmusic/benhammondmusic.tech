@@ -31,21 +31,30 @@
   "cSpell.words": [
     "Amerged",
     "astrojs",
+    "atproto",
     "benhammondblue",
     "benhammondgreen",
     "benhammondyellow",
+    "Bluesky",
     "classname",
     "Commitlint",
     "Frontmatter",
+    "GAMSJ",
     "imagetools",
     "Ixartz",
+    "jbla",
     "monokai",
     "monoton",
+    "NVTQ",
+    "qeuo",
     "shiki",
     "tailwindcss",
     "webp"
   ],
   "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   }
 }
