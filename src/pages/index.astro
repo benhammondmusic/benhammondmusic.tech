@@ -1,13 +1,15 @@
 ---
+import { AppConfig } from '@/utils/AppConfig';
+import Base from '@/templates/Base.astro';
 import { CTA } from '@/partials/CTA';
 import { Hero } from '@/partials/Hero';
-import { RecentSideProjects } from '@/partials/RecentSideProjects';
+import  RecentSideProjects  from '@/partials/RecentSideProjects';
+import  CurrentProject  from '@/partials/CurrentProject';
 import { CompletedWebAppChallenges } from '@/partials/CompletedWebAppChallenges';
 import { RecentPosts } from '@/partials/RecentPosts';
-import Base from '@/templates/Base.astro';
-import { AppConfig } from '@/utils/AppConfig';
 import {GitHubStats} from '@/partials/GitHubStats';
 import {BlueskyStuff} from '@/partials/BlueskyStuff';
+
 
 const { title } = AppConfig;
 const { description } = AppConfig;
@@ -54,11 +56,12 @@ body::before {
 
 <Base head={{ title, description }}>
   <Hero />
+	<CurrentProject />
 	<RecentPosts />
   <RecentSideProjects />
-	<GitHubStats />
-	<CompletedWebAppChallenges />
-	<BlueskyStuff client:load />
+	<GitHubStats server:defer />
+	<CompletedWebAppChallenges server:defer />
+	<BlueskyStuff server:defer />
   <CTA />
 </Base>
 
