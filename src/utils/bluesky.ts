@@ -7,6 +7,15 @@ export const prerender = false
 // Create a cache that stores results for 4 hours
 const postCache = new NodeCache({ stdTTL: 14400 });
 
+export function getProfileLink() {
+	return `https://bsky.app/profile/${import.meta.env.ATP_HANDLE}`;
+}
+
+function getPostLink(post: any) {
+	return `https://bsky.app/profile/${post.author.handle}/post/${post.uri.split('/').pop()}`;
+}
+
+
 export const fetchBlueskyStuff = async () => {
 	try {
 		// Check cache first
@@ -34,9 +43,7 @@ export const fetchBlueskyStuff = async () => {
 			limit: 10
 		});
 
-		function getPostLink(post: any) {
-			return `https://bsky.app/profile/${post.author.handle}/post/${post.uri.split('/').pop()}`;
-		}
+
 
 		const texts = response.data.feed.map((item: any) => {
 			return {

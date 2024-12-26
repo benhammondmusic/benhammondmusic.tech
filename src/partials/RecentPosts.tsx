@@ -4,6 +4,7 @@ import {
   Section,
 } from '../astro-boilerplate-components'
 
+
 const RecentPosts = () => (
   <Section
     title={
