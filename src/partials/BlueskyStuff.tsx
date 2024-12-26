@@ -1,7 +1,6 @@
 import { GradientText, Section } from "@/astro-boilerplate-components";
 import { fetchBlueskyStuff, getProfileLink } from "@/utils/bluesky";
 
-export const prerender = false
 
 type textItem = {
 	text: string;
