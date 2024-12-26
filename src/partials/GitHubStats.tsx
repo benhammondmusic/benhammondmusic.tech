@@ -1,6 +1,7 @@
 import { GradientText, Section } from "@/astro-boilerplate-components"
 import { fetchGitHubData } from "@/utils/github";
 
+export const prerender = false
 
 function splitEventsByDate(events: any[]) {
 	const eventsByDate: any = {};

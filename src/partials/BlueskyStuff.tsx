@@ -1,5 +1,7 @@
 import { GradientText, Section } from "@/astro-boilerplate-components";
-import { fetchBlueskyStuff } from "@/utils/bluesky";
+import { fetchBlueskyStuff, getProfileLink } from "@/utils/bluesky";
+
+export const prerender = false
 
 type textItem = {
 	text: string;
@@ -28,25 +30,34 @@ function BlueskyStuff() {
 						blueSkyTextItems?.length > 0 && blueSkyTextItems.map(({ text, url }, index) => {
 							const textSnippet = text && text.length > 65 ? text.slice(0, 65) + '...' : text;
 							return (
-								<div
+								<a
 									key={index + "-" + textSnippet}
-									className="p-4 bg-gray-100 rounded-lg relative"
+									href={url}
+									target="_blank"
+									rel="noopener noreferrer"
+									className=""
 								>
-									<p className="text-sm text-black">{textSnippet ?? "🦋"}</p>
-									<div className="absolute bottom-1 right-1 text-xs text-gray-500">
-										<a
-											href={url}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="hover:underline"
-										>
-											@benhammondmusic.tech 🦋
-										</a>
+									<div
+
+										className="p-4 bg-gray-100 rounded-lg relative hover:translate-y-1 focus:translate-y-1 transform transition"
+									>
+										<p className="text-sm text-black">{textSnippet ?? "🦋"}</p>
+
 									</div>
-								</div>
+								</a>
 							);
 						})
 					}
+				</div>
+				<div className="flex justify-end text-xs text-white ">
+					<a
+						href={getProfileLink()}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="hover:underline hover:text-benhammondyellow"
+					>
+						@benhammondmusic.tech 🦋
+					</a>
 				</div>
 			</div>
 		</Section>
