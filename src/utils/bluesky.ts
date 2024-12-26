@@ -1,8 +1,6 @@
 import { AtpAgent } from '@atproto/api';
 import NodeCache from 'node-cache';
 
-// Set prerender to false to disable prerendering
-export const prerender = false
 
 // Create a cache that stores results for 4 hours
 const postCache = new NodeCache({ stdTTL: 14400 });

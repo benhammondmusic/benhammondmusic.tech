@@ -1,7 +1,6 @@
 import { fetchRecentPosts } from '@/utils/graphQl'
 import { BlogCard } from './BlogCard'
 
-export const prerender = false
 const posts = await fetchRecentPosts()
 
 const BlogGallery = () => (
