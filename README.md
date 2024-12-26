@@ -8,8 +8,8 @@ Denver Developer && Song Builder
 ## Up Next
 
 - [ ] move all fetches to astro; pass to partials
-- [ ] ensure fetches are happening on server render, not build
+- [x] ensure fetches are happening on server render, not build
 - [ ] refactor react to pure astro? for fun? or experiment with new frameworks like qwik solid vue etc just cause
-
+- [ ] fetch kindle / lobby timeline
 
 [benhammondmusic.tech](https://benhammondmusic.tech)
