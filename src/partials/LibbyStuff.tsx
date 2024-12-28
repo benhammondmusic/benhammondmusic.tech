@@ -38,7 +38,7 @@ function LibbyStuff(props: LibbyStuffProps) {
 		<Section
 			title={
 				<div className="font-rubik">
-					Libby <GradientText>Reading Timeline</GradientText>
+					Borrowed from <GradientText>Denver Public Library</GradientText>
 				</div>
 			}
 		>
