@@ -9,10 +9,13 @@ import { CompletedWebAppChallenges } from '@/partials/CompletedWebAppChallenges'
 import { RecentPosts } from '@/partials/RecentPosts';
 import {GitHubStats} from '@/partials/GitHubStats';
 import {BlueskyStuff} from '@/partials/BlueskyStuff';
-
+import { LibbyStuff } from '@/partials/LibbyStuff';
+import { fetchLibbyTimeline } from '@/utils/libby';
 
 const { title } = AppConfig;
 const { description } = AppConfig;
+
+const timeline = await fetchLibbyTimeline();
 
 
 ---
@@ -62,6 +65,7 @@ body::before {
 	<GitHubStats server:defer />
 	<CompletedWebAppChallenges />
 	<BlueskyStuff server:defer />
+	<LibbyStuff timeline={timeline} client:visible />
   <CTA />
 </Base>
 
