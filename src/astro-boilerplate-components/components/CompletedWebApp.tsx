@@ -38,7 +38,7 @@ const CompletedWebApp = (props: ICompletedWebAppProps) => {
 				)}
 			</div>
 
-			<div className='mb-5 flex w-96 justify-center text-right text-xs italic md:not-italic md:font-semibold md:flex-col lg:flex-none '>
+			<div className='mb-5 flex w-96 justify-center items-end text-right text-xs italic md:not-italic md:font-semibold md:flex-col lg:flex '>
 				{props.blogLink && (
 
 					<ExternalLinkWithArrow href={props.blogLink}>
@@ -68,16 +68,17 @@ interface ExternalLinkProps {
 	children: ReactNode;
 }
 
-function ExternalLinkWithArrow(props: ExternalLinkProps) {
+export function ExternalLinkWithArrow(props: ExternalLinkProps) {
 
 	return (
 		<a
 			href={props.href}
 			target='_blank'
 			rel='noopener noreferrer'
-			className='mx-5 text-sm py-3 hover:text-benhammondyellow md:mr-10 md:ml-0'
+			className='mx-5 inline-flex items-center hover:text-benhammondyellow md:mr-10 md:ml-0'
 		>
-			{props.children}&#x2197
+			{props.children}
+			<span className="ml-1 min-h-6" aria-hidden="true">↗</span>
 		</a>
 	)
 }

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { ExternalLinkWithArrow } from './CompletedWebApp'
 
 type IProjectProps = {
 	img: {
@@ -40,29 +41,23 @@ const Project = (props: IProjectProps) => {
 					<h3 className='my-3 text-center text-xl font-semibold md:text-left hidden md:block'>
 						{props.summary}
 					</h3>
-					<div className='mb-5 flex w-96 justify-center text-right font-semibold md:flex-col lg:flex-none italic md:not-italic '>
+					<div className='mb-5 flex w-96 justify-center items-end text-right font-semibold md:flex-col lg:flex-none italic md:not-italic '>
 						{props.blogLink && (
-							<a
-								className='mx-5 text-sm  hover:text-benhammondyellow md:mr-10 md:ml-0'
-								href={props.blogLink}
-							>
-								Blog Post&#x2197;
-							</a>
+
+							<ExternalLinkWithArrow href={props.blogLink}>
+								Blog Post
+							</ExternalLinkWithArrow>
 						)}
 						{props.deployLink && (
-							<a
-								className='mx-5 text-sm  hover:text-benhammondyellow md:mr-10 md:ml-0'
-								href={props.deployLink}
-							>
-								View Site&#x2197;
-							</a>
+
+							<ExternalLinkWithArrow href={props.deployLink}>
+								View Site
+							</ExternalLinkWithArrow>
 						)}
-						<a
-							className='mx-5 text-sm  hover:text-benhammondyellow md:mr-10 md:ml-0'
-							href={props.repoLink}
-						>
-							GitHub Repo&#x2197;
-						</a>
+
+						<ExternalLinkWithArrow href={props.repoLink}>
+							GitHub Repo
+						</ExternalLinkWithArrow>
 					</div>
 				</div>
 
