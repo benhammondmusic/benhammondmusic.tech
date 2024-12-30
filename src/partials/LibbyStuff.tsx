@@ -42,9 +42,9 @@ function LibbyStuff(props: LibbyStuffProps) {
 
 				{/* Timeline */}
 				<div className="mt-6">
-					<h3 className="text-lg font-semibold text-white mb-4">
+					<h4 className="text-lg font-semibold text-white mb-4">
 						Reading History ({formatDate(oldest)} - {formatDate(mostRecent)})
-					</h3>
+					</h4>
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 						{timeline.timeline.slice(0, displayLimit).map((book, index) => (
 							<div key={index} className="flex flex-col bg-slate-700 rounded-lg overflow-hidden">
@@ -66,12 +66,12 @@ function LibbyStuff(props: LibbyStuffProps) {
 									{/* Format and date */}
 									<div className="flex items-center gap-2 mb-2">
 										<span className={`text-xs px-2 py-1 rounded ${book.cover.format === 'ebook'
-											? 'bg-blue-500 text-white'
-											: 'bg-purple-500 text-white'
+											? 'bg-purple-800 text-white'
+											: 'bg-benhammondgreen-600 text-white'
 											}`}>
 											{book.cover.format}
 										</span>
-										<span className="text-xs text-gray-400">
+										<span className="text-xs text-gray-300">
 											{formatDate(book.timestamp)}
 										</span>
 									</div>
