@@ -11,11 +11,13 @@ import {GitHubStats} from '@/partials/GitHubStats';
 import {BlueskyStuff} from '@/partials/BlueskyStuff';
 import { LibbyStuff } from '@/partials/LibbyStuff';
 import { fetchLibbyTimeline } from '@/utils/libby';
+import { fetchGitHubData } from '@/utils/github';
 
 const { title } = AppConfig;
 const { description } = AppConfig;
 
 const timeline = await fetchLibbyTimeline();
+const gitHubData = await fetchGitHubData();
 
 
 ---
@@ -62,7 +64,7 @@ body::before {
 	<CurrentProject />
 	<RecentPosts />
   <RecentSideProjects />
-	<GitHubStats server:defer />
+	<GitHubStats data={gitHubData} server:defer />
 	<CompletedWebAppChallenges />
 	<BlueskyStuff server:defer />
 	<LibbyStuff timeline={timeline} client:visible />

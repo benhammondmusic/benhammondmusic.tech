@@ -1,3 +1,5 @@
+import { fetchBookSafely } from "./openLibrary";
+
 // types.ts
 export interface LibbyBook {
 	cover: {
@@ -23,6 +25,7 @@ export interface LibbyBook {
 		url: string;
 		key: string;
 	};
+	subjects?: string[]; // Added subjects field
 }
 
 export interface LibbyTimeline {
@@ -52,7 +55,42 @@ export async function fetchLibbyTimeline(): Promise<LibbyTimeline> {
 			throw new Error('Invalid timeline data structure');
 		}
 
-		return data;
+		// Get all valid ISBNs
+		const booksWithIsbn = data.timeline.filter((book): book is LibbyBook & { isbn: string } =>
+			Boolean(book.isbn)
+		);
+
+		// Fetch subjects for all books with ISBNs concurrently
+		const bookSubjects = await Promise.allSettled(
+			booksWithIsbn.map(async (book) => {
+				const result = await fetchBookSafely(book.isbn);
+				return {
+					isbn: book.isbn,
+					subjects: result.success ? result.data.subjects : []
+				};
+			})
+		);
+
+		// Create a map of ISBN to subjects for easy lookup
+		const subjectsMap = new Map(
+			bookSubjects.map((result, index) => {
+				if (result.status === 'fulfilled') {
+					return [booksWithIsbn[index]?.isbn, result.value.subjects];
+				}
+				return [booksWithIsbn[index]?.isbn, []];
+			})
+		);
+
+		// Update the timeline entries with subjects
+		const updatedTimeline = data.timeline.map(book => ({
+			...book,
+			subjects: book.isbn ? subjectsMap.get(book.isbn) || [] : []
+		}));
+
+		return {
+			version: data.version,
+			timeline: updatedTimeline
+		};
 	} catch (error) {
 		console.error('Error fetching Libby timeline:', error);
 		throw error;
