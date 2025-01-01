@@ -13,8 +13,6 @@ export type textItem = {
 const blueskyResponse = await fetchBlueskyStuff();
 const blueSkyItems: textItem[] = await blueskyResponse.json();
 
-console.log(blueSkyItems);
-
 function BlueskyStuff() {
 	return (
 		<Section

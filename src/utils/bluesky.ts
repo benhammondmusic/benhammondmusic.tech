@@ -143,7 +143,7 @@ export const fetchBlueskyStuff = async (): Promise<Response> => {
 		// Fetch posts
 		const response = await agent.getAuthorFeed({
 			actor: import.meta.env.ATP_HANDLE,
-			limit: 15
+			limit: 5
 		}) as unknown as BlueskyResponse;
 
 		const posts = response.data.feed.map((item: BlueskyFeedItem): PostOutput => {
