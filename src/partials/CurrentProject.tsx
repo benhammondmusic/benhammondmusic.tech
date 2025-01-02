@@ -7,7 +7,7 @@ import {
 	Tags,
 } from '../astro-boilerplate-components'
 
-export const prerender = true
+
 
 export default function CurrentProject() {
 	return (

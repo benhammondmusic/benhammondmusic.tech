@@ -12,7 +12,7 @@ import {
 } from '../astro-boilerplate-components'
 import { CompletedWebApp } from '@/astro-boilerplate-components/components/CompletedWebApp'
 
-export const prerender = true
+
 
 const CompletedWebAppChallenges = () => (
 	<>

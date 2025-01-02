@@ -1,5 +1,5 @@
 import { Connect, GradientText, Section } from '../astro-boilerplate-components'
-export const prerender = true
+
 
 const CTA = () => (
 	<Section>

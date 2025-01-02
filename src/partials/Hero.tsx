@@ -1,4 +1,4 @@
-import ben from 'src/assets/images/ben.jpg'
+
 
 import {
 	GradientText,
@@ -6,10 +6,17 @@ import {
 	Section,
 } from '../astro-boilerplate-components'
 
-export const prerender = true
 
-const Hero = () => (
-	<Section>
+interface HeroProps {
+	children: React.ReactNode
+}
+
+
+function Hero(props: HeroProps) {
+
+
+
+	return <Section>
 		<HeroAvatar
 			title={
 				<div className='m-2 pb-2'>
@@ -74,15 +81,12 @@ const Hero = () => (
 				</>
 			}
 			avatar={
-				<img
-					className='h-64 rounded-2xl'
-					src={ben.src}
-					alt='Ben Hammond selfie holding guitar with a Denver sunset glowing behind'
-				/>
+				props.children
 			}
 			socialButtons={null}
 		/>
 	</Section>
-)
+
+}
 
 export { Hero }
