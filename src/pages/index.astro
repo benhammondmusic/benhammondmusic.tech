@@ -12,6 +12,8 @@ import {BlueskyStuff} from '@/partials/BlueskyStuff';
 import { LibbyStuff } from '@/partials/LibbyStuff';
 import { fetchLibbyTimeline } from '@/utils/libby';
 import { fetchGitHubData } from '@/utils/github';
+import { Picture } from 'astro:assets';
+import ben from 'src/assets/images/ben.jpg'
 
 const { title } = AppConfig;
 const { description } = AppConfig;
@@ -60,13 +62,19 @@ body::before {
 </style>
 
 <Base head={{ title, description }}>
-  <Hero />
+  <Hero>
+		<Picture src={ben}
+		formats={['avif', 'webp']}
+		alt='Ben Hammond selfie holding guitar with a Denver sunset glowing behind'
+		class:list={ ['rounded-2xl'] }
+		/>
+	</Hero>
 	<CurrentProject />
 	<RecentPosts />
   <RecentSideProjects />
-	<GitHubStats data={gitHubData} server:defer />
+	<GitHubStats data={gitHubData}  />
 	<CompletedWebAppChallenges />
-	<BlueskyStuff server:defer />
+	<BlueskyStuff  />
 	<LibbyStuff timeline={timeline} client:visible />
   <CTA />
 </Base>
