@@ -1,4 +1,4 @@
-import HET from '../assets/images/het.svg'
+
 import {
 	ColorTags,
 	GradientText,
@@ -9,7 +9,12 @@ import {
 
 
 
-export default function CurrentProject() {
+export default function CurrentProject(props: any) {
+
+	const {
+		HetPicture
+	} = props
+
 	return (
 
 		<Section
@@ -80,10 +85,7 @@ export default function CurrentProject() {
 					}
 					deployLink='https://healthequitytracker.org'
 					repoLink='https://github.com/SatcherInstitute/health-equity-tracker'
-					img={{
-						src: HET.src,
-						alt: 'Health Equity Tracker Project',
-					}}
+					projectImage={HetPicture}
 					category={
 						<>
 							<Tags color={ColorTags.EMERALD}>Python</Tags>

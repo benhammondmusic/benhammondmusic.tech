@@ -14,6 +14,10 @@ import { fetchLibbyTimeline } from '@/utils/libby';
 import { fetchGitHubData } from '@/utils/github';
 import { Picture } from 'astro:assets';
 import ben from 'src/assets/images/ben.jpg'
+import BenHammondTech from 'src/assets/images/benhammond-tech.png'
+import BenHammondMusic from 'src/assets/images/benhammondmusic.png'
+import DataViz from 'src/assets/images/data-viz.png'
+import HET from 'src/assets/images/het.svg'
 
 const { title } = AppConfig;
 const { description } = AppConfig;
@@ -63,16 +67,32 @@ body::before {
 
 <Base head={{ title, description }}>
   <Hero>
-		<Picture src={ben}
-		formats={['avif', 'webp', 'jpg']}
-		widths={[400, 800, 1200]}
-		alt='Ben Hammond selfie holding guitar with a Denver sunset glowing behind'
-		class:list={ ['rounded-2xl'] }
+		<Picture src={ben} widths={[400, 800]} alt='Ben Hammond selfie holding guitar with a Denver sunset glowing behind' class:list={ ['rounded-2xl'] }
 		/>
 	</Hero>
-	<CurrentProject />
+	<CurrentProject >
+		<Picture slot="HetPicture"
+		class='h-36 w-36 rounded hover:translate-y-1'
+		widths={[100, 200]}
+		src={HET} alt='Health Equity Tracker Project' />
+	</CurrentProject>
 	<RecentPosts />
-  <RecentSideProjects />
+  <RecentSideProjects  >
+		<Picture slot="BenHammondMusicPicture" formats={['avif', 'webp', 'png']}
+		class='h-36 w-36 rounded hover:translate-y-1'
+		widths={[100, 200]}
+		src={BenHammondTech} alt='benhammondmusic.tech Project' />
+		<Picture  slot="BenHammondTechPicture"
+			formats={['avif', 'webp', 'png']}
+			class='h-36 w-36 rounded hover:translate-y-1'
+			widths={[100, 200]}
+			src={BenHammondMusic} alt='benhammondmusic.com Professional Musician Site Project' />
+		<Picture slot="DataVizPicture"
+			formats={['avif', 'webp', 'png']}
+			class='h-36 w-36 rounded hover:translate-y-1'
+			widths={[100, 200]}
+			src={DataViz} alt='benhammondmusic.com Data Visualization Playground' />
+	</RecentSideProjects>
 	<GitHubStats data={gitHubData}  />
 	<CompletedWebAppChallenges />
 	<BlueskyStuff  />
@@ -80,4 +100,8 @@ body::before {
   <CTA />
 </Base>
 
-
+<!--
+img={{
+	src: HET.src,
+	alt: '',
+}} -->

@@ -1,6 +1,4 @@
-import BenHammondTech from 'src/assets/images/benhammond-tech.png'
-import BenHammondMusic from 'src/assets/images/benhammondmusic.png'
-import DataViz from 'src/assets/images/data-viz.png'
+
 
 import {
 	ColorTags,
@@ -12,7 +10,14 @@ import {
 
 
 
-export default function RecentSideProjects() {
+export default function RecentSideProjects(props: any) {
+
+	const {
+		BenHammondTechPicture,
+		BenHammondMusicPicture,
+		DataVizPicture,
+	} = props
+
 	return (
 
 		<Section
@@ -29,10 +34,7 @@ export default function RecentSideProjects() {
 					description='My web dev and software engineering online presence. Using Astro as a meta-framework for server side generated pages, with React function components. Dynamically pulls in my recent blog posts with GraphQL at build time, along with GitHub events rendered as emoji 💪. '
 					deployLink='https://benhammondmusic.tech'
 					repoLink='https://github.com/benhammondmusic/benhammond.tech'
-					img={{
-						src: BenHammondTech.src,
-						alt: 'benhammondmusic.tech Project',
-					}}
+					projectImage={BenHammondTechPicture}
 					category={
 						<>
 							<Tags color={ColorTags.SKY}>Astro</Tags>
@@ -50,10 +52,7 @@ export default function RecentSideProjects() {
 					'
 					deployLink='https://benhammondmusic.com'
 					repoLink='https://github.com/benhammondmusic/benhammondmusic.com'
-					img={{
-						src: BenHammondMusic.src,
-						alt: 'benhammondmusic.com Professional Musician Site Project',
-					}}
+					projectImage={BenHammondMusicPicture}
 					category={
 						<>
 							<Tags color={ColorTags.RED}>SvelteKit</Tags>
@@ -69,10 +68,7 @@ export default function RecentSideProjects() {
 					'
 					deployLink='https://benhammondmusic.com/playground'
 					repoLink='https://github.com/benhammondmusic/benhammondmusic.com'
-					img={{
-						src: DataViz.src,
-						alt: 'benhammondmusic.com Data Visualization Playground',
-					}}
+					projectImage={DataVizPicture}
 					category={
 						<>
 							<Tags color={ColorTags.AMBER}>SvelteKit</Tags>
@@ -87,3 +83,5 @@ export default function RecentSideProjects() {
 	)
 
 }
+
+

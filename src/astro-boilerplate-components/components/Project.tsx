@@ -2,10 +2,6 @@ import type { ReactNode } from 'react'
 import { ExternalLinkWithArrow } from './CompletedWebApp'
 
 type IProjectProps = {
-	img: {
-		src: string
-		alt: string
-	}
 	name: string
 	summary: string
 	description?: string
@@ -14,6 +10,7 @@ type IProjectProps = {
 	blogLink?: string
 	repoLink: string
 	category: ReactNode
+	projectImage: ReactNode
 }
 
 const Project = (props: IProjectProps) => {
@@ -23,12 +20,7 @@ const Project = (props: IProjectProps) => {
 		<div className='flex flex-col items-center gap-x-8 rounded-md bg-slate-800 p-5 md:flex-row md:justify-center ring-1 ring-benhammondblue-50 ring-inset'>
 			<div className='shrink-0 flex flex-col items-center'>
 				<a href={link}>
-					<img
-						className='h-36 w-36 rounded hover:translate-y-1'
-						src={props.img.src}
-						alt={props.img.alt}
-						loading='lazy'
-					/>
+					{props.projectImage}
 				</a>
 				<div className='mt-3 text-center md:font-semibold md:text-xl italic '>
 					{props.name}
