@@ -5,7 +5,9 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    pubDate: z.string(),
+    pubDate: z.union([z.string(), z.date()]).transform(v =>
+      v instanceof Date ? v.toISOString().split('T')[0] : v
+    ),
     imgSrc: z.string().optional(),
     imgAlt: z.string().optional(),
   }),
