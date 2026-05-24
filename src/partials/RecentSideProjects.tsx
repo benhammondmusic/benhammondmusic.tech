@@ -16,6 +16,7 @@ export default function RecentSideProjects(props: any) {
 		BenHammondTechPicture,
 		BenHammondMusicPicture,
 		DataVizPicture,
+		MyDenverCardFreePicture,
 	} = props
 
 	return (
@@ -28,6 +29,21 @@ export default function RecentSideProjects(props: any) {
 			}
 		>
 			<div className='flex flex-col gap-6'>
+				<Project
+					name='MyDenverCard Free'
+					summary='mydenvercardfree.com'
+					description='Auto-collects current and upcoming free events and activities for MyDenverCard holders and their parents. Scrapes and aggregates listings so families always know what free options are available this week.'
+					deployLink='https://benhammondmusic.github.io/my-denver-card-free/'
+					repoLink='https://github.com/benhammondmusic/my-denver-card-free'
+					projectImage={MyDenverCardFreePicture}
+					category={
+						<>
+							<Tags color={ColorTags.CYAN}>Go</Tags>
+							<Tags color={ColorTags.CYAN}>Templ</Tags>
+							<Tags color={ColorTags.CYAN}>GitHub Actions</Tags>
+						</>
+					}
+				/>
 				<Project
 					name='Dev Portfolio'
 					summary='benhammondmusic.tech'

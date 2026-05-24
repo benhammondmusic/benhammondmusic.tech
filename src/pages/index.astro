@@ -18,6 +18,7 @@ import ben from 'src/assets/images/ben.jpg'
 import BenHammondTech from 'src/assets/images/benhammond-tech.png'
 import BenHammondMusic from 'src/assets/images/benhammondmusic.png'
 import DataViz from 'src/assets/images/data-viz.png'
+import MyDenverCardFree from 'src/assets/images/my-denver-card-free.png'
 import HET from 'src/assets/images/het.svg'
 
 const { title } = AppConfig;
@@ -102,6 +103,11 @@ body::before {
 			class='h-36 w-36 rounded hover:translate-y-1'
 			widths={[100, 200]}
 			src={DataViz} alt='benhammondmusic.com Data Visualization Playground' />
+		<Picture slot="MyDenverCardFreePicture"
+			formats={['avif', 'webp', 'png']}
+			class='h-36 w-36 rounded hover:translate-y-1'
+			widths={[100, 200]}
+			src={MyDenverCardFree} alt='MyDenverCard Free Project' />
 	</RecentSideProjects>
 	<GitHubStats data={gitHubData}  />
 	<CompletedWebAppChallenges />
