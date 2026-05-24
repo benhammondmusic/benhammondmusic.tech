@@ -18,13 +18,13 @@ export async function fetchGitHubData() {
         });
 
         if (response.status !== 200) {
-            // If response is not ok, throw an error
-            throw new Error(`Failed to fetch GitHub data: ${response.status} ${response.data}`);
+            console.error(`Failed to fetch GitHub data: ${response.status}`);
+            return [];
         }
 
-        return response.data; // Return the data from the response
+        return response.data;
     } catch (error) {
         console.error('Error fetching GitHub data:', error);
-        throw error; // Rethrow the error to handle it in the calling function
+        return [];
     }
 }
