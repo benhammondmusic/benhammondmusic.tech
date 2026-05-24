@@ -6,10 +6,7 @@ imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1702094754120/123b16
 imgAlt: Cover image for the Playwright E2E testing improvements post
 ---
 
-<div data-node-type="callout">
-<div data-node-type="callout-emoji">💡</div>
-<div data-node-type="callout-text">In short: use Playwright for end-to-end testing of your web app; don't sleep on its built-in code generation and reporting features; aim to target stable, deployed URLs when possible.</div>
-</div>
+> In short: use Playwright for end-to-end testing of your web app; don't sleep on its built-in code generation and reporting features; aim to target stable, deployed URLs when possible.
 
 ## What is Playwright?
 
@@ -132,7 +129,7 @@ Initial configuration attempts inadvertently failed to pass the required environ
 
 Finally, I properly implemented the reporting feature on CI, and then, importantly, set it to upload the generated reports as artifacts (final step of the GitHub Actions file above). Playwright includes great video replay, screenshot, and stack trace visualizations that allow you to rewatch what was happening when your tests fail. This insight into the CI failures made it immediately where I had been calling the wrong npm script. Going forward, this increased visibility and improved testing structure should allow our team to write tests more easily, have more confidence in their results, and quickly update them when things go wrong.
 
-![actual video of playwright's video capture showing site working but failing to load data](https://cdn.hashnode.com/res/hashnode/image/upload/v1702099118926/becf4765-32f7-41ac-842e-d8b2aae1e4df.gif align="center")
+![actual video of playwright's video capture showing site working but failing to load data](https://cdn.hashnode.com/res/hashnode/image/upload/v1702099118926/becf4765-32f7-41ac-842e-d8b2aae1e4df.gif)
 
 ## `FASTER`
 
@@ -141,15 +138,12 @@ Finally, I properly implemented the reporting feature on CI, and then, important
 Several aspects of this effort result in significantly faster test runs:
 
 1. Running against an already deployed site eliminates the need to start the dev server on CI
-    
 2. With the CI server no longer serving the dev build and running tests, we can increase the number of workers Playwright uses, enabling parallelization for simultaneous execution of unrelated tests.
-    
 3. Switched the report artifact upload step to run only on test failure, reducing unnecessary executions.
-    
 
 As an example, comparing the before and after run results, we see an improvement of over 30%! Not bad considering the new, faster test suite is both more comprehensive AND more reliable.
 
-![screenshots of before and after github action reports, showing over 30% speed improvement of E2E runs on deploy preview](https://cdn.hashnode.com/res/hashnode/image/upload/v1702085968481/49ca2552-ea33-4b14-a9cc-f08c64616239.png align="center")
+![screenshots of before and after github action reports, showing over 30% speed improvement of E2E runs on deploy preview](https://cdn.hashnode.com/res/hashnode/image/upload/v1702085968481/49ca2552-ea33-4b14-a9cc-f08c64616239.png)
 
 ## `STRONGER`
 
@@ -159,8 +153,20 @@ A major goal was to increase coverage across all public health topics and demogr
 
 To easily generate new coverage, we added a new shortcut to package.json, `npm run e2e-new`, which quickly runs Playwright's fantastic codegen feature. Regrettably, I had overlooked this feature earlier, likely because of my negative experiences decades ago with code generation in early site builders like Frontpage and Dreamweaver. However, Playwright's codegen is not only easy; it writes more reliable steps than I could write myself! It launches a special browser instance and smaller console and then records your steps as you navigate throughout the app, using the most robust locators available. Initially, we don't even need to include `expect` statements, since a `click()` action will fail if its target is not available.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1702097874680/a7b36654-f8a1-4c15-974b-098d6bcdc9b1.gif align="center")
+![Playwright codegen recording a test session](https://cdn.hashnode.com/res/hashnode/image/upload/v1702097874680/a7b36654-f8a1-4c15-974b-098d6bcdc9b1.gif)
 
-# What's next?
+## What's next?
 
-Going forward, we hope to ensure coverage for every health topic available on the tracker.
+Going forward, we hope to:
+
+- Ensure coverage for every health topic available on the tracker.
+- Include tests with extensive filtering/UI settings across those topics.
+- Divide the tests into 'essential' (run every time) and 'non-essential' (only run on production releases), minimizing wait times.
+- Implement a matrix of test settings on nightly production runs, allowing a combination of browsers (Edge, Firefox, Safari) and device settings (mobile, tablet, and desktop widths).
+- Ensure the development team culture emphasizes adding test coverage whenever a bug is fixed; minimizing regressions.
+
+Thanks for reading! Feel free to follow along or contribute to the open-source [HET GitHub repo](https://github.com/SatcherInstitute/health-equity-tracker), and let me know if you have any questions on optimizing your Playwright configuration!
+
+---
+
+*Photo by [Rock'n Roll Monkey](https://unsplash.com/@rocknrollmonkey) on [Unsplash](https://unsplash.com/photos/blue-plastic-robot-toy-R4WCbazrD1g)*
