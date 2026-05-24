@@ -8,7 +8,7 @@ pubDate: 2021-03-15
 
 *This post was written back in the days where Heroku provided free hosting; do not expect any example projects or links to Heroku to work.*
 
-This guide is step #2, written to assist my group in getting our team's full stack app deployed. This post will focus on the React frontend; to get a Node backend deployed to Heroku first, please follow [part 1](https://blog.benhammond.tech/deploying-a-node-express-backend-to-heroku), and to tie it all together  [check out part 3](https://blog.benhammond.tech/connecting-your-deployed-frontend-backend-and-mongodb-atlas-database) .
+This guide is step #2, written to assist my group in getting our team's full stack app deployed. This post will focus on the React frontend; to get a Node backend deployed to Heroku first, please follow [part 1](/blog/deploying-node-express-to-heroku), and to tie it all together  [check out part 3](/blog/connecting-frontend-backend-mongodb) .
 
 ### Issues causing deployment failures
 - Just like with the backend, having our files inside a subfolder was causing issues. There may have been some other work around but once I again I moved the files to the floor of the project folder, so that the package.json was next to the .git repo. I attempted to use the same command as before and it didn't work, so ended up using the following separate commands to move all visible files and all hidden dot files respectively: 

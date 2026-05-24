@@ -8,7 +8,7 @@ imgAlt: Cover image for the post about viewing localhost on mobile
 
 > Just swap `localhost` for your machine's local IP address
 > 
-> Update: for `vite` bundled apps, read my follow up: [Expose Vite's local address](https://blog.benhammond.tech/expose-vites-local-address)
+> Update: for `vite` bundled apps, read my follow up: [Expose Vite's local address](/blog/expose-vite-local-address)
 > 
 > Update: for `create-react-app` you can easily copy it from the terminal where you are running the server
 > 

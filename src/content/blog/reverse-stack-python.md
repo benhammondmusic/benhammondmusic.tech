@@ -6,7 +6,7 @@ pubDate: 2021-04-14
 
 ## Reverse() a Stack with Python.
 
-Having created a **stack** using a linked list in Python (more details in  [my previous blog post](https://blog.benhammond.tech/linked-list-stack-in-python) ), I was excited to expand on the functionality and add a `reverse()` method to this data structure class. Again, as with many of these basic computer science concepts, the idea is easy to understand, but the actual code can be challenging to write, and presents severals "gotchas" along the way that might trip you up. 
+Having created a **stack** using a linked list in Python (more details in  [my previous blog post](/blog/linked-list-stack-python) ), I was excited to expand on the functionality and add a `reverse()` method to this data structure class. Again, as with many of these basic computer science concepts, the idea is easy to understand, but the actual code can be challenging to write, and presents severals "gotchas" along the way that might trip you up. 
 
 ## Big Picture
 

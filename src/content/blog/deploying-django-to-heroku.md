@@ -8,7 +8,7 @@ pubDate: 2021-04-27
 
 *This post was written back in the days where Heroku provided free hosting; do not expect any example projects or links to Heroku to work.*
 
-In the previous [Django - Getting Started](https://blog.benhammond.tech/django-getting-started) post, we set up a new Django app, basically creating a fullstack Python `Hello World`.
+In the previous [Django - Getting Started](/blog/django-getting-started) post, we set up a new Django app, basically creating a fullstack Python `Hello World`.
 
 In this post, we will deploy this very basic app to Heroku (a ~~free~~ hosting platform which can run a Django server along with other types of web services). There are _many_ ways to deploy Django, but not a single tutorial I've found online actually worked for me as written. Therefor, I've collected the process that finally did the trick and have outlined it below. A lot of the process comes from our bootcamp instructors, with some customization found several layers deep on Stack Overflow and Reddit (and eventually some personal manipulation). Please let me know if this works for you, and comment below if you have any questions!
 
@@ -28,7 +28,7 @@ You will need to have a Heroku account for this process. It used to be free to [
 ## Procfile
 This file will tell Heroku what actions to take when it receives a web request:
 - create a blank file with _no file extension_: `touch Procfile`
-> ensure the capitalization is exact on Procfile; if you accidentally mixed the casing up you can fix it using [this method I wrote about](https://blog.benhammond.tech/renaming-your-github-projects)
+> ensure the capitalization is exact on Procfile; if you accidentally mixed the casing up you can fix it using [this method I wrote about](/blog/renaming-github-projects)
 - open the new `Procfile` in VSCode, and add this line. If you followed along with part one the project is called `example`. There should be 3 folders inside your local directory, a `.env`, a `main_app/` that was created most recently that contains your home route/view and a `example/` that was created initially and contains a route to your admin, and a `settings.py`. You want the last one of these.
 ```
 web: gunicorn example.wsgi
@@ -62,7 +62,7 @@ Why re-invent the wheel? Someone already got all this cool stuff working; use it
 
 ## Set Heroku Config Vars 
 
-> In [the previous post](https://blog.benhammond.tech/django-getting-started), we set our app's local config vars in an .env file and read them out dynamically. Please ensure your app is set up properly to use the following commands and allow Heroku to store its own config vars
+> In [the previous post](/blog/django-getting-started), we set our app's local config vars in an .env file and read them out dynamically. Please ensure your app is set up properly to use the following commands and allow Heroku to store its own config vars
 
 - `heroku config:set DISABLE_COLLECTSTATIC=1` - prevents one problem, seems to cause some others
 - `heroku config:set DATABASE_NAME=example-db`

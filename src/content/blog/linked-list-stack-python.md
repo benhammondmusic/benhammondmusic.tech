@@ -6,13 +6,13 @@ pubDate: 2021-04-10
 
 ## Linked List Stack in Python
 
-> Part of my "Learn Computer Science by Coding" series; also check out some of my posts on [bubble sort, binary search](https://blog.benhammond.tech/studying-compsci-by-actually-writing-code) and [recursive merge sort](https://blog.benhammond.tech/recursive-merge-sort-in-vanilla-javascript) algorithms using JavaScript.
+> Part of my "Learn Computer Science by Coding" series; also check out some of my posts on [bubble sort, binary search](/blog/studying-compsci-by-writing-code) and [recursive merge sort](/blog/recursive-merge-sort-javascript) algorithms using JavaScript.
 
 ## Coding in Python instead of JavaScript
 
 We have been completing modules on computer science topics in the course of my General Assembly bootcamp, and I have been making a point to implement some of the most famous data structures and algorithms from scratch, using actual code. This process continues to be super helpful in understanding the concepts at a deeper level, and I'd recommend it to anyone learning (or relearning) these ideas. 
 
-Since we just started a new course unit on Python (which is famous for its ability to work with data), I thought it'd be an interesting challenge to step out of my new JavaScript comfort zone and explore Python while also learning these data structure concepts. I had used Python a few years ago to cobble together my  [GigUploader](https://blog.benhammond.tech/giguploader)  project, but my coding skills in general are so much stronger now that I was excited to see my progress in this language.
+Since we just started a new course unit on Python (which is famous for its ability to work with data), I thought it'd be an interesting challenge to step out of my new JavaScript comfort zone and explore Python while also learning these data structure concepts. I had used Python a few years ago to cobble together my  [GigUploader](/blog/giguploader)  project, but my coding skills in general are so much stronger now that I was excited to see my progress in this language.
 
 ### Getting Started
 

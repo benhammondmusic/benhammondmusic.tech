@@ -22,8 +22,8 @@ Little Cabin (my final project for my recently completed General Assembly bootca
 # The Project Setup
 
 To get myself started, I've followed along with my two previous blog posts:
-- [Setup a new Django app](https://blog.benhammond.tech/django-getting-started)
-- [Deploy it to Heroku](https://blog.benhammond.tech/deploying-django-to-heroku)
+- [Setup a new Django app](/blog/django-getting-started)
+- [Deploy it to Heroku](/blog/deploying-django-to-heroku)
 
 > I have also created a [blog example repo on my GitHub](https://github.com/benhammondmusic/example-django-gcal-heroku) that includes all of the steps in this entire tutorial, so feel free to clone that repo and have a look at the code. You'll still need to do a lot of person configuration to get it working, including creating your own service account, google calendar, Heroku project, .env files and Heroku config vars, etc. 
 
@@ -249,7 +249,7 @@ If that's all working locally, the next big step is adjusting everything so that
 ## Add Custom Buildpack
 
 - In your browser, head to [Heroku](https://dashboard.heroku.com/apps) and log in
-- Open up the existing App that you've deployed (perhaps you followed my previous blog post: [Deploying Django to Heroku](https://blog.benhammond.tech/deploying-django-to-heroku)?
+- Open up the existing App that you've deployed (perhaps you followed my previous blog post: [Deploying Django to Heroku](/blog/deploying-django-to-heroku)?
 - Choose "Settings" from the nav bar
 - Scroll down and click the "Add Buildpack" button (there should already be "heroku/python" listed as installed
 - Paste `https://github.com/buyersight/heroku-google-application-credentials-buildpack` into the text input box labeled "Enter Buildpack URL"
@@ -293,6 +293,6 @@ Head to your deployed Heroku site, and see if the button still works to populate
 
 <iframe src="https://giphy.com/embed/l41YmQjOz9qg2Ecow" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
-> As noted in the previous article [Deploying Django to Heroku](https://blog.benhammond.tech/deploying-django-to-heroku), it can be helpful to configure your Django project and Heroku to give more detailed error logging. Check out the instructions on [this stackoverflow](https://stackoverflow.com/questions/52311724/500-error-when-debug-false-with-heroku-and-django) where they explain adding `DEBUG_PROPAGATE_EXCEPTIONS = True` and a `LOGGING = { ... }` library to their `settings.py`
+> As noted in the previous article [Deploying Django to Heroku](/blog/deploying-django-to-heroku), it can be helpful to configure your Django project and Heroku to give more detailed error logging. Check out the instructions on [this stackoverflow](https://stackoverflow.com/questions/52311724/500-error-when-debug-false-with-heroku-and-django) where they explain adding `DEBUG_PROPAGATE_EXCEPTIONS = True` and a `LOGGING = { ... }` library to their `settings.py`
 
 Sundial Photo by Marian Kroell on Unsplash

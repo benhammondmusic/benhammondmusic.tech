@@ -38,8 +38,8 @@ These are the basic things someone would want a hash map to do:
 
 The classes I used in my implementation were pretty limited:
 - `Hash_Map()`
-- `Stack()` - in a [previous blog post](https://blog.benhammond.tech/linked-list-stack-in-python), I had created a **stack** structure utilizing a linked list. It needed some updates, but worked well for resolving collisions using **chaining**
-- `Node` - I had already created this class when creating the [stack with linked list](https://blog.benhammond.tech/linked-list-stack-in-python) implementation, and didn't even need to touch it for this exercise. Modularity!
+- `Stack()` - in a [previous blog post](/blog/linked-list-stack-python), I had created a **stack** structure utilizing a linked list. It needed some updates, but worked well for resolving collisions using **chaining**
+- `Node` - I had already created this class when creating the [stack with linked list](/blog/linked-list-stack-python) implementation, and didn't even need to touch it for this exercise. Modularity!
 
 ## Functionality
 
@@ -74,7 +74,7 @@ When I start to flesh out those functions, I'll write out the steps in `#comment
 
 # Class Methods of Stack()
 
-Since our `Hash_Map` class will rely on inner linked lists (to resolve collisions), we will load up a previously written [stack with a linked list](https://blog.benhammond.tech/linked-list-stack-in-python) module using `from linked_list_stack import Stack`. We can eliminate some of the methods from `Stack` as they won't be needed, e.g. `reverse()`, `to_list()`, and `peek()`. 
+Since our `Hash_Map` class will rely on inner linked lists (to resolve collisions), we will load up a previously written [stack with a linked list](/blog/linked-list-stack-python) module using `from linked_list_stack import Stack`. We can eliminate some of the methods from `Stack` as they won't be needed, e.g. `reverse()`, `to_list()`, and `peek()`. 
 
 We will also need to add some additional methods to complete the user stories' `search()` and `remove()` methods, specifically those in table locations that are storing more than one item. So `Hash_Map.search()` will find the correct location on the _table_ where the item should be, but `Stack.contains()` will then check every item stored at that particular location's _Stack_ for a match.
 > Note: I decided to implement a Stack() on _every_ table location, regardless of the number items at that location. This may be inefficient; I'll continue my studying and see if it's better practice to store an item "naked" at first, and then place the naked item and any new items into a linked list only as needed to resolve collisions.
@@ -84,10 +84,10 @@ We will also need to add some additional methods to complete the user stories' `
 
 - `push()` - classic stack behavior which plops the value on top of the stack. This continues the work of `Hash_Map.insert()` in my code
 - `contains()` - walks node by node through the particular stack looking for a match.
-- `remove()` - similar to `contains()` in that it walks through the stack checking for a match (and then removing it if found). However, the implementation gets a bit trickier; first, you must check your match against the _next_ node in line, not the current, since to remove the current you'll need to connect the _previous_ node to the _next_. This is very similar to the idea of "don't drop your rope" I discussed in [Reverse a Stack with Python](https://blog.benhammond.tech/reverse-a-stack-with-python); you need to take care not to lose track of your _previous_ and _next_ nodes as those are the connections that hold the chain together
+- `remove()` - similar to `contains()` in that it walks through the stack checking for a match (and then removing it if found). However, the implementation gets a bit trickier; first, you must check your match against the _next_ node in line, not the current, since to remove the current you'll need to connect the _previous_ node to the _next_. This is very similar to the idea of "don't drop your rope" I discussed in [Reverse a Stack with Python](/blog/reverse-stack-python); you need to take care not to lose track of your _previous_ and _next_ nodes as those are the connections that hold the chain together
 - `__str__()`: similar to the special method within our hash map class, we need a custom method when an instance of our stack is converted to a string
  
-> Note: as in our [Snake Tac Toe](https://blog.benhammond.tech/snaketactoe-in-two-hours) game; it's very easy as a beginner to get tripped up by referring to an instantiated _object_, when you really meant to refer to a particular _property_ of that object. Here, in both `contains()` and `remove()`, we need to compare the search item (a string) to the _string value_ of each particular node, not to the node itself. In my code there are two ways I do this, the first is by calling `.value` on the node, other places I use `str(node)`, which internally calls the special `__str__()` method we added. Either way, you must be sure you are comparing values of the same **type**. You can confirm a variable's type by logging: `print(type(a_variable))` and seeing what you are actually dealing with. 
+> Note: as in our [Snake Tac Toe](/blog/snake-tac-toe-python) game; it's very easy as a beginner to get tripped up by referring to an instantiated _object_, when you really meant to refer to a particular _property_ of that object. Here, in both `contains()` and `remove()`, we need to compare the search item (a string) to the _string value_ of each particular node, not to the node itself. In my code there are two ways I do this, the first is by calling `.value` on the node, other places I use `str(node)`, which internally calls the special `__str__()` method we added. Either way, you must be sure you are comparing values of the same **type**. You can confirm a variable's type by logging: `print(type(a_variable))` and seeing what you are actually dealing with. 
 
 ``` python
 def contains(self, item):

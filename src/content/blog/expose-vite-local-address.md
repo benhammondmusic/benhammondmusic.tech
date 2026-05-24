@@ -8,7 +8,7 @@ imgAlt: Cover image for the post about exposing Vite's local address
 
 > Add `-- --host` to the end of your package manager's start command. Note the extra hyphens!
 
-As a follow-up to my blog on [viewing localhost on mobile](https://blog.benhammond.tech/how-to-view-localhost-on-mobile), I thought I would share how to do the same with Vite specifically. A recent task I completed at work was migrating [healthequitytracker.org](https://healthequitytracker.org) from create-react-app to Vite. In another article, I'll share the details of how this cut our CI build time by 75%, saving the team over 25 hours per month, but for now, I'll discuss the not-so-obvious way you can have Vite expose the local server's actual IP address (allowing you to view on another device as explained in [my other blog post](https://blog.benhammond.tech/how-to-view-localhost-on-mobile)).
+As a follow-up to my blog on [viewing localhost on mobile](/blog/view-localhost-on-mobile), I thought I would share how to do the same with Vite specifically. A recent task I completed at work was migrating [healthequitytracker.org](https://healthequitytracker.org) from create-react-app to Vite. In another article, I'll share the details of how this cut our CI build time by 75%, saving the team over 25 hours per month, but for now, I'll discuss the not-so-obvious way you can have Vite expose the local server's actual IP address (allowing you to view on another device as explained in [my other blog post](/blog/view-localhost-on-mobile)).
 
 ## Updating your package.json scripts
 
@@ -28,6 +28,6 @@ You can also use this flagged-flag directly on the command line if you only want
 
 ![](/blog/expose-vite-local-address/350734b2-f968-4c2a-ba1d-0013152eb155.png align="center")
 
-Now that you have the address, you can easily [view the development server directly on your mobile device](https://blog.benhammond.tech/how-to-view-localhost-on-mobile).
+Now that you have the address, you can easily [view the development server directly on your mobile device](/blog/view-localhost-on-mobile).
 
 And yes, if you look closely, I am pleased to finally be working on a feature that will kill a UI carousel that has been in place for far too long. If you're wondering why this is exciting to me, check out [Should I Use A Carousel?](https://shouldiuseacarousel.com/)

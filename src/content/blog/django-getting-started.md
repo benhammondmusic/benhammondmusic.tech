@@ -10,7 +10,7 @@ _**This post was co-authored with fellow General Assembly Software Engineering I
 
 If you've written full stack applications in JavaScript using Node, Express, perhaps Mongoose for accessing a database, maybe some packages like Passport to help manage user authentication and authorization, etc, you quickly find yourself repeating the same setup patterns over and over. The only differences come in when you accidentally misconfigure a setting or a route and spend hours debugging. Django aims to, if not _replace_ all of those steps, at least condense those disparate processes into one. 
 
-The following step-by-step guide will assist a beginning Python developer in launching a Django project on their local development server (and then [deploying it to Heroku in the next blog post](https://blog.benhammond.tech/deploying-django-to-heroku)).
+The following step-by-step guide will assist a beginning Python developer in launching a Django project on their local development server (and then [deploying it to Heroku in the next blog post](/blog/deploying-django-to-heroku)).
 
 > If you're starting a brand new project, skip this section. Otherwise if you are downloading someone else's project, run the following commands instead to properly configure it on your machine. This is the equivalent of running `npm i` when freshly cloning someone else's repo. When finished, continue at step "Creating a Home Page" below
 1. `python3 -m venv .env`
@@ -275,7 +275,7 @@ Back in your browser, visit [localhost:8000](http://localhost:8000) and refresh 
 You should now have a functioning (very simple) Django app within your project, viewable on your local machine. To continue building, follow the next steps:
 - Adding more routes, templates, and rendered data _(blog post currently being written)_
 - Reading from your database _(blog post currently being written)_
-- [Deploying your Django app on Heroku](https://blog.benhammond.tech/deploying-django-to-heroku)
+- [Deploying your Django app on Heroku](/blog/deploying-django-to-heroku)
 
 Cover Photo by Jukan Tateisi on Unsplash
 Pedalboard Photo by Jonathan Dubon on Unsplash
