@@ -38,14 +38,23 @@ export async function fetchLibbyTimeline(): Promise<LibbyTimeline> {
 	const timelineUrl = import.meta.env.LIBBY_TIMELINE;
 
 	if (!timelineUrl) {
-		throw new Error('LIBBY_TIMELINE environment variable is not set');
+		console.warn('LIBBY_TIMELINE environment variable is not set; skipping Libby data');
+		return { version: 0, timeline: [] };
 	}
 
 	try {
 		const response = await fetch(timelineUrl);
 
 		if (!response.ok) {
-			throw new Error(`HTTP error! status: ${response.status}`);
+			console.error(`Libby timeline fetch failed with status: ${response.status}`);
+			return { version: 0, timeline: [] };
+		}
+
+		const contentType = response.headers.get('content-type') || '';
+		if (!contentType.includes('application/json')) {
+			const text = await response.text();
+			console.error(`Expected JSON from Libby but got ${contentType}: ${text.slice(0, 300)}`);
+			return { version: 0, timeline: [] };
 		}
 
 		const data: LibbyTimeline = await response.json();
@@ -93,6 +102,6 @@ export async function fetchLibbyTimeline(): Promise<LibbyTimeline> {
 		};
 	} catch (error) {
 		console.error('Error fetching Libby timeline:', error);
-		throw error;
+		return { version: 0, timeline: [] };
 	}
 }
