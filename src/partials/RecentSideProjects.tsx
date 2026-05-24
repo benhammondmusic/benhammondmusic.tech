@@ -30,21 +30,6 @@ export default function RecentSideProjects(props: any) {
 		>
 			<div className='flex flex-col gap-6'>
 				<Project
-					name='MyDenverCard Free'
-					summary='mydenvercardfree.com'
-					description='Auto-collects current and upcoming free events and activities for MyDenverCard holders and their parents. Scrapes and aggregates listings so families always know what free options are available this week.'
-					deployLink='https://benhammondmusic.github.io/my-denver-card-free/'
-					repoLink='https://github.com/benhammondmusic/my-denver-card-free'
-					projectImage={MyDenverCardFreePicture}
-					category={
-						<>
-							<Tags color={ColorTags.CYAN}>Go</Tags>
-							<Tags color={ColorTags.CYAN}>Templ</Tags>
-							<Tags color={ColorTags.CYAN}>GitHub Actions</Tags>
-						</>
-					}
-				/>
-				<Project
 					name='Dev Portfolio'
 					summary='benhammondmusic.tech'
 					description='My web dev and software engineering online presence. Using Astro as a meta-framework for server side generated pages, with React function components. Dynamically pulls in my recent blog posts with GraphQL at build time, along with GitHub events rendered as emoji 💪. '
@@ -91,6 +76,21 @@ export default function RecentSideProjects(props: any) {
 							<Tags color={ColorTags.AMBER}>TypeScript</Tags>
 							<Tags color={ColorTags.AMBER}>MongoDB</Tags>
 							<Tags color={ColorTags.AMBER}>D3</Tags>
+						</>
+					}
+				/>
+				<Project
+					name='MyDenverCard Free'
+					summary='mydenvercardfree.com'
+					description='Auto-collects current and upcoming free events and activities for MyDenverCard holders and their parents. Scrapes and aggregates listings so families always know what free options are available this week.'
+					deployLink='https://benhammondmusic.github.io/my-denver-card-free/'
+					repoLink='https://github.com/benhammondmusic/my-denver-card-free'
+					projectImage={MyDenverCardFreePicture}
+					category={
+						<>
+							<Tags color={ColorTags.CYAN}>Go</Tags>
+							<Tags color={ColorTags.CYAN}>Templ</Tags>
+							<Tags color={ColorTags.CYAN}>GitHub Actions</Tags>
 						</>
 					}
 				/>
