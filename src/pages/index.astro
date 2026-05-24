@@ -12,6 +12,7 @@ import {BlueskyStuff} from '@/partials/BlueskyStuff';
 import { LibbyStuff } from '@/partials/LibbyStuff';
 import { fetchLibbyTimeline } from '@/utils/libby';
 import { fetchGitHubData } from '@/utils/github';
+import { getCollection } from 'astro:content';
 import { Picture } from 'astro:assets';
 import ben from 'src/assets/images/ben.jpg'
 import BenHammondTech from 'src/assets/images/benhammond-tech.png'
@@ -24,6 +25,16 @@ const { description } = AppConfig;
 
 const timeline = await fetchLibbyTimeline();
 const gitHubData = await fetchGitHubData();
+
+const allPosts = await getCollection('blog');
+const recentPosts = allPosts
+  .sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf())
+  .slice(0, 6)
+  .map(post => ({
+    slug: post.id.replace(/\.(md|mdx)$/, ''),
+    title: post.data.title,
+    imgSrc: post.data.imgSrc,
+  }));
 
 
 ---
@@ -75,7 +86,7 @@ body::before {
 		class='h-36 w-36 rounded hover:translate-y-1'
 		src={HET.src} alt='Health Equity Tracker Project' />
 	</CurrentProject>
-	<RecentPosts />
+	<RecentPosts posts={recentPosts} />
   <RecentSideProjects  >
 		<Picture slot="BenHammondMusicPicture" formats={['avif', 'webp', 'png']}
 		class='h-36 w-36 rounded hover:translate-y-1'

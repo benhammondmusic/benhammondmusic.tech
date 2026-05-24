@@ -4,11 +4,20 @@ import {
   Section,
 } from '../astro-boilerplate-components'
 
+type BlogPost = {
+  slug: string
+  title: string
+  imgSrc?: string
+}
 
-const RecentPosts = () => (
+type RecentPostsProps = {
+  posts: BlogPost[]
+}
+
+const RecentPosts = (props: RecentPostsProps) => (
   <Section
     title={
-      <div className='flex  justify-between '>
+      <div className='flex justify-between'>
         <div className='font-rubik'>
           Recent <GradientText>Posts</GradientText>
         </div>
@@ -16,16 +25,16 @@ const RecentPosts = () => (
         <div className='text-sm'>
           <a
             className='hover:text-benhammondyellow flex flex-col sm:block italic md:not-italic'
-            href='https://blog.benhammondmusic.tech'
+            href='/blog'
           >
-            <span>Read my </span>
+            <span>Read the </span>
             <span>tech blog ↗</span>
           </a>
         </div>
       </div>
     }
   >
-    <BlogGallery />
+    <BlogGallery posts={props.posts} />
   </Section>
 )
 

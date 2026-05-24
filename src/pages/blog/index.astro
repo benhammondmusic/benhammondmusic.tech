@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@/templates/Base.astro';
+import { AppConfig } from '@/utils/AppConfig';
+import { format } from 'date-fns';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+);
+---
+
+<Base head={{ title: `Blog - ${AppConfig.site_name}`, description: 'Tech writing by Ben Hammond' }}>
+  <div class='mx-auto max-w-screen-lg px-3 py-6'>
+    <h1 class='font-rubik text-3xl font-bold mb-8'>
+      Tech <span class='bg-gradient-to-br from-benhammondyellow to-benhammondblue-50 bg-clip-text text-transparent'>Blog</span>
+    </h1>
+    <ul class='flex flex-col gap-6'>
+      {posts.map(post => {
+        const slug = post.id.replace(/\.(md|mdx)$/, '');
+        return (
+          <li>
+            <a href={`/blog/${slug}`} class='group block rounded-lg p-4 ring-1 ring-benhammondblue-50 bg-slate-800 hover:bg-slate-700 transition-colors'>
+              <h2 class='text-xl font-semibold group-hover:text-benhammondyellow transition-colors'>{post.data.title}</h2>
+              <p class='mt-1 text-sm text-gray-400'>{format(new Date(post.data.pubDate), 'MMMM d, yyyy')}</p>
+              {post.data.description && <p class='mt-2 text-gray-300'>{post.data.description}</p>}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</Base>
