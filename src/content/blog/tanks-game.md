@@ -2,7 +2,7 @@
 title: "Tanks!"
 description: A multiplayer artillery game built in JavaScript, jQuery, and HTML Canvas in one week, featuring procedurally generated terrain, gravity-based tank placement, and programmatic collision detection.
 pubDate: 2021-03-19
-imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1619281752875/HjGbnPgOR.gif
+imgSrc: /blog/tanks-game/HjGbnPgOR.gif
 imgAlt: Screen recording of Tanks! gameplay showing tanks shooting at each other on generated terrain
 ---
 
@@ -12,7 +12,7 @@ imgAlt: Screen recording of Tanks! gameplay showing tanks shooting at each other
 Incorporated programmatically generated terrain and destruction when collision detected, gravity for tank placement, scalable multiplayer mode, and responsive, accessible design. [Play Tanks!](https://benhammondmusic.github.io/tanks)
 
 
-![tanks - short sample screen recording of gameplay.gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1619281752875/HjGbnPgOR.gif)
+![tanks - short sample screen recording of gameplay.gif](/blog/tanks-game/HjGbnPgOR.gif)
 
 ## Concept:
 
@@ -22,9 +22,9 @@ Players take turns lobbing projectiles; anyone sustaining a hit is destroyed. La
 
 ## Wireframes / Work In Progress:
 
-![Initial Hand Drawn Wireframe](https://cdn.hashnode.com/res/hashnode/image/upload/v1616104443717/FsG3qlHhk.jpeg)
+![Initial Hand Drawn Wireframe](/blog/tanks-game/FsG3qlHhk.jpeg)
 
-![Early screenshot showing a tank exploding in multiplayer mode](https://cdn.hashnode.com/res/hashnode/image/upload/v1616104422231/1eCWBwIis.png)
+![Early screenshot showing a tank exploding in multiplayer mode](/blog/tanks-game/1eCWBwIis.png)
 
 ## Tech:
 

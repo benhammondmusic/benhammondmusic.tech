@@ -2,7 +2,7 @@
 title: Honoring Reduced Motion Preferences in React
 description: How to use a custom usePrefersReducedMotion hook in React to swap animated GIFs for static images when users have enabled the prefers-reduced-motion accessibility setting.
 pubDate: 2021-08-16
-imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1629130657408/_4HJtglDS.gif
+imgSrc: /blog/honoring-reduced-motion-react/_4HJtglDS.gif
 imgAlt: Animated GIFs stopping as user enables preferred reduced motion setting
 ---
 
@@ -11,7 +11,7 @@ imgAlt: Animated GIFs stopping as user enables preferred reduced motion setting
 Thanks again to Josh W. Comeau and [his awesome blog](https://www.joshwcomeau.com/react/prefers-reduced-motion/), I have drafted some changes to the  [Health Equity Tracker](https://healthequitytracker.org/)  website which will honor a user's accessibility settings for "user prefers reduced motion". 
 
 
-![Animated GIFs stopping as user enables preferred reduced motion](https://cdn.hashnode.com/res/hashnode/image/upload/v1629130657408/_4HJtglDS.gif)
+![Animated GIFs stopping as user enables preferred reduced motion](/blog/honoring-reduced-motion-react/_4HJtglDS.gif)
 
 On the site are some existing animations which are pretty, but purely decorative.  Due to their motion effects, they could potentially trigger vestibular disorders in some users, resulting in nausea, dizziness, etc. Thankfully, we have an [easy way to account for these animation preferences in pure CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion), however in React and in particular while rendering various images, it requires a different approach.
 

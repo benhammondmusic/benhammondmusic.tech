@@ -2,7 +2,7 @@
 title: Snake_Tac_Toe in Two Hours
 description: Building a Python command-line tic-tac-toe game in two hours as a group project, exploring OOP classes, dunder methods, and win/tie condition logic.
 pubDate: 2021-04-11
-imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1618115689143/o94AyT9W_.gif
+imgSrc: /blog/snake-tac-toe-python/o94AyT9W_.gif
 imgAlt: Screen grab of command line game play showing Snake_Tac_Toe
 ---
 
@@ -14,7 +14,7 @@ imgAlt: Screen grab of command line game play showing Snake_Tac_Toe
 
 Today in class we dug into object-oriented programming in Python using classes. I had recently investigated this a bit on my own while implementing a  [stack using linked lists in Python](https://blog.benhammond.tech/linked-list-stack-in-python). Though I would have preferred a different game since I somewhat recently coded [React-Tac-Toe](https://blog.benhammond.tech/react-tac-toe), it was another fun experience to work as a group; thinking out loud through our issues and bouncing ideas off of one another. Also, since the basics of the game were pretty clear, we could focus more on how to implement classes, functions and magic "dunder" methods like `__str__()` and how they can be helpful in a Python application. 
 
-![Screen grab of command line game play](https://cdn.hashnode.com/res/hashnode/image/upload/v1618115689143/o94AyT9W_.gif)
+![Screen grab of command line game play](/blog/snake-tac-toe-python/o94AyT9W_.gif)
 
 ## Tech
 

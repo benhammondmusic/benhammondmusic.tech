@@ -2,7 +2,7 @@
 title: Expose Vite's local address
 description: Add "-- --host" to your npm start script to make Vite expose the local network IP address, enabling you to view your dev server on a mobile device.
 pubDate: 2023-04-07
-imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1680889637729/03cd9244-9ded-45d2-a194-4c0ba80d3263.jpeg
+imgSrc: /blog/expose-vite-local-address/03cd9244-9ded-45d2-a194-4c0ba80d3263.jpeg
 imgAlt: Cover image for the post about exposing Vite's local address
 ---
 
@@ -26,7 +26,7 @@ Vite politely gives you the message `Network: use --host to expose` when you run
 
 You can also use this flagged-flag directly on the command line if you only want to expose the IP a single time and not by default, so instead of using `npm run dev` you would use `npm run dev -- --host`
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1680888592800/350734b2-f968-4c2a-ba1d-0013152eb155.png align="center")
+![](/blog/expose-vite-local-address/350734b2-f968-4c2a-ba1d-0013152eb155.png align="center")
 
 Now that you have the address, you can easily [view the development server directly on your mobile device](https://blog.benhammond.tech/how-to-view-localhost-on-mobile).
 

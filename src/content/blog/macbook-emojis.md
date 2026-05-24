@@ -2,7 +2,7 @@
 title: "MacBook Emojis!"
 description: The built-in macOS keyboard shortcut CTRL+CMD+Space opens a searchable emoji picker, making it easier to insert emojis anywhere on your Mac without third-party apps.
 pubDate: 2021-04-11
-imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1618154568801/y-01LBe0X.gif
+imgSrc: /blog/macbook-emojis/y-01LBe0X.gif
 imgAlt: Animated screenshot showing macOS emoji menu opening with the keyboard shortcut
 ---
 
@@ -16,6 +16,6 @@ Until recently, I'd only been incorporating emojis into my writing while typing 
 
 Then I happened upon a blog post that showed what I'd been seeking all along: built-in MacOS support for emojis! Simply press `<CONTROL>` + `<COMMAND>` + `<SPACE BAR>`, and a floating menu pops up with categorized tabs, search functionality, and your frequently used (my top 5 right now: 💩🤦‍♂️😀🐍😂). I've since disabled Rocket from loading on startup, but I will leave it installed for now, just in case. Otherwise, this "hidden" secret functionality seems perfect. What other "secret" keyboard shortcuts have you been using? 👩‍💻🎸
 
-![macbook emoji.gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1618154568801/y-01LBe0X.gif)
+![macbook emoji.gif](/blog/macbook-emojis/y-01LBe0X.gif)
 
 Photo in cover image by Vanessa Bucceri on Unsplash

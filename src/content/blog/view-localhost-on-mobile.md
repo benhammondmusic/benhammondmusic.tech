@@ -2,7 +2,7 @@
 title: How to view localhost on mobile
 description: Replace "localhost" with your machine's local IP address to view your development server on any mobile device on the same network.
 pubDate: 2022-12-15
-imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1665315585921/8t8VadjZI.jpeg
+imgSrc: /blog/view-localhost-on-mobile/8t8VadjZI.jpeg
 imgAlt: Cover image for the post about viewing localhost on mobile
 ---
 
@@ -12,7 +12,7 @@ imgAlt: Cover image for the post about viewing localhost on mobile
 > 
 > Update: for `create-react-app` you can easily copy it from the terminal where you are running the server
 > 
-> ![output from the terminal prompt showing the local ip address](https://cdn.hashnode.com/res/hashnode/image/upload/v1671127403878/7NJRbtqd5.png align="center")
+> ![output from the terminal prompt showing the local ip address](/blog/view-localhost-on-mobile/7NJRbtqd5.png align="center")
 
 While building sites, your content should always be easily accessible regardless of the user's device size, speed or type. It is much easier to build in the responsive design from the beginning, rather than the trap we often fall into where we develop on blazingly fast desktop machines hooked up to ethernet, and then wonder why the site barely functions on an older mobile phone via crappy 3G connection.
 
@@ -22,11 +22,11 @@ Thankfully, it's pretty painless to view your local development from one machine
     
 2. Open "Network settings"
     
-    ![wifi.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1665315772597/yygKT9eL9.png align="left")
+    ![wifi.png](/blog/view-localhost-on-mobile/yygKT9eL9.png align="left")
     
 3. Highlight and copy the IP address (using right click -> copy, NOT cmd-C)
     
-    ![ip.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1665315787587/fZ6aXZiZi.png align="left")
+    ![ip.png](/blog/view-localhost-on-mobile/fZ6aXZiZi.png align="left")
     
 4. Start your local dev server, launch browser and view the site in progress. For `create-react-app` it would be `localhost:3000`
     

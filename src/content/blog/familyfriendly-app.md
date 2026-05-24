@@ -2,7 +2,7 @@
 title: FamilyFriendly App (Node with Express)
 description: A Node/Express app using Google Maps and OAuth2 to help parents find rest stops and businesses with gender-neutral baby changing tables, built as a full-stack MVP with MongoDB Atlas.
 pubDate: 2021-03-18
-imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1616090069981/ngU9YFMOc.png
+imgSrc: /blog/familyfriendly-app/ngU9YFMOc.png
 imgAlt: Screenshot of FamilyFriendly desktop app showing logged-in Google OAuth view with map
 ---
 
@@ -26,17 +26,17 @@ My wife suggested building an app that would allow an overstressed parent to qui
 <table>
 <tr>
 <td> 
-![mobile-splash.jpg](https://cdn.hashnode.com/res/hashnode/image/upload/v1616090019379/p5SdudU7S.jpeg)
+![mobile-splash.jpg](/blog/familyfriendly-app/p5SdudU7S.jpeg)
 </td>
 <td>
-![mobile-reports.jpg](https://cdn.hashnode.com/res/hashnode/image/upload/v1616090036999/D9GLduEhI.jpeg)
+![mobile-reports.jpg](/blog/familyfriendly-app/D9GLduEhI.jpeg)
 </td>
 </tr>
 </table>
 
 ##### Desktop (Logged In Google OAuth)
 
-![desktop-list.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1616090069981/ngU9YFMOc.png)
+![desktop-list.png](/blog/familyfriendly-app/ngU9YFMOc.png)
 
 ### TECH
 
@@ -57,7 +57,7 @@ My wife suggested building an app that would allow an overstressed parent to qui
 
 ![ERD - Entity Relationship Diagram](https://raw.githubusercontent.com/benhammondmusic/familyfriendly/9885dc12ae44f838d799735b6b94fab6502df8aa/docs/erd.drawio.svg)
 
-![Initial Wireframe](https://cdn.hashnode.com/res/hashnode/image/upload/v1616090137711/jUO6uQfXp.jpeg)
+![Initial Wireframe](/blog/familyfriendly-app/jUO6uQfXp.jpeg)
 
 
 ### POTENTIAL FURTHER DEVELOPMENT

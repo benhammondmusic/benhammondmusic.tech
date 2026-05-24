@@ -2,7 +2,7 @@
 title: Connecting Google Cal API and Django
 description: How to connect a Django app to the Google Calendar API using a service account, then deploy it to Heroku with a custom buildpack that auto-generates the credentials file from config vars.
 pubDate: 2021-06-23
-imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1624483254791/89bl7Mbi7.png
+imgSrc: /blog/connecting-google-cal-api-django/89bl7Mbi7.png
 imgAlt: Screenshot from the author's Little Cabin App showing the calendar scheduling feature
 ---
 
@@ -17,7 +17,7 @@ imgAlt: Screenshot from the author's Little Cabin App showing the calendar sched
 Little Cabin (my final project for my recently completed General Assembly bootcamp), provides tools for extended families to securely share their vacation property's logistics and memories. One key feature is allowing the in-app scheduling to sync with a Google Calendar, and though I assumed it would be a simple matter of hooking up to the Google Calendar API, it was by far the most difficult problem to solve. 
 
 
-![Screenshot from the author's Little Cabin App](https://cdn.hashnode.com/res/hashnode/image/upload/v1624483254791/89bl7Mbi7.png)
+![Screenshot from the author's Little Cabin App](/blog/connecting-google-cal-api-django/89bl7Mbi7.png)
 
 # The Project Setup
 
@@ -180,7 +180,7 @@ google-credentials.json
 Please ensure both `example/.env` and the newly created `google-credentials.json` appear greyed out in VSCode
 
 
-![Screenshot showing greyed out gitignored files](https://cdn.hashnode.com/res/hashnode/image/upload/v1624485007810/u__Hg8BBu.png)
+![Screenshot showing greyed out gitignored files](/blog/connecting-google-cal-api-django/u__Hg8BBu.png)
 
 ## Add The API Calls
 
@@ -266,7 +266,7 @@ If that's all working locally, the next big step is adjusting everything so that
 - In the new KEY box, paste `GOOGLE_CREDENTIALS`, and in the corresponding VALUE box, paste the entire JSON object. You can literally copy all of the code that is now in your local `google-credentials.json`, starting with a `{` and ending with a `}`
 - Click the "Add" button
 
-![Screenshot showing what Heroku settings pages should look like with custom buildpack and config vars](https://cdn.hashnode.com/res/hashnode/image/upload/v1624484649512/UXwecl10w.png)
+![Screenshot showing what Heroku settings pages should look like with custom buildpack and config vars](/blog/connecting-google-cal-api-django/UXwecl10w.png)
 
 ## Deploy to Heroku
 
@@ -285,7 +285,7 @@ Once you're notified the deploy was successful, you can use the terminal to manu
 - You should see `google-credentials.json` listed on the floor of your project. Yay!
 - `exit` will bring you back onto your local machine
 
-![heroku run bash screen recording](https://cdn.hashnode.com/res/hashnode/image/upload/v1624486726987/AZixt1Yb7.gif)
+![heroku run bash screen recording](/blog/connecting-google-cal-api-django/AZixt1Yb7.gif)
 
 # Run It!
 

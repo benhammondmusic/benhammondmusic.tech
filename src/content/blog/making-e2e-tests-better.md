@@ -2,7 +2,7 @@
 title: Making E2E Tests Harder, Better, Faster, and Stronger
 description: How targeting deployed Netlify preview URLs, enabling Playwright's built-in reporting artifacts, parallelizing workers, and using codegen transformed a flaky test suite into a reliable, faster, and more comprehensive one.
 pubDate: 2023-12-09
-imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1702094754120/123b1617-c310-4f7e-ba6a-9720a23ba137.jpeg
+imgSrc: /blog/making-e2e-tests-better/123b1617-c310-4f7e-ba6a-9720a23ba137.jpeg
 imgAlt: Cover image for the Playwright E2E testing improvements post
 ---
 
@@ -129,7 +129,7 @@ Initial configuration attempts inadvertently failed to pass the required environ
 
 Finally, I properly implemented the reporting feature on CI, and then, importantly, set it to upload the generated reports as artifacts (final step of the GitHub Actions file above). Playwright includes great video replay, screenshot, and stack trace visualizations that allow you to rewatch what was happening when your tests fail. This insight into the CI failures made it immediately where I had been calling the wrong npm script. Going forward, this increased visibility and improved testing structure should allow our team to write tests more easily, have more confidence in their results, and quickly update them when things go wrong.
 
-![actual video of playwright's video capture showing site working but failing to load data](https://cdn.hashnode.com/res/hashnode/image/upload/v1702099118926/becf4765-32f7-41ac-842e-d8b2aae1e4df.gif)
+![actual video of playwright's video capture showing site working but failing to load data](/blog/making-e2e-tests-better/becf4765-32f7-41ac-842e-d8b2aae1e4df.gif)
 
 ## `FASTER`
 
@@ -143,7 +143,7 @@ Several aspects of this effort result in significantly faster test runs:
 
 As an example, comparing the before and after run results, we see an improvement of over 30%! Not bad considering the new, faster test suite is both more comprehensive AND more reliable.
 
-![screenshots of before and after github action reports, showing over 30% speed improvement of E2E runs on deploy preview](https://cdn.hashnode.com/res/hashnode/image/upload/v1702085968481/49ca2552-ea33-4b14-a9cc-f08c64616239.png)
+![screenshots of before and after github action reports, showing over 30% speed improvement of E2E runs on deploy preview](/blog/making-e2e-tests-better/49ca2552-ea33-4b14-a9cc-f08c64616239.png)
 
 ## `STRONGER`
 
@@ -153,7 +153,7 @@ A major goal was to increase coverage across all public health topics and demogr
 
 To easily generate new coverage, we added a new shortcut to package.json, `npm run e2e-new`, which quickly runs Playwright's fantastic codegen feature. Regrettably, I had overlooked this feature earlier, likely because of my negative experiences decades ago with code generation in early site builders like Frontpage and Dreamweaver. However, Playwright's codegen is not only easy; it writes more reliable steps than I could write myself! It launches a special browser instance and smaller console and then records your steps as you navigate throughout the app, using the most robust locators available. Initially, we don't even need to include `expect` statements, since a `click()` action will fail if its target is not available.
 
-![Playwright codegen recording a test session](https://cdn.hashnode.com/res/hashnode/image/upload/v1702097874680/a7b36654-f8a1-4c15-974b-098d6bcdc9b1.gif)
+![Playwright codegen recording a test session](/blog/making-e2e-tests-better/a7b36654-f8a1-4c15-974b-098d6bcdc9b1.gif)
 
 ## What's next?
 

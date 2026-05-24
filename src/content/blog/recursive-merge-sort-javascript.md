@@ -99,4 +99,4 @@ console.log(util.inspect(dataArray, { maxArrayLength: null }));
 ```
  Let me know if you've also implemented any comp sci concepts in your favorite language, and what you think I should attempt next; maybe I'll actually do one in Python finally!
 
-![merge sort.gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1617723874049/PxJBgGrq0.gif)
+![merge sort.gif](/blog/recursive-merge-sort-javascript/PxJBgGrq0.gif)

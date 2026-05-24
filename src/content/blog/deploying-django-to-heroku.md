@@ -17,7 +17,7 @@ In this post, we will deploy this very basic app to Heroku (a ~~free~~ hosting p
 ## Get Ready
 - Load up your terminal and `cd` into the floor of your Django project. Running the command `ls` should your `requirements.txt`, `manage.py`, `main_app` folder, and `example_project`, amongst several others. My example is below (some of these files will be created in the following steps)
 
-![Screen Shot of terminal showing example files at floor level](https://cdn.hashnode.com/res/hashnode/image/upload/v1619496779439/qetCJyLwD.png)
+![Screen Shot of terminal showing example files at floor level](/blog/deploying-django-to-heroku/qetCJyLwD.png)
 
 ## Log In With Heroku CLI
 

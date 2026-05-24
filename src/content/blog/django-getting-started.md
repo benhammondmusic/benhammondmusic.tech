@@ -31,7 +31,7 @@ The following step-by-step guide will assist a beginning Python developer in lau
 
 Python can and should be run in a virtual environment; this relates to the fact that your actual operating system utilizes Python code and by safely keeping your projects in a protected environment, you minimize the risk of accidentally misconfiguring your entire system. In short, you'll be simulating a mini-computer inside your computer, and running your Django project from there. You can quickly tell when your terminal is inside of the virtual environment by looking for the _(.env)_ at the beginning of your terminal prompt:
 
-![command line prompt showing parentheses env](https://cdn.hashnode.com/res/hashnode/image/upload/v1618546676648/ES9RjRW8D.png)
+![command line prompt showing parentheses env](/blog/django-getting-started/ES9RjRW8D.png)
 
 ## New Folder
 
@@ -160,7 +160,7 @@ Let Django know about your 2nd app:
 - Open the project in VSCode: `code .`
 - Open your project settings: `example_project/settings.py`
 - Scroll down to `Installed_Apps` and add `main_app,` as the new first element in the array. Remember the comma!
-![Adding main_app screenshot](https://cdn.hashnode.com/res/hashnode/image/upload/v1618548443970/aAONZQhrq.png)
+![Adding main_app screenshot](/blog/django-getting-started/aAONZQhrq.png)
 
 ## Development Server
 

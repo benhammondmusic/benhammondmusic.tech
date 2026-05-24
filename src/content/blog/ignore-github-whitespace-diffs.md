@@ -2,7 +2,7 @@
 title: Ignore GitHub Whitespace Diffs
 description: Create a one-click bookmarklet that appends "?w=1" to any GitHub PR URL to instantly hide whitespace diffs without the usual three-click process.
 pubDate: 2023-04-26
-imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1682539990227/ebf039fb-61aa-4e02-8982-e0e52960fcc5.jpeg
+imgSrc: /blog/ignore-github-whitespace-diffs/ebf039fb-61aa-4e02-8982-e0e52960fcc5.jpeg
 imgAlt: Cover image for ignoring GitHub whitespace diffs
 ---
 
@@ -16,7 +16,7 @@ Ideally, everyone in your repo will end up pushing pre-linted code, which should
 
 GitHub recently introduced a Pull Request level setting that gets remembered for the life of the PR that allows whitespace to be hidden. This is a pretty useless feature for most of us since it requires 3 clicks to enable and must be done on every new PR.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1682539042831/ed73886c-0c64-428a-8bd3-9b7542a2b1e2.gif align="center")
+![](/blog/ignore-github-whitespace-diffs/ed73886c-0c64-428a-8bd3-9b7542a2b1e2.gif align="center")
 
 The other option is to manually append `?w=1` to the pull request URL, which triggers the same white space suppression. Luckily, this can be done automatically via JavaScript plopped into a bookmarklet, allowing us a 1-click option for easier PR reviewing. Follow the steps at the top of this post to make your very own bookmarklet. Enjoy!
 

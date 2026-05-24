@@ -2,7 +2,7 @@
 title: Right-click to "Shrink Video" on Mac
 description: How to create a macOS Automator Quick Action that uses ffmpeg to compress video files directly from a right-click context menu in Finder.
 pubDate: 2021-12-29
-imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1640840046221/4djOapC8-.png
+imgSrc: /blog/right-click-shrink-video-mac/4djOapC8-.png
 imgAlt: Screenshot showing the Shrink Video option appearing in Mac right-click Quick Actions menu
 ---
 
@@ -33,6 +33,6 @@ done
 7.  `CMD-S` to save; I used the quick action name "Shrink Video"
 8. Find a video file, right-click on it, and the new Option should appear under "Quick Actions" and/or "Services". 
 
-![Screen Shot 2021-12-29 at 9.52.40 PM.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1640840046221/4djOapC8-.png)
+![Screen Shot 2021-12-29 at 9.52.40 PM.png](/blog/right-click-shrink-video-mac/4djOapC8-.png)
 
 Next step: figure out the flags in `ffmpeg` to limit the output size to 10mb, compressing the original file as much as necessary to make it fit.

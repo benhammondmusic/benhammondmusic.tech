@@ -18,7 +18,7 @@ Specifically, if you have a project on your computer that's also on GitHub, you 
 
 You could do these steps in any order, but I like to start with the visual interface provided by the GitHub website. Head to the GitHub repo page for the project you'd like to change the name of.
 
-![Screen Shot of GitHub project](https://cdn.hashnode.com/res/hashnode/image/upload/v1618416364166/1RxxsYcHL.png)
+![Screen Shot of GitHub project](/blog/renaming-github-projects/1RxxsYcHL.png)
 
 ## Rename on GitHub using the web interface
 
@@ -31,18 +31,18 @@ You could do these steps in any order, but I like to start with the visual inter
 - You'll be redirected back to your repo page
 - Click on the green "Code" button/dropdown
 
-![Screen Shot showing github green button](https://cdn.hashnode.com/res/hashnode/image/upload/v1618416713246/h-iiV4h-9.png)
+![Screen Shot showing github green button](/blog/renaming-github-projects/h-iiV4h-9.png)
 
 - Click the clipboard icon button, which will copy the project's .git url to your computer's clipboard. This will be the new URL for your _remote_ repo.
 
-![Screen Shot showing clipboard copy button for new URL](https://cdn.hashnode.com/res/hashnode/image/upload/v1618416827836/OxC_Zuxe1.png)
+![Screen Shot showing clipboard copy button for new URL](/blog/renaming-github-projects/OxC_Zuxe1.png)
 
 # Rename the local repo on your computer (using terminal)
 
 Back on your computer, load up your terminal and `cd` your way into your local project folder. Note: by default .git files are hidden, meaning using `ls` in terminal will not show your .git folder. You can type `ls -a` to confirm you're in the right folder when you see your .git folder displayed.
 
 
-![Screen Shot showing terminal displaying hidden files using ls -a](https://cdn.hashnode.com/res/hashnode/image/upload/v1618417184900/Ls02aWvj7.png)
+![Screen Shot showing terminal displaying hidden files using ls -a](/blog/renaming-github-projects/Ls02aWvj7.png)
 
 ## Set your new git remote
 
@@ -86,7 +86,7 @@ This is one aspect of GitHub that gets neglected but can make a big difference i
 - Make sure you include any URL where the app is deployed as well! 
 
 
-![update about github.gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1618419209001/ANy1pCsRd.gif)
+![update about github.gif](/blog/renaming-github-projects/ANy1pCsRd.gif)
 
 If you need help deploying, I have several blog posts detailing how to complete that process:
 - [Deploying a Create-React-App to Netlify](https://blog.benhammond.tech/deploying-a-create-react-app-to-netlify)

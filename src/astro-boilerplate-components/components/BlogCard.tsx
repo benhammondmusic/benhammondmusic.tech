@@ -20,10 +20,12 @@ const BlogCard = (props: IBlogCardProps) => (
           />
         </div>
       ) : (
-        <div className='aspect-w-2 aspect-h-1 flex items-center justify-center bg-gradient-to-br from-benhammondblue-900 to-benhammondblue p-4'>
-          <span className='text-sm font-semibold text-center text-gray-200 line-clamp-3'>
-            {props.postTitle}
-          </span>
+        <div className='aspect-w-2 aspect-h-1'>
+          <div className='flex items-center justify-center bg-gradient-to-br from-slate-900 to-benhammondblue p-6'>
+            <span className='text-base font-bold text-center text-white leading-snug line-clamp-4'>
+              {props.postTitle}
+            </span>
+          </div>
         </div>
       )}
     </div>

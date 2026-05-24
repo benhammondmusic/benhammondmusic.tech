@@ -2,7 +2,7 @@
 title: Force LinkedIn to Refresh a Cached URL
 description: Appending any query string to a previously shared LinkedIn URL tricks it into re-indexing the current metadata, instantly refreshing stale preview cards.
 pubDate: 2021-03-30
-imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1617091472012/4zbeajbLz.png
+imgSrc: /blog/force-linkedin-refresh-cached-url/4zbeajbLz.png
 imgAlt: Screenshot of LinkedIn site card showing correctly updated metadata
 ---
 
@@ -19,6 +19,6 @@ I dove a bit deeper into the Gatsby portfolio template I had forked from [cobide
 
 On break at my gig, I resorted to the ole' Google to solve my problems, and stumbled unto a  [blog post on LinkedIn itself](https://www.linkedin.com/pulse/how-clear-linkedin-link-preview-cache-ananda-kannan-p/) demonstrating an old and a new way to fix this very issue. The new way was 3 years old, involved going to a special linked in card preview page to check the appearance of your shared link, and of course did not work for me. On my second gig break, I read further on the blog past and found the working solution: append your previously shared URL with any query, and it will trick LinkedIn to thinking it's a new site and will force it to go and index the data. Apparently LinkedIn will cache shared URL data for up to a week, and in my case https://benhammond.tech was still showing the old data, despite having been updated hours before. I simply tried sharing `https://benhammond.tech/?code` (although it could have been `/?projects` or `/?hireme` or anything not yet shared). It worked! The new fancy data was shining through, and better yet, all of the previously shared cards that had bad meta data were automatically updated to display the correct data! Next step is to insert a fancy graphic! 
 
-![linkedin site card.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1617091472012/4zbeajbLz.png)
+![linkedin site card.png](/blog/force-linkedin-refresh-cached-url/4zbeajbLz.png)
 
 While you're here, feel free to  [connect with me on LinkedIn](https://www.linkedin.com/in/benhammondmusic/) !

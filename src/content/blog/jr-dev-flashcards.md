@@ -2,7 +2,7 @@
 title: Jr Dev Flashcards
 description: How I built a full-stack flashcard app with React and Node/Express to study for LinkedIn skill assessments, covering data parsing, API creation, and deployment to Heroku and Netlify.
 pubDate: 2021-03-13
-imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1615617111707/eXcCFAJfU.png
+imgSrc: /blog/jr-dev-flashcards/eXcCFAJfU.png
 imgAlt: Screenshot of Jr Dev Flashcards desktop app showing flashcard interface
 ---
 
@@ -20,7 +20,7 @@ As I am currently enrolled in General Assembly's Software Engineering Immersive,
  introduced skill assessments aim to allow applicants to demonstrate real knowledge in a field; a simple way for someone to "prove it". I have yet to attempt the skill assessments, and in an effort to prepare as thoroughly as possible, I googled around for some existing flashcard solutions. I found a few, but more interestingly found  [an entire GitHub repo](https://github.com/Ebazhanov/linkedin-skill-assessments-quizzes)  of problems perfect for my practice needs. I decided to put my newly acquired React skills to the test and build myself a web app capable of displaying flippable cards on both desktop and mobile, that would allow my to prepare for the assessments.
 
 
-![desktop.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1615617111707/eXcCFAJfU.png)
+![desktop.png](/blog/jr-dev-flashcards/eXcCFAJfU.png)
 
 ## How I Built It
 
@@ -63,11 +63,11 @@ app.get('/api/topics/:topicStr/', (req, res) => {
 
 ``` nodemon server.js```
 
-![start nodemon.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1615612285469/kY7pJi51b.png)
+![start nodemon.png](/blog/jr-dev-flashcards/kY7pJi51b.png)
 
 - This runs Node but also refreshes the page automatically every time you change your file and save. This is MUCH easier than simply running it with the node command alone: ```node server.js```, and having to kill the process and restart every time you change your code. However, it's important to note that unseen, confusing and unpredictable errors occur from time to time. If you find yourself really scratching your head as to why your code isn't working and you've tried the first couple obvious fixes, it's certainly worth killing the nodemon process in the command line and restarting it. You can tell it's running because you won't see your normal prompt. To kill the process, type ```CONTROL C``` (please note, it is not COMMAND C like you would use to copy to the clipboard). Once the process is killed, terminal will show your normal prompt, in my case the current directory, the current git branch, and the $ symbol. 
 
-![kill nodemon.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1615612421958/dgOT5n38T.png)
+![kill nodemon.png](/blog/jr-dev-flashcards/dgOT5n38T.png)
 
 
 ### Deploying the API to Heroku

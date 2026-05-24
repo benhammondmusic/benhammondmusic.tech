@@ -121,4 +121,4 @@ exports.binary = binary;
 As much as I hope you enjoyed reading this, I'd love even more to hear from you if you have gone ahead and implemented any classic data structures and algorithms in your language of choice! Please let me know in the comments if you have, and any things you learned or suggestions you have for me in my learning process. Next step: **merge sort** using **Python**
 
 
-![bubble sort binary search.gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1617660301584/uzU3kRnuG.gif)
+![bubble sort binary search.gif](/blog/studying-compsci-by-writing-code/uzU3kRnuG.gif)

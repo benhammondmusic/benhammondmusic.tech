@@ -38,7 +38,7 @@ images/.DS_Store
 npm-debug.log*
 ```
 If your .gitignore file is set up properly on the floor of your repo, VSCode will visually grey out the ignored files and folders:
-![git ignored env in vscode - screenshot](https://cdn.hashnode.com/res/hashnode/image/upload/v1617229482235/fUpYv0waQ.png)
+![git ignored env in vscode - screenshot](/blog/connecting-frontend-backend-mongodb/fUpYv0waQ.png)
 
 In the front end, React will automatically read in any variables you assign in your .env file, but you _must_ append your variable name with the string `REACT_APP_`. For example, we are using `REACT_APP_API_URL=http://localhost:5000` to tell our local front end the location of our local backend. We would not be able to use `API_URL=http://localhost:5000` in our React app; because React's build process requires that prepended string. The only exception to this naming convention are the built in environmental variables `NODE_ENV` which will return "development" on your local machine, and also `PUBLIC_URL`. Every other variable you store in a React app .env file must start with `REACT_APP_`. 
 
@@ -92,12 +92,12 @@ SUPER_SECRET_KEY=123456789
 ## Step 3: Fire It Up (Locally)
 
 Make sure your backend is running (using `nodemon` or `heroku local web` for example), and launch a browser to your local backend port to confirm that it's working. In our app the backend runs locally on  [port 5000](http://localhost:5000). We've coded in a helpful little message for our backend, so you should see this:
-![gigboard backend working.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1617228900904/UVdEaDtB6.png)
+![gigboard backend working.png](/blog/connecting-frontend-backend-mongodb/UVdEaDtB6.png)
 You should also see a connection message in your terminal, wherever you started up your backend server. It should read: `Connected to MongoDB at...` and have the location you assigned earlier in the backend .env file. Make sure you check THIS terminal for any `console.log()`s that you are trying to use for your backend code; they will not appear in your browser's dev tools log.
 
 Next, confirm your React app is alive and kickin'. You'll likely want to launch this with `npm start` and your browser should automatically open to the standard create-react-app [port 3000](http://localhost:3000). It defaults on my machine to Chrome, despite me having set Brave as my default browser; I will investigate and follow up with a blog on fixing this sometime soon. If all has gone well, you will have a fully functioning development version of the app, and it should look somewhat like this (yes, that's me rocking out on my guitar, thanks Kaye!):
 
-![Screen Shot 2021-03-27 at 9.41.58 AM.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1617229270316/hKJ2DlG0K.png)
+![Screen Shot 2021-03-27 at 9.41.58 AM.png](/blog/connecting-frontend-backend-mongodb/hKJ2DlG0K.png)
 
 > Now that we have all three pieces running locally (frontend, backend and database), we will migrate one chunk at a time into the cloud. I made the mistake initially of trying to deploy all three pieces at once, and debugging issues with deployment is difficult enough I'd recommend going step by step so it's easier to pinpoint and diagnose the issue.
 
@@ -117,7 +117,7 @@ SUPER_SECRET_KEY={{{YOUR SECRET}}}
 
 Now when you run your local frontend at  [3000](http://localhost:3000/), you should be seeing cards from all of the group members who have also connected to this shared database:
 
-![screenshot showing cards from multiple users on a shared gigboard database](https://cdn.hashnode.com/res/hashnode/image/upload/v1617247942965/UvgQhljB9.png)
+![screenshot showing cards from multiple users on a shared gigboard database](/blog/connecting-frontend-backend-mongodb/UvgQhljB9.png)
 
 > Note, I was having an issue at first getting this working; it turned out it was because my MongoDB Atlas had been inactive for quite a while and has gone dormant. To start it back up, I needed to  [use the mongo shell in my terminal](https://docs.atlas.mongodb.com/mongo-shell-connection/)  and manually connect and resume (I think.... not sure if this was totally necessary but it seemed to do the trick!) 
 
@@ -128,7 +128,7 @@ It's important to note that whenever you deploy, the .env **does not** get deplo
 - Head to your deployed backend project on your [Heroku dashboard](https://dashboard.heroku.com/apps) 
 - Click on "settings"
 - about halfway down the page you'll see a section titled "config vars"; inside that section click "Reveal Config Vars"
-![config vars location on heroku](https://cdn.hashnode.com/res/hashnode/image/upload/v1617239483799/bNP61V5N5.png)
+![config vars location on heroku](/blog/connecting-frontend-backend-mongodb/bNP61V5N5.png)
 - inside the first `KEY` field, copy and paste your variable name from your local backend .env, in our case `DATABASE_URL`
 - in the corresponding `VALUE` field, paste the link URL for the shared, deployed database. If you are setting up your own deployed database, MongoDB Atlas will provide you with the long URL and also some sample code. For reference, ours starts with `mongodb+srv://gigboard-...`
 - you'll also need to be sure you copy your `SUPER_SECRET_KEY` and its value from your backend .env into another entry in these backend config vars
@@ -160,7 +160,7 @@ Loading up [3000](http://localhost:3000) shouldn't appear any different now; it'
 - in your browser, go to your _frontend_  [Heroku](https://dashboard.heroku.com/apps)  project
 - follow the same process as before clicking "settings" then "show config vars"
 - make sure the entries there include the URL for your _deployed_ backend, and you'll also need to include your weather API key as well. Ours looks like this:
-![front end config vars heroku screenshot.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1617247908463/Pm3u9oYiH.png)
+![front end config vars heroku screenshot.png](/blog/connecting-frontend-backend-mongodb/Pm3u9oYiH.png)
 
 > Be sure you don't include the trailing slash on your URL; this is easy to accidentally do if you are copying/pasting the address from your browser's address bar. To clarify, the `VALUE` field should look like this:
 

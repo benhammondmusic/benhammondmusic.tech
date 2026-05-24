@@ -54,7 +54,7 @@ _lastly in your command line_
 - ```npm i``` to make sure all your node modules are installed
 - ```heroku login```, press any button and then log in with the browser that pops up, then close that browser window
 - do a local test run with ```heroku local web``` and then visit the localhost that it starts running on in your browser; in this case it chose *localhost:5000*. This is very similar to just running ```nodemon```. Don't worry about that circular dependency warning; apparently it's not an issue. 
-![Screen Shot 2021-03-14 at 12.17.24 AM.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1615706287965/5bPkc9Kvk.png)
+![Screen Shot 2021-03-14 at 12.17.24 AM.png](/blog/deploying-node-express-to-heroku/5bPkc9Kvk.png)
 
 - ```heroku git:remote -a ben-gigboard``` and replace ```ben-gigboard``` with whatever the exact name of your Heroku app is
 - ```git add .```

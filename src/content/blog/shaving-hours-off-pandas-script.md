@@ -2,7 +2,7 @@
 title: Shaving hours off a Pandas script
 description: How vectorizing a combine_race_eth function, using usecols to limit read_csv columns, and tuning chunk_size reduced a 3-hour COVID data aggregation script to 25 minutes — nearly 5x faster.
 pubDate: 2023-09-14
-imgSrc: https://cdn.hashnode.com/res/hashnode/image/upload/v1694667364082/8389465b-263f-475f-ab94-a7e8850caac1.jpeg
+imgSrc: /blog/shaving-hours-off-pandas-script/8389465b-263f-475f-ab94-a7e8850caac1.jpeg
 imgAlt: Cover image for the Pandas optimization post
 ---
 
@@ -10,11 +10,11 @@ imgAlt: Cover image for the Pandas optimization post
 
 At the [Health Equity Tracker](https://healthequitytracker.org/exploredata), the largest dataset we work with is a case-level set provided by the CDC with every COVID-19 infection in the United States, along with additional information including race, ethnicity, county, and other symptoms. The data is provided in zipped .csv files in a private GitHub repo (due to patient privacy) and contains several hundred million rows across over a dozen files. Initially, our tracker as coded by [Google.org](http://Google.org) provided only the cumulative "snapshot" of the current rates of disease outcomes by race, age, or sex to the county level.
 
-[![Choropleth map from the Health Equity Tracker showing the United States, with states and territories colored from dark green to yellow representing cumulative COVID rates in each state](https://cdn.hashnode.com/res/hashnode/image/upload/v1694668435759/03be141e-0b64-4cde-8671-ca840b25b819.png align="center")](https://healthequitytracker.org/exploredata?mls=1.covid-3.00&group1=All&dt1=covid_hospitalizations#rate-map)
+[![Choropleth map from the Health Equity Tracker showing the United States, with states and territories colored from dark green to yellow representing cumulative COVID rates in each state](/blog/shaving-hours-off-pandas-script/03be141e-0b64-4cde-8671-ca840b25b819.png align="center")](https://healthequitytracker.org/exploredata?mls=1.covid-3.00&group1=All&dt1=covid_hospitalizations#rate-map)
 
 Last year however, in a big push by our team at Morehouse School of Medicine, we were able to implement time-tracking, whereby we additionally aggregate and plot these disease rates across every month since January 2020.
 
-[![Time-series line chart comparing monthly rates of White and Native American COVID hospitalizations since early 2020. The line for American Indian and Alaska Native is significantly higher than White at essentially every measured point in time  ](https://cdn.hashnode.com/res/hashnode/image/upload/v1694668563775/827ccfaf-99e1-4d7b-8d5e-eefb0029e80d.png align="center")](https://healthequitytracker.org/exploredata?mls=1.covid-3.00&group1=All&dt1=covid_hospitalizations#rates-over-time)
+[![Time-series line chart comparing monthly rates of White and Native American COVID hospitalizations since early 2020. The line for American Indian and Alaska Native is significantly higher than White at essentially every measured point in time  ](/blog/shaving-hours-off-pandas-script/827ccfaf-99e1-4d7b-8d5e-eefb0029e80d.png align="center")](https://healthequitytracker.org/exploredata?mls=1.covid-3.00&group1=All&dt1=covid_hospitalizations#rates-over-time)
 
 As the requirements grew, so did the time it took to run the aggregation script, which needed to be done locally by an authorized team member before uploading for further processing and calculations on Google Cloud Run. The CDC releases new datasets regularly, so this entire process easily burned an entire day each month for one of our team members. After starting the script locally on my 2021 MacBook Pro, it would take **nearly 3 hours to complete the aggregations**.
 
