@@ -33,27 +33,15 @@ function getThisWeekStats(events: any[]) {
   const recent = events.filter(e => !EXCLUDED.includes(e.type) && new Date(e.created_at) >= cutoff);
   const commits = recent
     .filter(e => e.type === 'PushEvent')
-    .reduce((sum, e) => sum + (e.payload.commits?.length ?? 0), 0);
+    .reduce((sum, e) => sum + (e.payload.size ?? e.payload.commits?.length ?? 0), 0);
   const repos = new Set(recent.map(e => e.repo.name)).size;
   return { commits, repos };
 }
 
-function getStreak(byDate: Record<string, any[]>): number {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const d = new Date(today);
-  const todayStr = today.toISOString().split('T')[0] as string;
-  if (!byDate[todayStr]?.length) d.setDate(d.getDate() - 1);
-
-  let streak = 0;
-  while (streak <= 30) {
-    const s = d.toISOString().split('T')[0] as string;
-    if (byDate[s]?.length) {
-      streak++;
-      d.setDate(d.getDate() - 1);
-    } else break;
-  }
-  return streak;
+function getDaysActiveThisMonth(byDate: Record<string, any[]>): number {
+  const now = new Date();
+  const monthStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+  return Object.keys(byDate).filter(date => date.startsWith(monthStr)).length;
 }
 
 function buildHeatmapWeeks(): (string | null)[][] {
@@ -103,7 +91,7 @@ interface GitHubStatsProps {
 function GitHubStats({ data }: GitHubStatsProps) {
   const byDate = splitEventsByDate(data);
   const { commits, repos } = getThisWeekStats(data);
-  const streak = getStreak(byDate);
+  const daysActive = getDaysActiveThisMonth(byDate);
   const weeks = buildHeatmapWeeks();
   const topRepos = getTopRepos(data);
 
@@ -127,12 +115,10 @@ function GitHubStats({ data }: GitHubStatsProps) {
             <span className="text-benhammondyellow font-bold text-3xl">{repos}</span>
             <span className="text-white/60 text-sm">repos touched</span>
           </div>
-          {streak > 1 && (
-            <div className="flex items-baseline gap-2">
-              <span className="text-benhammondyellow font-bold text-3xl">{streak}</span>
-              <span className="text-white/60 text-sm">day streak 🔥</span>
-            </div>
-          )}
+          <div className="flex items-baseline gap-2">
+            <span className="text-benhammondyellow font-bold text-3xl">{daysActive}</span>
+            <span className="text-white/60 text-sm">days active this month</span>
+          </div>
         </div>
 
         {/* Heatmap */}
