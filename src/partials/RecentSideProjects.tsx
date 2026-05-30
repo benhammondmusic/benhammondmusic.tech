@@ -80,8 +80,8 @@ export default function RecentSideProjects(props: any) {
 					}
 				/>
 				<Project
-					name='MyDenverCard Free'
-					summary='mydenvercardfree.com'
+					name='Community Site'
+					summary='MyDenverCard Free'
 					description='Auto-collects current and upcoming free events and activities for MyDenverCard holders and their parents. Scrapes and aggregates listings so families always know what free options are available this week.'
 					deployLink='https://benhammondmusic.github.io/my-denver-card-free/'
 					repoLink='https://github.com/benhammondmusic/my-denver-card-free'

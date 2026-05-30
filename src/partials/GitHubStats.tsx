@@ -2,125 +2,211 @@ import { GradientText, Section } from "@/astro-boilerplate-components";
 
 export const prerender = false;
 
-function splitEventsByDate(events: any[]) {
-	const eventsByDate: any = {};
-	events.forEach(event => {
-		if (!['CreateEvent', 'DeleteEvent'].includes(event.type)) {
-			const eventDate = event.created_at.split('T')[0];
-			if (!eventsByDate[eventDate]) {
-				eventsByDate[eventDate] = [event];
-			} else {
-				eventsByDate[eventDate].push(event);
-			}
-		}
-	});
-	return eventsByDate
-}
-
-const activityMap = {
-	PushEvent: "💪",
-	IssuesEvent: "🐛",
-	IssueCommentEvent: "💬",
-	PullRequestEvent: "⇵",
-	PullRequestReviewCommentEvent: "🔍",
-	PullRequestReviewEvent: "👀",
-	ForkEvent: "🍴",
-	WatchEvent: "⭐️",
-	ReleaseEvent: "🚀",
+const activityMap: Record<string, string> = {
+  PushEvent: "💪",
+  IssuesEvent: "🐛",
+  IssueCommentEvent: "💬",
+  PullRequestEvent: "⇵",
+  PullRequestReviewCommentEvent: "🔍",
+  PullRequestReviewEvent: "👀",
+  ForkEvent: "🍴",
+  WatchEvent: "⭐️",
+  ReleaseEvent: "🚀",
 };
 
-type ActivityType = keyof typeof activityMap;
+const EXCLUDED = ['CreateEvent', 'DeleteEvent', 'WatchEvent'];
 
-function generateGitHubEventLink(event: any): string {
-	const eventType = event.type;
-	const eventRepo = event.repo.name;
-
-	switch (eventType) {
-		case 'PushEvent':
-			const eventSha = event.payload.commits?.[0]?.sha ?? '';
-			return `https://github.com/${eventRepo}/commit/${eventSha}`;
-		case 'IssuesEvent':
-			return event.payload.issue.html_url;
-		case 'IssueCommentEvent':
-		case 'PullRequestReviewCommentEvent':
-			return event.payload.comment.html_url;
-		case 'PullRequestReviewEvent':
-			return event.payload.review.html_url;
-		case 'PullRequestEvent':
-			return event.payload.pull_request.html_url;
-		default:
-			return `https://github.com/${eventRepo}`;
-	}
+function splitEventsByDate(events: any[]): Record<string, any[]> {
+  const byDate: Record<string, any[]> = {};
+  for (const event of events) {
+    if (EXCLUDED.includes(event.type)) continue;
+    const date = event.created_at.split('T')[0];
+    (byDate[date] ??= []).push(event);
+  }
+  return byDate;
 }
 
+function getThisWeekStats(events: any[]) {
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - 6);
+  cutoff.setHours(0, 0, 0, 0);
+  const recent = events.filter(e => !EXCLUDED.includes(e.type) && new Date(e.created_at) >= cutoff);
+  const commits = recent
+    .filter(e => e.type === 'PushEvent')
+    .reduce((sum, e) => sum + (e.payload.commits?.length ?? 0), 0);
+  const repos = new Set(recent.map(e => e.repo.name)).size;
+  return { commits, repos };
+}
+
+function getStreak(byDate: Record<string, any[]>): number {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const d = new Date(today);
+  const todayStr = today.toISOString().split('T')[0] as string;
+  if (!byDate[todayStr]?.length) d.setDate(d.getDate() - 1);
+
+  let streak = 0;
+  while (streak <= 30) {
+    const s = d.toISOString().split('T')[0] as string;
+    if (byDate[s]?.length) {
+      streak++;
+      d.setDate(d.getDate() - 1);
+    } else break;
+  }
+  return streak;
+}
+
+function buildHeatmapWeeks(): (string | null)[][] {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const gridStart = new Date(today);
+  gridStart.setDate(today.getDate() - today.getDay() - 49);
+
+  return Array.from({ length: 8 }, (_, w) =>
+    Array.from({ length: 7 }, (_, d): string | null => {
+      const cell = new Date(gridStart);
+      cell.setDate(gridStart.getDate() + w * 7 + d);
+      return cell > today ? null : (cell.toISOString().split('T')[0] ?? null);
+    })
+  );
+}
+
+function getTopRepos(events: any[], limit = 4) {
+  const repoMap: Record<string, any[]> = {};
+  for (const event of events) {
+    if (EXCLUDED.includes(event.type)) continue;
+    (repoMap[event.repo.name] ??= []).push(event);
+  }
+  return Object.entries(repoMap)
+    .sort(([, a], [, b]) => b.length - a.length)
+    .slice(0, limit)
+    .map(([fullName, evts]) => ({
+      name: fullName.split('/')[1],
+      url: `https://github.com/${fullName}`,
+      events: evts,
+    }));
+}
+
+function heatmapColor(count: number): string {
+  if (count === 0) return 'bg-white/5';
+  if (count <= 2) return 'bg-benhammondblue-400/50';
+  if (count <= 5) return 'bg-benhammondblue-300';
+  return 'bg-benhammondyellow';
+}
+
+const DAY_LABELS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
 interface GitHubStatsProps {
-	data: any[];
+  data: any[];
 }
 
-function GitHubStats(props: GitHubStatsProps) {
+function GitHubStats({ data }: GitHubStatsProps) {
+  const byDate = splitEventsByDate(data);
+  const { commits, repos } = getThisWeekStats(data);
+  const streak = getStreak(byDate);
+  const weeks = buildHeatmapWeeks();
+  const topRepos = getTopRepos(data);
 
-	const { data } = props;
+  return (
+    <Section
+      title={
+        <div className="font-rubik">
+          Recent <GradientText>GitHub Activity</GradientText>
+        </div>
+      }
+    >
+      <div className="flex flex-col gap-5 p-4 ring-1 ring-benhammondblue-50 ring-inset bg-slate-800 rounded-md">
 
-	const eventsByDate = splitEventsByDate(data);
+        {/* Stat bar */}
+        <div className="flex flex-wrap gap-x-6 gap-y-2">
+          <div className="flex items-baseline gap-2">
+            <span className="text-benhammondyellow font-bold text-3xl">{commits}</span>
+            <span className="text-white/60 text-sm">commits this week</span>
+          </div>
+          <div className="flex items-baseline gap-2">
+            <span className="text-benhammondyellow font-bold text-3xl">{repos}</span>
+            <span className="text-white/60 text-sm">repos touched</span>
+          </div>
+          {streak > 1 && (
+            <div className="flex items-baseline gap-2">
+              <span className="text-benhammondyellow font-bold text-3xl">{streak}</span>
+              <span className="text-white/60 text-sm">day streak 🔥</span>
+            </div>
+          )}
+        </div>
 
-	return (
-		<Section
-			title={
-				<div className="font-rubik">
-					Recent <GradientText>GitHub Activity</GradientText>
-				</div>
-			}
-		>
-			{/* <div className="flex flex-col gap-6 ring-1 ring-benhammondblue-50 ring-inset bg-slate-800 rounded-md p-6"></div> */}
-			<div className="flex flex-wrap gap-2 p-4 ring-1 ring-benhammondblue-50 ring-inset bg-slate-800 rounded-md">
-				{Object.entries(eventsByDate).reverse().map(([eventDate, events]: any) => {
-					if (!events.length) return null;
-					const date = new Date(eventDate);
-					const dayName = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(date);
-					const dayNumber = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(date);
+        {/* Heatmap */}
+        <div className="overflow-x-auto">
+          <div className="flex gap-1 min-w-max">
+            <div className="flex flex-col gap-1 pt-5 pr-1">
+              {DAY_LABELS.map((label, i) => (
+                <div key={i} className="text-xs text-white/30 h-4 w-3 flex items-center">{label}</div>
+              ))}
+            </div>
+            {weeks.map((week, wi) => {
+              const firstDate = week.find(Boolean);
+              const month = firstDate
+                ? new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(firstDate))
+                : '';
+              const prevFirst = wi > 0 ? (weeks[wi - 1]!.find(Boolean) ?? null) : null;
+              const prevMonth = prevFirst
+                ? new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(prevFirst))
+                : '';
 
-					return (
-						<div
-							key={eventDate}
-							className="flex-shrink-0 bg-benhammondblue-800 rounded-lg overflow-hidden border border-white/20 hover:border-white/40 transition-colors"
-							style={{
-								minWidth: '120px',
-								maxWidth: `${Math.min(200, events.length * 40)}px`
-							}}
-						>
-							<div className="px-3 py-2 bg-white/5 border-b border-white/10">
-								<div className="text-sm font-medium">{dayName}</div>
-								<div className="text-xs text-white/70">{dayNumber}</div>
-							</div>
-							<div className="p-2">
-								<div className="flex flex-wrap gap-1">
-									{events.map((event: any) => {
-										const link = generateGitHubEventLink(event);
-										return (
-											<a
-												key={event.id}
-												href={link}
-												target="_blank"
-												className="group relative"
-											>
-												<span role='img' aria-label={event.type} className="text-lg hover:scale-110 transition-transform inline-block p-1">
-													{activityMap[event.type as ActivityType]}
-												</span>
-												<span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 text-xs bg-white text-benhammondblue-800 rounded opacity-0 group-hover:opacity-100  transition-opacity whitespace-nowrap">
-													{event.type.replace('Event', '')}
-												</span>
-											</a>
-										);
-									})}
-								</div>
-							</div>
-						</div>
-					);
-				})}
-			</div>
-		</Section>
-	);
+              return (
+                <div key={wi} className="flex flex-col gap-1">
+                  <div className="text-xs text-white/40 h-5 leading-5 whitespace-nowrap">
+                    {month !== prevMonth ? month : ''}
+                  </div>
+                  {week.map((date, di) => {
+                    const count = date ? (byDate[date]?.length ?? 0) : 0;
+                    const label = date
+                      ? `${new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(date))}: ${count} event${count !== 1 ? 's' : ''}`
+                      : '';
+                    return (
+                      <div
+                        key={di}
+                        title={label}
+                        className={`w-4 h-4 rounded-sm transition-colors ${date ? heatmapColor(count) : 'bg-transparent'}`}
+                      />
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Repo spotlight */}
+        {topRepos.length > 0 && (
+          <div className="flex flex-wrap gap-2 pt-3 border-t border-white/10">
+            {topRepos.map(({ name, url, events: repoEvents }) => (
+              <a
+                key={name}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col gap-1 bg-white/5 hover:bg-white/10 transition-colors rounded-lg px-3 py-2"
+              >
+                <span className="text-xs font-semibold text-benhammondyellow truncate max-w-[180px]">{name}</span>
+                <span className="text-base leading-relaxed">
+                  {repoEvents.slice(0, 7).map((e: any, i: number) => (
+                    <span key={i} title={e.type.replace('Event', '')}>
+                      {activityMap[e.type] ?? '⚡'}
+                    </span>
+                  ))}
+                  {repoEvents.length > 7 && (
+                    <span className="text-white/40 text-xs ml-1">+{repoEvents.length - 7}</span>
+                  )}
+                </span>
+              </a>
+            ))}
+          </div>
+        )}
+
+      </div>
+    </Section>
+  );
 }
 
 export { GitHubStats };
