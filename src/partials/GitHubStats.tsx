@@ -186,7 +186,6 @@ function GitHubStats({ data }: GitHubStatsProps) {
             </div>
           ))}
 
-          <p className="text-xs text-white/25 mt-1">each column = one week (last 8 weeks)</p>
         </div>
 
         {/* Repo spotlight */}
