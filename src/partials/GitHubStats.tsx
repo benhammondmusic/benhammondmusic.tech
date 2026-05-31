@@ -5,11 +5,11 @@ export const prerender = false;
 const EXCLUDED = ['CreateEvent', 'DeleteEvent', 'WatchEvent'];
 
 const LANES = [
-  { type: 'PushEvent',                    emoji: '💪', label: 'Pushes',   color: 'bg-benhammondyellow' },
-  { type: 'PullRequestEvent',             emoji: '⇵',  label: 'PRs',      color: 'bg-benhammondblue-300' },
-  { type: 'IssueCommentEvent',            emoji: '💬', label: 'Comments', color: 'bg-benhammondblue-400' },
-  { type: 'IssuesEvent',                  emoji: '🐛', label: 'Issues',   color: 'bg-benhammondgreen-400' },
-  { type: 'PullRequestReviewEvent',       emoji: '👀', label: 'Reviews',  color: 'bg-benhammondblue-200' },
+  { type: 'PushEvent',              emoji: '💪', label: 'Pushes',   color: 'bg-benhammondyellow' },
+  { type: 'PullRequestEvent',       emoji: '⇵',  label: 'PRs',      color: 'bg-benhammondblue-300' },
+  { type: 'IssueCommentEvent',      emoji: '💬', label: 'Comments', color: 'bg-benhammondblue-400' },
+  { type: 'IssuesEvent',            emoji: '🐛', label: 'Issues',   color: 'bg-benhammondgreen-400' },
+  { type: 'PullRequestReviewEvent', emoji: '👀', label: 'Reviews',  color: 'bg-benhammondblue-200' },
 ];
 
 const activityMap: Record<string, string> = {
@@ -24,23 +24,44 @@ const activityMap: Record<string, string> = {
   ReleaseEvent: "🚀",
 };
 
-function buildEventMap(events: any[]): Record<string, Record<string, number>> {
-  const result: Record<string, Record<string, number>> = {};
+type WeekInfo = { start: string; end: string; monthLabel: string | null };
+
+function getLast8Weeks(): WeekInfo[] {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const thisWeekStart = new Date(today);
+  thisWeekStart.setDate(today.getDate() - today.getDay());
+
+  return Array.from({ length: 8 }, (_, i) => {
+    const weekStart = new Date(thisWeekStart);
+    weekStart.setDate(thisWeekStart.getDate() - (7 - i) * 7);
+    const weekEnd = new Date(weekStart);
+    weekEnd.setDate(weekStart.getDate() + 6);
+
+    const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(weekStart);
+    const prevStart = new Date(weekStart);
+    prevStart.setDate(weekStart.getDate() - 7);
+    const prevMonth = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(prevStart);
+
+    return {
+      start: weekStart.toISOString().split('T')[0] as string,
+      end: weekEnd.toISOString().split('T')[0] as string,
+      monthLabel: i === 0 || month !== prevMonth ? month : null,
+    };
+  });
+}
+
+function buildWeeklyEventMap(events: any[], weeks: WeekInfo[]): Record<number, Record<string, number>> {
+  const result: Record<number, Record<string, number>> = {};
   for (const event of events) {
     if (EXCLUDED.includes(event.type)) continue;
     const date = event.created_at.split('T')[0] as string;
-    if (!result[date]) result[date] = {};
-    result[date][event.type] = (result[date][event.type] ?? 0) + 1;
+    const wi = weeks.findIndex(w => date >= w.start && date <= w.end);
+    if (wi === -1) continue;
+    if (!result[wi]) result[wi] = {};
+    result[wi][event.type] = (result[wi][event.type] ?? 0) + 1;
   }
   return result;
-}
-
-function getLast21Days(): string[] {
-  return Array.from({ length: 21 }, (_, i) => {
-    const d = new Date();
-    d.setDate(d.getDate() - (20 - i));
-    return d.toISOString().split('T')[0] as string;
-  });
 }
 
 function getThisWeekStats(events: any[]) {
@@ -48,12 +69,9 @@ function getThisWeekStats(events: any[]) {
   cutoff.setDate(cutoff.getDate() - 6);
   cutoff.setHours(0, 0, 0, 0);
   const recent = events.filter(e => !EXCLUDED.includes(e.type) && new Date(e.created_at) >= cutoff);
-  const pushes = recent.filter(e => e.type === 'PushEvent');
-  const commits = pushes.reduce((sum, e) => {
-    const size = e.payload?.size;
-    const len = e.payload?.commits?.length;
-    return sum + (size || len || 1);
-  }, 0);
+  const commits = recent
+    .filter(e => e.type === 'PushEvent')
+    .reduce((sum, e) => sum + (e.payload?.size || e.payload?.commits?.length || 1), 0);
   const repos = new Set(recent.map((e: any) => e.repo.name)).size;
   return { commits, repos };
 }
@@ -61,12 +79,11 @@ function getThisWeekStats(events: any[]) {
 function getDaysActiveThisMonth(events: any[]): number {
   const now = new Date();
   const monthStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
-  const days = new Set(
+  return new Set(
     events
       .filter(e => !EXCLUDED.includes(e.type) && (e.created_at as string).startsWith(monthStr))
       .map(e => (e.created_at as string).split('T')[0])
-  );
-  return days.size;
+  ).size;
 }
 
 function getTopRepos(events: any[], limit = 4) {
@@ -85,20 +102,29 @@ function getTopRepos(events: any[], limit = 4) {
     }));
 }
 
+function cellOpacity(count: number): string {
+  if (count === 0) return 'opacity-0';
+  if (count <= 3) return 'opacity-40';
+  if (count <= 8) return 'opacity-75';
+  return 'opacity-100';
+}
+
 interface GitHubStatsProps {
   data: any[];
 }
 
 function GitHubStats({ data }: GitHubStatsProps) {
-  const eventMap = buildEventMap(data);
-  const last21Days = getLast21Days();
+  const weeks = getLast8Weeks();
+  const weeklyMap = buildWeeklyEventMap(data, weeks);
   const { commits, repos } = getThisWeekStats(data);
   const daysActive = getDaysActiveThisMonth(data);
   const topRepos = getTopRepos(data);
 
   const activeLanes = LANES.filter(lane =>
-    last21Days.some(date => (eventMap[date]?.[lane.type] ?? 0) > 0)
+    weeks.some((_, wi) => (weeklyMap[wi]?.[lane.type] ?? 0) > 0)
   );
+
+  const fmt = (d: string) => new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(d));
 
   return (
     <Section
@@ -127,53 +153,40 @@ function GitHubStats({ data }: GitHubStatsProps) {
         </div>
 
         {/* Swim lanes */}
-        <div className="overflow-x-auto">
-          <div className="min-w-max">
-            {/* Day headers */}
-            <div className="flex mb-2 pl-24">
-              {last21Days.map((date) => {
-                const d = new Date(date);
-                const dayNum = d.getDate();
-                const dow = new Intl.DateTimeFormat('en-US', { weekday: 'narrow' }).format(d);
-                return (
-                  <div key={date} className="w-7 flex flex-col items-center">
-                    <div className="text-xs text-white/25">{dow}</div>
-                    <div className="text-xs text-white/40 font-medium">{dayNum}</div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Lane rows */}
-            {activeLanes.map(lane => (
-              <div key={lane.type} className="flex items-center mb-2">
-                <div className="w-24 flex items-center gap-1.5 pr-3 shrink-0">
-                  <span className="text-base">{lane.emoji}</span>
-                  <span className="text-xs text-white/50">{lane.label}</span>
-                </div>
-                {last21Days.map(date => {
-                  const count = eventMap[date]?.[lane.type] ?? 0;
-                  const d = new Date(date);
-                  const label = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(d);
-                  const title = count > 0 ? `${label}: ${count} ${lane.label}` : label;
-                  return (
-                    <div key={date} className="w-7 flex justify-center">
-                      <div
-                        title={title}
-                        className={`w-5 h-5 rounded transition-all ${
-                          count === 0
-                            ? 'bg-white/5'
-                            : count <= 2
-                            ? `${lane.color} opacity-50`
-                            : `${lane.color} opacity-90`
-                        }`}
-                      />
-                    </div>
-                  );
-                })}
+        <div>
+          {/* Month headers */}
+          <div className="flex gap-1.5 mb-1 ml-20">
+            {weeks.map((week, wi) => (
+              <div key={wi} className="flex-1 max-w-12 text-center text-xs text-white/40 truncate">
+                {week.monthLabel ?? ''}
               </div>
             ))}
           </div>
+
+          {/* Lane rows */}
+          {activeLanes.map(lane => (
+            <div key={lane.type} className="flex items-center gap-1.5 mb-2">
+              <div className="w-20 shrink-0 flex items-center gap-1.5">
+                <span className="text-base leading-none">{lane.emoji}</span>
+                <span className="text-xs text-white/50 truncate">{lane.label}</span>
+              </div>
+              {weeks.map((week, wi) => {
+                const count = weeklyMap[wi]?.[lane.type] ?? 0;
+                const title = count > 0
+                  ? `${fmt(week.start)} – ${fmt(week.end)}: ${count} ${lane.label}`
+                  : `${fmt(week.start)} – ${fmt(week.end)}`;
+                return (
+                  <div
+                    key={wi}
+                    title={title}
+                    className={`flex-1 max-w-12 h-7 rounded ${lane.color} ${cellOpacity(count)} transition-opacity`}
+                  />
+                );
+              })}
+            </div>
+          ))}
+
+          <p className="text-xs text-white/25 mt-1">each column = one week (last 8 weeks)</p>
         </div>
 
         {/* Repo spotlight */}
