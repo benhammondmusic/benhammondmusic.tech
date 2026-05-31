@@ -2,6 +2,16 @@ import { GradientText, Section } from "@/astro-boilerplate-components";
 
 export const prerender = false;
 
+const EXCLUDED = ['CreateEvent', 'DeleteEvent', 'WatchEvent'];
+
+const LANES = [
+  { type: 'PushEvent',                    emoji: '💪', label: 'Pushes',   color: 'bg-benhammondyellow' },
+  { type: 'PullRequestEvent',             emoji: '⇵',  label: 'PRs',      color: 'bg-benhammondblue-300' },
+  { type: 'IssueCommentEvent',            emoji: '💬', label: 'Comments', color: 'bg-benhammondblue-400' },
+  { type: 'IssuesEvent',                  emoji: '🐛', label: 'Issues',   color: 'bg-benhammondgreen-400' },
+  { type: 'PullRequestReviewEvent',       emoji: '👀', label: 'Reviews',  color: 'bg-benhammondblue-200' },
+];
+
 const activityMap: Record<string, string> = {
   PushEvent: "💪",
   IssuesEvent: "🐛",
@@ -14,16 +24,23 @@ const activityMap: Record<string, string> = {
   ReleaseEvent: "🚀",
 };
 
-const EXCLUDED = ['CreateEvent', 'DeleteEvent', 'WatchEvent'];
-
-function splitEventsByDate(events: any[]): Record<string, any[]> {
-  const byDate: Record<string, any[]> = {};
+function buildEventMap(events: any[]): Record<string, Record<string, number>> {
+  const result: Record<string, Record<string, number>> = {};
   for (const event of events) {
     if (EXCLUDED.includes(event.type)) continue;
-    const date = event.created_at.split('T')[0];
-    (byDate[date] ??= []).push(event);
+    const date = event.created_at.split('T')[0] as string;
+    if (!result[date]) result[date] = {};
+    result[date][event.type] = (result[date][event.type] ?? 0) + 1;
   }
-  return byDate;
+  return result;
+}
+
+function getLast21Days(): string[] {
+  return Array.from({ length: 21 }, (_, i) => {
+    const d = new Date();
+    d.setDate(d.getDate() - (20 - i));
+    return d.toISOString().split('T')[0] as string;
+  });
 }
 
 function getThisWeekStats(events: any[]) {
@@ -31,32 +48,25 @@ function getThisWeekStats(events: any[]) {
   cutoff.setDate(cutoff.getDate() - 6);
   cutoff.setHours(0, 0, 0, 0);
   const recent = events.filter(e => !EXCLUDED.includes(e.type) && new Date(e.created_at) >= cutoff);
-  const commits = recent
-    .filter(e => e.type === 'PushEvent')
-    .reduce((sum, e) => sum + (e.payload.size ?? e.payload.commits?.length ?? 0), 0);
-  const repos = new Set(recent.map(e => e.repo.name)).size;
+  const pushes = recent.filter(e => e.type === 'PushEvent');
+  const commits = pushes.reduce((sum, e) => {
+    const size = e.payload?.size;
+    const len = e.payload?.commits?.length;
+    return sum + (size || len || 1);
+  }, 0);
+  const repos = new Set(recent.map((e: any) => e.repo.name)).size;
   return { commits, repos };
 }
 
-function getDaysActiveThisMonth(byDate: Record<string, any[]>): number {
+function getDaysActiveThisMonth(events: any[]): number {
   const now = new Date();
   const monthStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
-  return Object.keys(byDate).filter(date => date.startsWith(monthStr)).length;
-}
-
-function buildHeatmapWeeks(): (string | null)[][] {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const gridStart = new Date(today);
-  gridStart.setDate(today.getDate() - today.getDay() - 49);
-
-  return Array.from({ length: 8 }, (_, w) =>
-    Array.from({ length: 7 }, (_, d): string | null => {
-      const cell = new Date(gridStart);
-      cell.setDate(gridStart.getDate() + w * 7 + d);
-      return cell > today ? null : (cell.toISOString().split('T')[0] ?? null);
-    })
+  const days = new Set(
+    events
+      .filter(e => !EXCLUDED.includes(e.type) && (e.created_at as string).startsWith(monthStr))
+      .map(e => (e.created_at as string).split('T')[0])
   );
+  return days.size;
 }
 
 function getTopRepos(events: any[], limit = 4) {
@@ -75,25 +85,20 @@ function getTopRepos(events: any[], limit = 4) {
     }));
 }
 
-function heatmapColor(count: number): string {
-  if (count === 0) return 'bg-white/5';
-  if (count <= 2) return 'bg-benhammondblue-400/50';
-  if (count <= 5) return 'bg-benhammondblue-300';
-  return 'bg-benhammondyellow';
-}
-
-const DAY_LABELS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-
 interface GitHubStatsProps {
   data: any[];
 }
 
 function GitHubStats({ data }: GitHubStatsProps) {
-  const byDate = splitEventsByDate(data);
+  const eventMap = buildEventMap(data);
+  const last21Days = getLast21Days();
   const { commits, repos } = getThisWeekStats(data);
-  const daysActive = getDaysActiveThisMonth(byDate);
-  const weeks = buildHeatmapWeeks();
+  const daysActive = getDaysActiveThisMonth(data);
   const topRepos = getTopRepos(data);
+
+  const activeLanes = LANES.filter(lane =>
+    last21Days.some(date => (eventMap[date]?.[lane.type] ?? 0) > 0)
+  );
 
   return (
     <Section
@@ -121,45 +126,53 @@ function GitHubStats({ data }: GitHubStatsProps) {
           </div>
         </div>
 
-        {/* Heatmap */}
+        {/* Swim lanes */}
         <div className="overflow-x-auto">
-          <div className="flex gap-1 min-w-max">
-            <div className="flex flex-col gap-1 pt-5 pr-1">
-              {DAY_LABELS.map((label, i) => (
-                <div key={i} className="text-xs text-white/30 h-4 w-3 flex items-center">{label}</div>
-              ))}
-            </div>
-            {weeks.map((week, wi) => {
-              const firstDate = week.find(Boolean);
-              const month = firstDate
-                ? new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(firstDate))
-                : '';
-              const prevFirst = wi > 0 ? (weeks[wi - 1]!.find(Boolean) ?? null) : null;
-              const prevMonth = prevFirst
-                ? new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(prevFirst))
-                : '';
-
-              return (
-                <div key={wi} className="flex flex-col gap-1">
-                  <div className="text-xs text-white/40 h-5 leading-5 whitespace-nowrap">
-                    {month !== prevMonth ? month : ''}
+          <div className="min-w-max">
+            {/* Day headers */}
+            <div className="flex mb-2 pl-24">
+              {last21Days.map((date) => {
+                const d = new Date(date);
+                const dayNum = d.getDate();
+                const dow = new Intl.DateTimeFormat('en-US', { weekday: 'narrow' }).format(d);
+                return (
+                  <div key={date} className="w-7 flex flex-col items-center">
+                    <div className="text-xs text-white/25">{dow}</div>
+                    <div className="text-xs text-white/40 font-medium">{dayNum}</div>
                   </div>
-                  {week.map((date, di) => {
-                    const count = date ? (byDate[date]?.length ?? 0) : 0;
-                    const label = date
-                      ? `${new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(date))}: ${count} event${count !== 1 ? 's' : ''}`
-                      : '';
-                    return (
-                      <div
-                        key={di}
-                        title={label}
-                        className={`w-4 h-4 rounded-sm transition-colors ${date ? heatmapColor(count) : 'bg-transparent'}`}
-                      />
-                    );
-                  })}
+                );
+              })}
+            </div>
+
+            {/* Lane rows */}
+            {activeLanes.map(lane => (
+              <div key={lane.type} className="flex items-center mb-2">
+                <div className="w-24 flex items-center gap-1.5 pr-3 shrink-0">
+                  <span className="text-base">{lane.emoji}</span>
+                  <span className="text-xs text-white/50">{lane.label}</span>
                 </div>
-              );
-            })}
+                {last21Days.map(date => {
+                  const count = eventMap[date]?.[lane.type] ?? 0;
+                  const d = new Date(date);
+                  const label = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(d);
+                  const title = count > 0 ? `${label}: ${count} ${lane.label}` : label;
+                  return (
+                    <div key={date} className="w-7 flex justify-center">
+                      <div
+                        title={title}
+                        className={`w-5 h-5 rounded transition-all ${
+                          count === 0
+                            ? 'bg-white/5'
+                            : count <= 2
+                            ? `${lane.color} opacity-50`
+                            : `${lane.color} opacity-90`
+                        }`}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
           </div>
         </div>
 
