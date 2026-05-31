@@ -120,9 +120,6 @@ function GitHubStats({ data }: GitHubStatsProps) {
   const daysActive = getDaysActiveThisMonth(data);
   const topRepos = getTopRepos(data);
 
-  const activeLanes = LANES.filter(lane =>
-    weeks.some((_, wi) => (weeklyMap[wi]?.[lane.type] ?? 0) > 0)
-  );
 
   const fmt = (d: string) => new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(d));
 
@@ -164,7 +161,7 @@ function GitHubStats({ data }: GitHubStatsProps) {
           </div>
 
           {/* Lane rows */}
-          {activeLanes.map(lane => (
+          {LANES.map(lane => (
             <div key={lane.type} className="flex items-center gap-1.5 mb-2">
               <div className="w-20 shrink-0 flex items-center gap-1.5">
                 <span className="text-base leading-none">{lane.emoji}</span>

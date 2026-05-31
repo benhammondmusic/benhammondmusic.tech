@@ -25,6 +25,12 @@ export async function fetchGitHubData() {
             if (response.data.length < 100) break;
         }
 
+        const typeCounts = allEvents.reduce((acc: Record<string, number>, e: any) => {
+            acc[e.type] = (acc[e.type] ?? 0) + 1;
+            return acc;
+        }, {});
+        console.log(`GitHub: fetched ${allEvents.length} events. Types:`, typeCounts);
+
         return allEvents;
     } catch (error) {
         console.error('Error fetching GitHub data:', error);
