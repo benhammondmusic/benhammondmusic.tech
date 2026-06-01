@@ -5,10 +5,10 @@ const EXCLUDED = ['CreateEvent', 'DeleteEvent', 'WatchEvent'];
 
 const LANES = [
   { type: 'PushEvent',              emoji: '💪', label: 'Pushes',   color: 'bg-benhammondyellow' },
-  { type: 'PullRequestEvent',       emoji: '⇵',  label: 'PRs',      color: 'bg-benhammondblue-300' },
-  { type: 'IssueCommentEvent',      emoji: '💬', label: 'Comments', color: 'bg-benhammondblue-400' },
-  { type: 'IssuesEvent',            emoji: '🐛', label: 'Issues',   color: 'bg-benhammondgreen-400' },
-  { type: 'PullRequestReviewEvent', emoji: '👀', label: 'Reviews',  color: 'bg-benhammondblue-200' },
+  { type: 'PullRequestEvent',       emoji: '⇵',  label: 'PRs',      color: 'bg-benhammondgreen-400' },
+  { type: 'IssueCommentEvent',      emoji: '💬', label: 'Comments', color: 'bg-sky-400' },
+  { type: 'IssuesEvent',            emoji: '🐛', label: 'Issues',   color: 'bg-orange-400' },
+  { type: 'PullRequestReviewEvent', emoji: '👀', label: 'Reviews',  color: 'bg-violet-400' },
 ];
 
 const activityMap: Record<string, string> = {
@@ -36,12 +36,10 @@ function getLast12Weeks(): WeekInfo[] {
     weekStart.setDate(thisWeekStart.getDate() - (11 - i) * 7);
     const weekEnd = new Date(weekStart);
     weekEnd.setDate(weekStart.getDate() + 6);
-
     const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(weekStart);
     const prevStart = new Date(weekStart);
     prevStart.setDate(weekStart.getDate() - 7);
     const prevMonth = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(prevStart);
-
     return {
       start: weekStart.toISOString().split('T')[0] as string,
       end: weekEnd.toISOString().split('T')[0] as string,
@@ -63,26 +61,31 @@ function buildWeeklyEventMap(events: any[], weeks: WeekInfo[]): Record<number, R
   return result;
 }
 
-function getThisWeekStats(events: any[]) {
-  const cutoff = new Date();
-  cutoff.setDate(cutoff.getDate() - 6);
-  cutoff.setHours(0, 0, 0, 0);
-  const recent = events.filter(e => !EXCLUDED.includes(e.type) && new Date(e.created_at) >= cutoff);
-  const commits = recent
+function getStats(events: any[]) {
+  const now = new Date();
+
+  const cutoff7 = new Date(now);
+  cutoff7.setDate(now.getDate() - 6);
+  cutoff7.setHours(0, 0, 0, 0);
+
+  const cutoff28 = new Date(now);
+  cutoff28.setDate(now.getDate() - 27);
+  cutoff28.setHours(0, 0, 0, 0);
+
+  const recent7 = events.filter(e => !EXCLUDED.includes(e.type) && new Date(e.created_at) >= cutoff7);
+  const recent28 = events.filter(e => !EXCLUDED.includes(e.type) && new Date(e.created_at) >= cutoff28);
+
+  const commits = recent7
     .filter(e => e.type === 'PushEvent')
     .reduce((sum, e) => sum + (e.payload?.size || e.payload?.commits?.length || 1), 0);
-  const repos = new Set(recent.map((e: any) => e.repo.name)).size;
-  return { commits, repos };
-}
 
-function getDaysActiveThisMonth(events: any[]): number {
-  const now = new Date();
-  const monthStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
-  return new Set(
-    events
-      .filter(e => !EXCLUDED.includes(e.type) && (e.created_at as string).startsWith(monthStr))
-      .map(e => (e.created_at as string).split('T')[0])
+  const repos4wks = new Set(recent28.map((e: any) => e.repo.name)).size;
+
+  const daysActive4wks = new Set(
+    recent28.map(e => (e.created_at as string).split('T')[0])
   ).size;
+
+  return { commits, repos4wks, daysActive4wks };
 }
 
 function getTopRepos(events: any[], limit = 4) {
@@ -110,10 +113,10 @@ function cellOpacity(count: number): string {
 
 function SkeletonRow() {
   return (
-    <div className="flex items-center gap-1 mb-2">
-      <div className="w-16 h-5 bg-white/10 rounded shrink-0" />
-      {Array.from({ length: 12 }, (_, i) => (
-        <div key={i} className="flex-1 min-w-3 max-w-10 h-7 bg-white/10 rounded" />
+    <div className="flex items-center gap-1.5 mb-2">
+      <div className="w-24 h-5 bg-white/10 rounded shrink-0" />
+      {Array.from({ length: 6 }, (_, i) => (
+        <div key={i} className="flex-1 h-7 bg-white/10 rounded" />
       ))}
     </div>
   );
@@ -129,13 +132,25 @@ function GitHubStats() {
       .catch(() => setData([]));
   }, []);
 
-  const weeks = getLast12Weeks();
-  const weeklyMap = data ? buildWeeklyEventMap(data, weeks) : {};
-  const { commits, repos } = data ? getThisWeekStats(data) : { commits: 0, repos: 0 };
-  const daysActive = data ? getDaysActiveThisMonth(data) : 0;
+  const allWeeks = getLast12Weeks();
+  const weeklyMap = data ? buildWeeklyEventMap(data, allWeeks) : {};
+
+  // Only show weeks that have at least one event across any lane
+  const activeWeeks = allWeeks
+    .map((week, wi) => ({ week, wi }))
+    .filter(({ wi }) => LANES.some(lane => (weeklyMap[wi]?.[lane.type] ?? 0) > 0));
+
+  // Recalculate month labels for the compressed active-weeks sequence
+  const activeWeeksWithLabels = activeWeeks.map(({ week, wi }, i) => {
+    const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(week.start));
+    const prevMonth = i > 0
+      ? new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(activeWeeks[i - 1]!.week.start))
+      : null;
+    return { week, wi, monthLabel: i === 0 || month !== prevMonth ? month : null };
+  });
+
+  const { commits, repos4wks, daysActive4wks } = data ? getStats(data) : { commits: 0, repos4wks: 0, daysActive4wks: 0 };
   const topRepos = data ? getTopRepos(data) : [];
-
-
   const fmt = (d: string) => new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(d));
 
   return (
@@ -165,12 +180,12 @@ function GitHubStats() {
               <span className="text-white/60 text-sm">commits this week</span>
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-benhammondyellow font-bold text-3xl">{repos}</span>
-              <span className="text-white/60 text-sm">repos touched</span>
+              <span className="text-benhammondyellow font-bold text-3xl">{repos4wks}</span>
+              <span className="text-white/60 text-sm">repos (4 wks)</span>
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-benhammondyellow font-bold text-3xl">{daysActive}</span>
-              <span className="text-white/60 text-sm">days active this month</span>
+              <span className="text-benhammondyellow font-bold text-3xl">{daysActive4wks}</span>
+              <span className="text-white/60 text-sm">days active (4 wks)</span>
             </div>
           </div>
         )}
@@ -181,40 +196,39 @@ function GitHubStats() {
             {LANES.map(lane => <SkeletonRow key={lane.type} />)}
           </div>
         ) : (
-        <div>
-          {/* Month headers */}
-          <div className="flex gap-1 mb-1 ml-16">
-            {weeks.map((week, wi) => (
-              <div key={wi} className="flex-1 min-w-3 max-w-10 text-center text-xs text-white/40 truncate">
-                {week.monthLabel ?? ''}
+          <div>
+            {/* Month headers aligned with active week columns */}
+            <div className="flex gap-1.5 mb-1 ml-24">
+              {activeWeeksWithLabels.map(({ wi, monthLabel }) => (
+                <div key={wi} className="flex-1 text-center text-xs text-white/40">
+                  {monthLabel ?? ''}
+                </div>
+              ))}
+            </div>
+
+            {/* Lane rows */}
+            {LANES.map(lane => (
+              <div key={lane.type} className="flex items-center gap-1.5 mb-2">
+                <div className="w-24 shrink-0 flex items-center gap-1.5">
+                  <span className="text-sm leading-none">{lane.emoji}</span>
+                  <span className="text-xs text-white/50 whitespace-nowrap">{lane.label}</span>
+                </div>
+                {activeWeeksWithLabels.map(({ week, wi }) => {
+                  const count = weeklyMap[wi]?.[lane.type] ?? 0;
+                  const title = count > 0
+                    ? `${fmt(week.start)} – ${fmt(week.end)}: ${count} ${lane.label}`
+                    : `${fmt(week.start)} – ${fmt(week.end)}: none`;
+                  return (
+                    <div
+                      key={wi}
+                      title={title}
+                      className={`flex-1 h-7 rounded ${lane.color} ${cellOpacity(count)} transition-opacity`}
+                    />
+                  );
+                })}
               </div>
             ))}
           </div>
-
-          {/* Lane rows */}
-          {LANES.map(lane => (
-            <div key={lane.type} className="flex items-center gap-1 mb-2">
-              <div className="w-16 shrink-0 flex items-center gap-1">
-                <span className="text-sm leading-none">{lane.emoji}</span>
-                <span className="text-xs text-white/50 truncate">{lane.label}</span>
-              </div>
-              {weeks.map((week, wi) => {
-                const count = weeklyMap[wi]?.[lane.type] ?? 0;
-                const title = count > 0
-                  ? `${fmt(week.start)} – ${fmt(week.end)}: ${count} ${lane.label}`
-                  : `${fmt(week.start)} – ${fmt(week.end)}`;
-                return (
-                  <div
-                    key={wi}
-                    title={title}
-                    className={`flex-1 min-w-3 max-w-10 h-7 rounded ${lane.color} ${cellOpacity(count)} transition-opacity`}
-                  />
-                );
-              })}
-            </div>
-          ))}
-
-        </div>
         )}
 
         {/* Repo spotlight */}

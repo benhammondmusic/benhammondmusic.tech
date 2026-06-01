@@ -69,16 +69,16 @@ export async function fetchLibbyTimeline(): Promise<LibbyTimeline> {
 			Boolean(book.isbn)
 		);
 
-		// Fetch subjects for all books with ISBNs concurrently
-		const bookSubjects = await Promise.allSettled(
-			booksWithIsbn.map(async (book) => {
-				const result = await fetchBookSafely(book.isbn);
-				return {
-					isbn: book.isbn,
-					subjects: result.success ? result.data.subjects : []
-				};
-			})
-		);
+		// Fetch subjects sequentially with a small delay to avoid 429s from OpenLibrary
+		const bookSubjects: PromiseSettledResult<{ isbn: string; subjects: string[] }>[] = [];
+		for (const book of booksWithIsbn) {
+			const result = await fetchBookSafely(book.isbn);
+			bookSubjects.push({
+				status: 'fulfilled',
+				value: { isbn: book.isbn, subjects: result.success ? result.data.subjects : [] }
+			});
+			await new Promise(resolve => setTimeout(resolve, 150));
+		}
 
 		// Create a map of ISBN to subjects for easy lookup
 		const subjectsMap = new Map(
