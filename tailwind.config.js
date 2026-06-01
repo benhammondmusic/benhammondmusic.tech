@@ -58,6 +58,19 @@ module.exports = {
       },
     },
   },
+  safelist: [
+    // GitHubStats swim lane colors (dynamically set from LANES array)
+    'bg-benhammondyellow',
+    'bg-benhammondgreen-400',
+    'bg-sky-400',
+    'bg-orange-400',
+    'bg-violet-400',
+    // cellOpacity values (dynamically computed)
+    'opacity-0',
+    'opacity-40',
+    'opacity-75',
+    'opacity-100',
+  ],
   plugins: [
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),

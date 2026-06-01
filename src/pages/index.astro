@@ -5,10 +5,8 @@ import { CTA } from '@/partials/CTA';
 import { Hero } from '@/partials/Hero';
 import  RecentSideProjects  from '@/partials/RecentSideProjects';
 import  CurrentProject  from '@/partials/CurrentProject';
-import { CompletedWebAppChallenges } from '@/partials/CompletedWebAppChallenges';
 import { RecentPosts } from '@/partials/RecentPosts';
 import {GitHubStats} from '@/partials/GitHubStats';
-import {BlueskyStuff} from '@/partials/BlueskyStuff';
 import { LibbyStuff } from '@/partials/LibbyStuff';
 import { Picture } from 'astro:assets';
 import ben from 'src/assets/images/ben.jpg'
@@ -94,8 +92,6 @@ body::before {
 			src={MyDenverCardFree} alt='MyDenverCard Free Project' />
 	</RecentSideProjects>
 	<GitHubStats client:visible />
-	<CompletedWebAppChallenges />
-	<BlueskyStuff client:visible />
 	<LibbyStuff client:visible />
   <CTA />
 </Base>

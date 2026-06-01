@@ -244,13 +244,15 @@ function GitHubStats() {
               >
                 <span className="text-xs font-semibold text-benhammondyellow truncate max-w-[180px]">{name}</span>
                 <span className="text-base leading-relaxed">
-                  {repoEvents.slice(0, 7).map((e: any, i: number) => (
-                    <span key={i} title={e.type.replace('Event', '')}>
-                      {activityMap[e.type] ?? '⚡'}
+                  {[...new Set(repoEvents.map((e: any) => e.type as string))].map((type) => (
+                    <span key={type} title={type.replace('Event', '')}>
+                      {activityMap[type] ?? '⚡'}
                     </span>
                   ))}
-                  {repoEvents.length > 7 && (
-                    <span className="text-white/40 text-xs ml-1">+{repoEvents.length - 7}</span>
+                  {repoEvents.length - new Set(repoEvents.map((e: any) => e.type)).size > 0 && (
+                    <span className="text-white/40 text-xs ml-1">
+                      +{repoEvents.length - new Set(repoEvents.map((e: any) => e.type)).size}
+                    </span>
                   )}
                 </span>
               </a>

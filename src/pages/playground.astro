@@ -1,0 +1,30 @@
+---
+import Base from '@/templates/Base.astro';
+import PlaygroundApp from '@/components/dataviz/PlaygroundApp.svelte';
+
+const title = 'Music Data-Viz Playground | benhammondmusic.tech';
+const description = 'Visualizing the metadata behind Ben Hammond\'s music career: tempo, key, danceability, genre, and more - powered by Spotify and D3.';
+---
+
+<Base head={{ title, description }}>
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-rubik text-white mb-2">
+      Music Data-Viz <span class="text-benhammondyellow">Playground</span>
+    </h1>
+    <p class="text-white/60 mb-2 max-w-2xl">
+      Experiments in visualizing the data behind my music career. My full setlist lives as a
+      <a
+        href="https://open.spotify.com/playlist/1BGI6ETmEsvhj0nTv7LOu6"
+        class="text-benhammondyellow hover:underline"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Spotify playlist</a>;
+      playlist and artist data is fetched via the Spotify API, cached in Upstash Redis, and rendered with D3 and Svelte.
+    </p>
+    <p class="text-white/40 text-sm mb-10">
+      Stack: Spotify API / Upstash Redis / D3 / Svelte / Astro / Netlify Functions
+    </p>
+
+    <PlaygroundApp client:only="svelte" />
+  </div>
+</Base>

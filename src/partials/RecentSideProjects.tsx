@@ -32,9 +32,9 @@ export default function RecentSideProjects(props: any) {
 				<Project
 					name='Dev Portfolio'
 					summary='benhammondmusic.tech'
-					description='My web dev and software engineering online presence. Using Astro as a meta-framework for server side generated pages, with React function components. Dynamically pulls in my recent blog posts with GraphQL at build time, along with GitHub events rendered as emoji 💪. '
+					description='My web dev and software engineering online presence. Built with Astro and React islands for real-time client-side hydration; live GitHub activity, recent blog posts, and library reading history all fetched at runtime via Netlify Functions.'
 					deployLink='https://benhammondmusic.tech'
-					repoLink='https://github.com/benhammondmusic/benhammond.tech'
+					repoLink='https://github.com/benhammondmusic/benhammondmusic.tech'
 					projectImage={BenHammondTechPicture}
 					category={
 						<>
@@ -65,17 +65,17 @@ export default function RecentSideProjects(props: any) {
 				<Project
 					name='Data Viz'
 					summary='Music Career Visualization Playground'
-					description='Low-stakes place to experiment with visualizing the meta-data behind my other career as a professional musician. Configured multiple components using secure server page routes to authenticate access to Spotify API and answer the question "So what kind of music do you play?".
-					'
-					deployLink='https://benhammondmusic.com/playground'
-					repoLink='https://github.com/benhammondmusic/benhammondmusic.com'
+					description='Visualizing the metadata behind my music career: tempo distribution, key signatures, danceability, genre bubbles, and more. Spotify playlist data fetched via API, cached in Upstash Redis, and rendered with D3 and Svelte islands.'
+					deployLink='/playground'
+					repoLink='https://github.com/benhammondmusic/benhammondmusic.tech'
 					projectImage={DataVizPicture}
 					category={
 						<>
-							<Tags color={ColorTags.AMBER}>SvelteKit</Tags>
+							<Tags color={ColorTags.AMBER}>Svelte</Tags>
 							<Tags color={ColorTags.AMBER}>TypeScript</Tags>
-							<Tags color={ColorTags.AMBER}>MongoDB</Tags>
+							<Tags color={ColorTags.AMBER}>Redis</Tags>
 							<Tags color={ColorTags.AMBER}>D3</Tags>
+							<Tags color={ColorTags.AMBER}>Spotify API</Tags>
 						</>
 					}
 				/>

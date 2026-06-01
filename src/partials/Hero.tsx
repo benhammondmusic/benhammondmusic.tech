@@ -63,6 +63,9 @@ function Hero(props: HeroProps) {
 						communities, so please reach out if I can help or answer any
 						questions you may have. Let's build something together!
 					</p>
+					<p className='m-2 pb-2 text-white/60 text-sm'>
+						React / TypeScript / Python / Pandas / D3 / Tailwind / GCP / Docker / Playwright
+					</p>
 					<div className='mt-5'>
 						<a
 							href='https://docs.google.com/document/d/1nYJf1ZjGetUo8lFbwoyf23prkTw-0H_HiqvMKlY5_nw'
