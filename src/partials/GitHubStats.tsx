@@ -26,15 +26,15 @@ const activityMap: Record<string, string> = {
 
 type WeekInfo = { start: string; end: string; monthLabel: string | null };
 
-function getLast8Weeks(): WeekInfo[] {
+function getLast12Weeks(): WeekInfo[] {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const thisWeekStart = new Date(today);
   thisWeekStart.setDate(today.getDate() - today.getDay());
 
-  return Array.from({ length: 8 }, (_, i) => {
+  return Array.from({ length: 12 }, (_, i) => {
     const weekStart = new Date(thisWeekStart);
-    weekStart.setDate(thisWeekStart.getDate() - (7 - i) * 7);
+    weekStart.setDate(thisWeekStart.getDate() - (11 - i) * 7);
     const weekEnd = new Date(weekStart);
     weekEnd.setDate(weekStart.getDate() + 6);
 
@@ -114,7 +114,7 @@ interface GitHubStatsProps {
 }
 
 function GitHubStats({ data }: GitHubStatsProps) {
-  const weeks = getLast8Weeks();
+  const weeks = getLast12Weeks();
   const weeklyMap = buildWeeklyEventMap(data, weeks);
   const { commits, repos } = getThisWeekStats(data);
   const daysActive = getDaysActiveThisMonth(data);
@@ -152,9 +152,9 @@ function GitHubStats({ data }: GitHubStatsProps) {
         {/* Swim lanes */}
         <div>
           {/* Month headers */}
-          <div className="flex gap-1.5 mb-1 ml-20">
+          <div className="flex gap-1 mb-1 ml-16">
             {weeks.map((week, wi) => (
-              <div key={wi} className="flex-1 max-w-12 text-center text-xs text-white/40 truncate">
+              <div key={wi} className="flex-1 min-w-3 max-w-10 text-center text-xs text-white/40 truncate">
                 {week.monthLabel ?? ''}
               </div>
             ))}
@@ -162,9 +162,9 @@ function GitHubStats({ data }: GitHubStatsProps) {
 
           {/* Lane rows */}
           {LANES.map(lane => (
-            <div key={lane.type} className="flex items-center gap-1.5 mb-2">
-              <div className="w-20 shrink-0 flex items-center gap-1.5">
-                <span className="text-base leading-none">{lane.emoji}</span>
+            <div key={lane.type} className="flex items-center gap-1 mb-2">
+              <div className="w-16 shrink-0 flex items-center gap-1">
+                <span className="text-sm leading-none">{lane.emoji}</span>
                 <span className="text-xs text-white/50 truncate">{lane.label}</span>
               </div>
               {weeks.map((week, wi) => {
@@ -176,7 +176,7 @@ function GitHubStats({ data }: GitHubStatsProps) {
                   <div
                     key={wi}
                     title={title}
-                    className={`flex-1 max-w-12 h-7 rounded ${lane.color} ${cellOpacity(count)} transition-opacity`}
+                    className={`flex-1 min-w-3 max-w-10 h-7 rounded ${lane.color} ${cellOpacity(count)} transition-opacity`}
                   />
                 );
               })}

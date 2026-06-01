@@ -3,15 +3,18 @@ import { Octokit } from "octokit";
 export async function fetchGitHubData() {
     try {
         const token = import.meta.env.GH_STATS_TOKEN;
+        const octokit = new Octokit({ auth: token });
 
-        const octokit = new Octokit({
-            auth: token,
+        // Fetch user's forked repos so we can exclude their events
+        const forksResponse = await octokit.request('GET /users/benhammondmusic/repos', {
+            headers: { 'X-GitHub-Api-Version': '2022-11-28' },
+            type: 'fork',
+            per_page: 100,
         });
-
-				// https://api.github.com/users/benhammondmusic/events
+        const forkNames = new Set((forksResponse.data as any[]).map(r => r.full_name));
 
         const allEvents: any[] = [];
-        for (let page = 1; page <= 5; page++) {
+        for (let page = 1; page <= 10; page++) {
             const response = await octokit.request('GET /users/benhammondmusic/events', {
                 headers: { 'X-GitHub-Api-Version': '2022-11-28' },
                 per_page: 100,
@@ -25,13 +28,15 @@ export async function fetchGitHubData() {
             if (response.data.length < 100) break;
         }
 
-        const typeCounts = allEvents.reduce((acc: Record<string, number>, e: any) => {
+        const filteredEvents = allEvents.filter(e => !forkNames.has(e.repo.name));
+
+        const typeCounts = filteredEvents.reduce((acc: Record<string, number>, e: any) => {
             acc[e.type] = (acc[e.type] ?? 0) + 1;
             return acc;
         }, {});
-        console.log(`GitHub: fetched ${allEvents.length} events. Types:`, typeCounts);
+        console.log(`GitHub: ${filteredEvents.length} events (from ${allEvents.length} total). Types:`, typeCounts);
 
-        return allEvents;
+        return filteredEvents;
     } catch (error) {
         console.error('Error fetching GitHub data:', error);
         return [];
