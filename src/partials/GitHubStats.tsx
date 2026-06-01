@@ -1,6 +1,5 @@
+import { useState, useEffect } from 'react';
 import { GradientText, Section } from "@/astro-boilerplate-components";
-
-export const prerender = false;
 
 const EXCLUDED = ['CreateEvent', 'DeleteEvent', 'WatchEvent'];
 
@@ -109,16 +108,32 @@ function cellOpacity(count: number): string {
   return 'opacity-100';
 }
 
-interface GitHubStatsProps {
-  data: any[];
+function SkeletonRow() {
+  return (
+    <div className="flex items-center gap-1 mb-2">
+      <div className="w-16 h-5 bg-white/10 rounded shrink-0" />
+      {Array.from({ length: 12 }, (_, i) => (
+        <div key={i} className="flex-1 min-w-3 max-w-10 h-7 bg-white/10 rounded" />
+      ))}
+    </div>
+  );
 }
 
-function GitHubStats({ data }: GitHubStatsProps) {
+function GitHubStats() {
+  const [data, setData] = useState<any[] | null>(null);
+
+  useEffect(() => {
+    fetch('/api/github')
+      .then(r => r.json())
+      .then(setData)
+      .catch(() => setData([]));
+  }, []);
+
   const weeks = getLast12Weeks();
-  const weeklyMap = buildWeeklyEventMap(data, weeks);
-  const { commits, repos } = getThisWeekStats(data);
-  const daysActive = getDaysActiveThisMonth(data);
-  const topRepos = getTopRepos(data);
+  const weeklyMap = data ? buildWeeklyEventMap(data, weeks) : {};
+  const { commits, repos } = data ? getThisWeekStats(data) : { commits: 0, repos: 0 };
+  const daysActive = data ? getDaysActiveThisMonth(data) : 0;
+  const topRepos = data ? getTopRepos(data) : [];
 
 
   const fmt = (d: string) => new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(d));
@@ -134,22 +149,38 @@ function GitHubStats({ data }: GitHubStatsProps) {
       <div className="flex flex-col gap-5 p-4 ring-1 ring-benhammondblue-50 ring-inset bg-slate-800 rounded-md">
 
         {/* Stat bar */}
-        <div className="flex flex-wrap gap-x-6 gap-y-2">
-          <div className="flex items-baseline gap-2">
-            <span className="text-benhammondyellow font-bold text-3xl">{commits}</span>
-            <span className="text-white/60 text-sm">commits this week</span>
+        {data === null ? (
+          <div className="flex flex-wrap gap-x-6 gap-y-2 animate-pulse">
+            {[1, 2, 3].map(i => (
+              <div key={i} className="flex items-baseline gap-2">
+                <div className="h-9 w-10 bg-white/10 rounded" />
+                <div className="h-4 w-28 bg-white/10 rounded" />
+              </div>
+            ))}
           </div>
-          <div className="flex items-baseline gap-2">
-            <span className="text-benhammondyellow font-bold text-3xl">{repos}</span>
-            <span className="text-white/60 text-sm">repos touched</span>
+        ) : (
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <div className="flex items-baseline gap-2">
+              <span className="text-benhammondyellow font-bold text-3xl">{commits}</span>
+              <span className="text-white/60 text-sm">commits this week</span>
+            </div>
+            <div className="flex items-baseline gap-2">
+              <span className="text-benhammondyellow font-bold text-3xl">{repos}</span>
+              <span className="text-white/60 text-sm">repos touched</span>
+            </div>
+            <div className="flex items-baseline gap-2">
+              <span className="text-benhammondyellow font-bold text-3xl">{daysActive}</span>
+              <span className="text-white/60 text-sm">days active this month</span>
+            </div>
           </div>
-          <div className="flex items-baseline gap-2">
-            <span className="text-benhammondyellow font-bold text-3xl">{daysActive}</span>
-            <span className="text-white/60 text-sm">days active this month</span>
-          </div>
-        </div>
+        )}
 
         {/* Swim lanes */}
+        {data === null ? (
+          <div className="animate-pulse">
+            {LANES.map(lane => <SkeletonRow key={lane.type} />)}
+          </div>
+        ) : (
         <div>
           {/* Month headers */}
           <div className="flex gap-1 mb-1 ml-16">
@@ -184,6 +215,7 @@ function GitHubStats({ data }: GitHubStatsProps) {
           ))}
 
         </div>
+        )}
 
         {/* Repo spotlight */}
         {topRepos.length > 0 && (

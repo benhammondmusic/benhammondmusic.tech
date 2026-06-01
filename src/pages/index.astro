@@ -11,7 +11,6 @@ import {GitHubStats} from '@/partials/GitHubStats';
 import {BlueskyStuff} from '@/partials/BlueskyStuff';
 import { LibbyStuff } from '@/partials/LibbyStuff';
 import { fetchLibbyTimeline } from '@/utils/libby';
-import { fetchGitHubData } from '@/utils/github';
 import { getCollection } from 'astro:content';
 import { Picture } from 'astro:assets';
 import ben from 'src/assets/images/ben.jpg'
@@ -25,7 +24,6 @@ const { title } = AppConfig;
 const { description } = AppConfig;
 
 const timeline = await fetchLibbyTimeline();
-const gitHubData = await fetchGitHubData();
 
 const allPosts = await getCollection('blog');
 const recentPosts = allPosts
@@ -109,7 +107,7 @@ body::before {
 			widths={[100, 200]}
 			src={MyDenverCardFree} alt='MyDenverCard Free Project' />
 	</RecentSideProjects>
-	<GitHubStats data={gitHubData}  />
+	<GitHubStats client:visible />
 	<CompletedWebAppChallenges />
 	<BlueskyStuff  />
 	<LibbyStuff timeline={timeline} client:visible />
