@@ -1,14 +1,38 @@
 import { GradientText, Section } from "@/astro-boilerplate-components";
-import { LibbyTimeline } from "@/utils/libby";
-import { useState } from 'react';
+import type { LibbyTimeline } from "@/utils/libby";
+import { useState, useEffect } from 'react';
 
-interface LibbyStuffProps {
-	timeline: LibbyTimeline
-}
-
-function LibbyStuff(props: LibbyStuffProps) {
-	const { timeline } = props;
+function LibbyStuff() {
+	const [timeline, setTimeline] = useState<LibbyTimeline | null>(null);
 	const [displayLimit, setDisplayLimit] = useState(6);
+
+	useEffect(() => {
+		fetch('/api/libby')
+			.then(r => r.json())
+			.then(setTimeline)
+			.catch(() => setTimeline({ version: 0, timeline: [] }));
+	}, []);
+
+	if (timeline === null) {
+		return (
+			<Section title={<div className="font-rubik">Borrowed from <GradientText>Denver Public Library</GradientText></div>}>
+				<div className="ring-1 ring-benhammondblue-50 ring-inset bg-slate-800 rounded-md p-6 animate-pulse">
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+						{[1, 2, 3, 4, 5, 6].map(i => (
+							<div key={i} className="bg-slate-700 rounded-lg overflow-hidden">
+								<div className="w-full bg-white/10" style={{ paddingBottom: '150%' }} />
+								<div className="p-3 space-y-2">
+									<div className="h-4 bg-white/10 rounded w-3/4" />
+									<div className="h-3 bg-white/10 rounded w-1/2" />
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</Section>
+		);
+	}
+
 	const showingAll = displayLimit >= timeline.timeline.length;
 
 

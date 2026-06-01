@@ -10,8 +10,6 @@ import { RecentPosts } from '@/partials/RecentPosts';
 import {GitHubStats} from '@/partials/GitHubStats';
 import {BlueskyStuff} from '@/partials/BlueskyStuff';
 import { LibbyStuff } from '@/partials/LibbyStuff';
-import { fetchLibbyTimeline } from '@/utils/libby';
-import { getCollection } from 'astro:content';
 import { Picture } from 'astro:assets';
 import ben from 'src/assets/images/ben.jpg'
 import BenHammondTech from 'src/assets/images/benhammond-tech.png'
@@ -22,18 +20,6 @@ import HET from 'src/assets/images/het.svg'
 
 const { title } = AppConfig;
 const { description } = AppConfig;
-
-const timeline = await fetchLibbyTimeline();
-
-const allPosts = await getCollection('blog');
-const recentPosts = allPosts
-  .sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf())
-  .slice(0, 6)
-  .map(post => ({
-    slug: post.id.replace(/\.(md|mdx)$/, ''),
-    title: post.data.title,
-    imgSrc: post.data.imgSrc,
-  }));
 
 
 ---
@@ -85,7 +71,7 @@ body::before {
 		class='h-36 w-36 rounded hover:translate-y-1'
 		src={HET.src} alt='Health Equity Tracker Project' />
 	</CurrentProject>
-	<RecentPosts posts={recentPosts} />
+	<RecentPosts client:visible />
   <RecentSideProjects  >
 		<Picture slot="BenHammondMusicPicture" formats={['avif', 'webp', 'png']}
 		class='h-36 w-36 rounded hover:translate-y-1'
@@ -109,8 +95,8 @@ body::before {
 	</RecentSideProjects>
 	<GitHubStats client:visible />
 	<CompletedWebAppChallenges />
-	<BlueskyStuff  />
-	<LibbyStuff timeline={timeline} client:visible />
+	<BlueskyStuff client:visible />
+	<LibbyStuff client:visible />
   <CTA />
 </Base>
 
