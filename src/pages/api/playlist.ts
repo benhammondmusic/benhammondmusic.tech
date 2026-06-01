@@ -2,6 +2,7 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import { Redis } from '@upstash/redis';
 import { getEra } from '@/utils/songlistUtils';
+import tempoData from '@/assets/data/song-tempos.json';
 
 const PLAYLIST_ID = '1BGI6ETmEsvhj0nTv7LOu6';
 const CACHE_KEY = 'spotify:playlist';
@@ -62,10 +63,12 @@ async function fetchPlaylistData(token: string) {
 			.filter((item: any) => item.track?.id)
 			.map((item: any) => {
 				const { name, popularity, artists, album } = item.track;
+				const tempo = (tempoData as Record<string, number>)[item.track.id] ?? null;
 				return {
 					name,
 					popularity,
 					era: getEra(album.release_date),
+					tempo,
 					artists: artists.map((artist: any) => ({
 						name: artist.name,
 						id: artist.id,

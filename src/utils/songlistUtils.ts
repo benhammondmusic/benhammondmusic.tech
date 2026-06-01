@@ -12,8 +12,39 @@ export interface Song {
 	name: string;
 	popularity: number;
 	era: string;
+	tempo: number | null;
 	artists: Artist[];
 	album: Album;
+}
+
+export const tempoMarkings: [number, string][] = [
+	[50, 'Lento'], [73, 'Adagio'], [86, 'Andante'], [109, 'Moderato'],
+	[132, 'Allegro'], [150, 'Vivace'], [180, 'Presto'], [220, 'Prestissimo'],
+];
+
+export function getTempoBucket(tempo: number): string {
+	for (const [maxTempo, bucket] of tempoMarkings) {
+		if (tempo <= maxTempo) return bucket;
+	}
+	return 'Prestissimo';
+}
+
+export function getTempoDistributions(songs: Song[]): Record<string, number> {
+	const distributions: Record<string, number> = {};
+	for (const song of songs) {
+		if (song.tempo === null) continue;
+		const bucket = getTempoBucket(song.tempo);
+		distributions[bucket] = (distributions[bucket] ?? 0) + 1;
+	}
+	return distributions;
+}
+
+export function getDurationFromBpm(bpm: number): number {
+	return 60 / bpm;
+}
+
+export function roundNearestIncrementOfN(x: number, n = 5): number {
+	return Math.ceil(x / n) * n;
 }
 
 export type ValueCount = {

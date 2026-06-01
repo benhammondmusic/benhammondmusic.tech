@@ -1,6 +1,12 @@
 <script lang="ts">
 	import { scaleBand, scaleLinear } from 'd3';
-	import { ERA_ORDER, getEraCounts, type Song } from '../../utils/songlistUtils';
+	import {
+		getDurationFromBpm,
+		getTempoDistributions,
+		roundNearestIncrementOfN,
+		tempoMarkings,
+		type Song,
+	} from '../../utils/songlistUtils';
 
 	export let songs: Song[];
 
@@ -9,9 +15,9 @@
 		'#ba5681', '#ca5769', '#ce614f', '#c87136',
 	];
 
-	$: eraCounts = getEraCounts(songs);
-	$: xVals = eraCounts.map((d) => d.value);
-	$: yVals = eraCounts.map((d) => d.count);
+	$: data = getTempoDistributions(songs);
+	$: xVals = tempoMarkings.map((row) => row[1]);
+	$: yVals = tempoMarkings.map((row) => data[row[1]] ?? 0);
 
 	let innerWidth = window.innerWidth;
 	$: vizWidth = Math.max(innerWidth - 100, 300);
@@ -25,7 +31,7 @@
 	$: xRange = [marginLeft, vizWidth - marginRight];
 	const yRange = [vizHeight - marginBottom, marginTop];
 
-	$: xScale = scaleBand(xVals, xRange).padding(0.2);
+	$: xScale = scaleBand(xVals, xRange).padding(0.15);
 	$: yMax = Math.max(...yVals, 1);
 	$: yScale = scaleLinear([0, yMax], yRange).nice();
 	$: yTicks = yScale.ticks(4);
@@ -46,33 +52,50 @@
 		</g>
 
 		<!-- Bars -->
-		{#each eraCounts as d, i}
-			{@const x = xScale(d.value) ?? 0}
-			{@const barH = yScale(0) - yScale(d.count)}
+		{#each tempoMarkings as [, label], i}
+			{@const x = xScale(label) ?? 0}
+			{@const count = yVals[i] ?? 0}
+			{@const barH = yScale(0) - yScale(count)}
+			{@const avgBpm = i > 0
+				? (tempoMarkings[i - 1][0] + tempoMarkings[i][0]) / 2
+				: tempoMarkings[i][0]}
 			<rect
+				class="bar {label}"
 				x={x}
-				y={yScale(d.count)}
+				y={yScale(count)}
 				width={xScale.bandwidth()}
 				height={barH}
 				fill={colors[i % colors.length]}
 				rx="3"
+				style="animation-duration: {getDurationFromBpm(avgBpm)}s"
 			/>
-			<!-- Count label above bar -->
+			<!-- Count above bar -->
+			{#if count > 0}
+				<text
+					x={x + xScale.bandwidth() / 2}
+					y={yScale(count) - 4}
+					text-anchor="middle"
+					fill="white"
+					font-size="12"
+				>{count}</text>
+			{/if}
+			<!-- BPM label -->
 			<text
 				x={x + xScale.bandwidth() / 2}
-				y={yScale(d.count) - 4}
+				y={vizHeight - marginBottom + 14}
 				text-anchor="middle"
-				fill="white"
-				font-size="12"
-			>{d.count}</text>
-			<!-- Era label below axis -->
+				fill="white/60"
+				font-size="10"
+				fill-opacity="0.6"
+			>{i === 0 ? '<' : '~'}{roundNearestIncrementOfN(avgBpm)} bpm</text>
+			<!-- Tempo name -->
 			<text
 				x={x + xScale.bandwidth() / 2}
-				y={vizHeight - marginBottom + 16}
+				y={vizHeight - marginBottom + 28}
 				text-anchor="middle"
 				fill="white"
 				font-size={innerWidth < 500 ? '9' : '11'}
-			>{d.value}</text>
+			>{label}</text>
 		{/each}
 
 		<!-- X axis line -->
@@ -86,3 +109,20 @@
 		/>
 	</svg>
 </div>
+
+<style>
+	.bar { will-change: transform; transform-origin: bottom; }
+	.bar.Lento       { animation: pulse 1.5s ease-in-out infinite; }
+	.bar.Adagio      { animation: pulse 0.98s ease-in-out infinite; }
+	.bar.Andante     { animation: pulse 0.76s ease-in-out infinite; }
+	.bar.Moderato    { animation: pulse 0.62s ease-in-out infinite; }
+	.bar.Allegro     { animation: pulse 0.5s ease-in-out infinite; }
+	.bar.Vivace      { animation: pulse 0.43s ease-in-out infinite; }
+	.bar.Presto      { animation: pulse 0.36s ease-in-out infinite; }
+	.bar.Prestissimo { animation: pulse 0.3s ease-in-out infinite; }
+
+	@keyframes pulse {
+		0%, 100% { transform: scaleY(0.93); transform-origin: bottom; }
+		50%       { transform: scaleY(1);    transform-origin: bottom; }
+	}
+</style>

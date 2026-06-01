@@ -35,9 +35,9 @@
 {:else}
 	<div class="flex flex-col gap-10">
 		<section>
-			<h3 class="text-lg font-semibold text-white mb-3">By Era</h3>
+			<h3 class="text-lg font-semibold text-white mb-3">Tempo Distribution</h3>
 			<p class="text-white/60 text-sm mb-4">
-				What decades does the repertoire draw from?
+				How fast are the songs Ben plays? Bars pulse at their actual tempo.
 			</p>
 			<VerticalBarChart {songs} />
 		</section>
