@@ -5,13 +5,7 @@ export async function fetchGitHubData() {
         const token = import.meta.env.GH_STATS_TOKEN;
         const octokit = new Octokit({ auth: token });
 
-        // Fetch user's forked repos so we can exclude their events
-        const forksResponse = await octokit.request('GET /users/benhammondmusic/repos', {
-            headers: { 'X-GitHub-Api-Version': '2022-11-28' },
-            type: 'fork',
-            per_page: 100,
-        });
-        const forkNames = new Set((forksResponse.data as any[]).map(r => r.full_name));
+        const EXCLUDED_REPOS = new Set(['benhammondmusic/health-equity-tracker']);
 
         const allEvents: any[] = [];
         for (let page = 1; page <= 10; page++) {
@@ -28,7 +22,7 @@ export async function fetchGitHubData() {
             if (response.data.length < 100) break;
         }
 
-        const filteredEvents = allEvents.filter(e => !forkNames.has(e.repo.name));
+        const filteredEvents = allEvents.filter(e => !EXCLUDED_REPOS.has(e.repo.name));
 
         const typeCounts = filteredEvents.reduce((acc: Record<string, number>, e: any) => {
             acc[e.type] = (acc[e.type] ?? 0) + 1;
