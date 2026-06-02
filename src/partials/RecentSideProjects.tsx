@@ -42,7 +42,6 @@ export default function RecentSideProjects(props: any) {
 							<Tags color={ColorTags.SKY}>React</Tags>
 							<Tags color={ColorTags.SKY}>TypeScript</Tags>
 							<Tags color={ColorTags.SKY}>Tailwind</Tags>
-							<Tags color={ColorTags.SKY}>GraphQL</Tags>
 						</>
 					}
 				/>
