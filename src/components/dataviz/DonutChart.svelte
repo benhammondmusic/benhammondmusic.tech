@@ -44,7 +44,7 @@
 
 <b>{selectedArtist}</b>
 
-<svg width="100%" viewBox="{-width / 2} {-height / 2} {width} {height}" style="max-width:{width}px;height:auto;display:block;margin:0 auto">
+<svg width="100%" viewBox="{-width / 2} {-height / 2} {width} {height}" style="max-width:2000px;height:auto;display:block;margin:0 auto">
 	{#each wedges as wedge, i}
 		{@const wedgeAngle = (wedge.startAngle + wedge.endAngle) / 2}
 		<path
